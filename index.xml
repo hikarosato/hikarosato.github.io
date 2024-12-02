@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+	<title>Hikaro</title>
+	<link>https://hikarosato.github.io/</link>
+	<description>About me page.</description>
+	<generator>Hugo -- gohugo.io</generator>
+	<language>en-us</language><atom:link href="https://hikarosato.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<item>
+		<title>Галицький Розбишака</title>
+		<link>https://hikarosato.github.io/galicia/</link>
+		<pubDate>Mon, 01 Dec 2024 00:00:00 +0200</pubDate>
+		<guid>https://hikarosato.github.io/galicia/</guid>
+		<description>Українські локалізації та різні напрацювання під псевдонімом Галицький Розбишака.</description>
+	</item>
+	<item>
+		<title>Teeworlds</title>
+		<link>https://hikarosato.github.io/teeworlds/</link>
+		<pubDate>Mon, 01 Dec 2024 00:00:00 +0200</pubDate>
+		<guid>https://hikarosato.github.io/teeworlds/</guid>
+		<description>Career in Teeworlds under the nickname ZoOoM.7z/Hikaro.</description>
+	</item>
+	</channel>
+</rss>
