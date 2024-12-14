@@ -1,1 +1,0 @@
-# hikarosato.github.io
