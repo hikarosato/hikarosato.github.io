@@ -3,22 +3,22 @@
 	<channel>
 	<title>Hikaro</title>
 	<link>https://hikarosato.github.io/</link>
-	<description>About me page.</description>
+	<description>Українські локалізації та різні напрацювання від Галицького Розбишаки.</description>
 	<generator>Hugo -- gohugo.io</generator>
 	<language>en-us</language><atom:link href="https://hikarosato.github.io/index.xml" rel="self" type="application/rss+xml" />
 	<item>
-		<title>Галицький Розбишака</title>
-		<link>https://hikarosato.github.io/galicia/</link>
-		<pubDate>Mon, 01 Dec 2024 00:00:00 +0200</pubDate>
-		<guid>https://hikarosato.github.io/galicia/</guid>
-		<description>Українські локалізації та різні напрацювання від Галицького Розбишаки.</description>
-	</item>
 	<item>
 		<title>Teeworlds</title>
 		<link>https://hikarosato.github.io/teeworlds/</link>
-		<pubDate>Mon, 01 Dec 2024 00:00:00 +0200</pubDate>
+		<pubDate>Mon, 14 Dec 2024 00:00:00 +0200</pubDate>
 		<guid>https://hikarosato.github.io/teeworlds/</guid>
 		<description>Career in Teeworlds under the nickname ZoOoM.7z/Hikaro.</description>
+	</item>
+	<title>Hikaro</title>
+		<link>https://hikarosato.github.io/about/</link>
+		<pubDate>Mon, 14 Dec 2024 00:00:00 +0200</pubDate>
+		<guid>https://hikarosato.github.io/about/</guid>
+		<description>About me page.</description>
 	</item>
 	</channel>
 </rss>
