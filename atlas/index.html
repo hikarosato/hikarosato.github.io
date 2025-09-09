@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Main -->
+	<title>Atlas MonoBehaviour Merger</title>
+	<meta name="title" content="Atlas MonoBehaviour Merger" />
+	<meta name="description" content="Програма для злиття гліфів." />
+	<!-- Open Graph -->
+	<meta property="og:title" content="Atlas MonoBehaviour Merger" />
+	<meta property="og:description" content="Програма для злиття гліфів." />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://hikarosato.github.io/atlas" />
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Atlas MonoBehaviour Merger" />
+	<meta name="twitter:description" content="Програма для злиття гліфів." />
+	<!-- Other -->
+	<meta name="referrer" content="no-referrer-when-downgrade" />
+<style>
+:root {
+	--width: 60rem;
+	--font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	--font-secondary: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	--font-scale: 1.2em;
+    --background-color: #fff;
+    --heading-color: #222;
+    --text-color: #444;
+    --link-color: #3273dc;
+    --visited-color:  #8b6fcb;
+    --code-background-color: #f2f2f2;
+    --code-color: #222;
+    --blockquote-color: #222;
+}
+
+body {
+	font-family: var(--font-secondary);
+	font-size: var(--font-scale);
+	margin: 50px auto;
+	padding: 20px;
+	max-width: var(--width);
+	text-align: left;
+	background-color: var(--background-color);
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	line-height: 1.5;
+	color: var(--text-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: var(--font-main);
+	color: var(--heading-color);
+}
+
+strong, b {
+	color: var(--heading-color);
+}
+
+a {
+	color: var(--link-color);
+	cursor: pointer;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline; 
+}
+
+nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,.09);
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 80px;
+	z-index: 999;
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+}
+
+nav p {
+	width: 50rem;
+	padding: 0 20px;
+	margin: 0 auto;
+}
+
+nav a {
+	margin-right: 15px;
+	font-size: 0.9em;
+}
+
+button {
+	margin: 0;
+}
+
+main {
+	line-height: 1.6;
+}
+
+table {
+	width: 100%;
+}
+
+hr {
+	border: 0;
+	border-top: 1px dashed;
+}
+
+img {
+	max-width: 100%;
+}
+
+code {
+	font-family: monospace;
+	padding: 2px;
+	background-color: var(--code-background-color);
+	color: var(--code-color);
+	border-radius: 3px;
+}
+
+blockquote {
+	border-left: 1px solid #999;
+	color: var(--code-color);
+	padding-left: 20px;
+	font-style: italic;
+}
+
+footer {
+	padding: 25px 0;
+	text-align: center;
+}
+
+button {
+	border: 0;
+	background-color: inherit;
+	text-decoration: underline;
+	color: var(--heading-color);
+}
+
+.title {
+	text-decoration: none;
+}
+
+.title h1 {
+	color: var(--link-color);
+}
+
+.inline {
+	width: auto !important;
+}
+
+.highlight,
+.code {
+	padding: 1px 15px;
+	background-color: var(--code-background-color);
+	color: var(--code-color);
+	border-radius: 3px;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	overflow-x: auto;
+}
+</style>
+</head>
+<body>
+<header><center><a class="title" href="/atlas/"><h1>Atlas MonoBehaviour Merger</h1></a></center>
+<nav>
+	<p><b><a href="/">Hobby</a>
+	<a href="/teeworlds/">Teeworlds</a>
+	<a href="/about/">About</a></b></p>
+</nav>
+</header>
+<main>
+	<center><img src="preview.png" width="600"></center>
+	<p>Програма для злиття згенерованих гліфів з оригінальним <b>MonoBehaviour</b> шрифту для <b>Unity</b>. Ідея базується на <b><a target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3322671285"> Java-програмі від Fomka_Wyverno</a></b>, однак алгоритм було допрацьовано: додано новий режим злиття, підтримку формату <b>.txt</b> та тип шрифту <b>2D</b>. Програма написана на <b>C#</b> і працює на <b>Windows 7-11</b>.</p>
+	<ul>
+		<li>Підтримка типів шрифту <b>TextMesh Pro (TMP)</b> та <b>2D</b>.</li>
+		<li>Підтримка форматів <b>.json</b> та <b>.txt</b>.</li>
+		<li><b>Drag & Drop</b> та ручний вибір файлу.</li>
+	<li>Два режими злиття:</li>
+	<b>M</b> — зберігається метрика оригінального шрифту, копіюються лише координати згенерованих гліфів.
+	<b>M2</b> — копіюються як координати гліфів, так і метрика нового шрифту.
+	<li>Збереження готового файлу поруч із програмою.</li>
+	</ul>
+	<center><h3><a href="https://github.com/hikarosato/Atlas-MonoBehaviour-Merger">GitHub</a></h3></center>
+<hr/>
+	Подякувати за програму: <b><a target="_blank" href="https://send.monobank.ua/jar/47CywvjmpG">monobank</a></b>
+	<br>Зворотній зв’язок через Телеграм: <b><a target="_blank" href="https://t.me/Halytskyi_Rozbyshaka">Галицький Розбишака</a></b>
+</main>
+	<footer>Made by Hikaro</footer>
+</body>
+</html>
