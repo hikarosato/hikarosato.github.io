@@ -259,6 +259,7 @@ img, video {
 						<li><a href="#ue-aes">AES та .sig</a></li>
 						<li><a href="#ue-text">Текст</a></li>
 						<li><a href="#ue-unpack">Розпакування</a></li>
+						<li><a href="#ue-font">Шрифт</a></li>
 						<li><a href="#ue-pack">Пакування</a></li>
 					</ul>
 				</li>
@@ -351,6 +352,11 @@ img, video {
 					<p style="text-indent: 1em;">Такі <b>.json</b> файли також можна розпарсити та перекладати в <b>.csv</b>, але це робиться індивідуально для кожної гри, немає універсального інструменту, його потрібно писати власноруч, за допомогою ШІ, просити знайомих техніків або людей на дискорд серверах.</p>
 					<p style="text-indent: 1em;">Після перекладу <b>.json</b> потрібно повернути в <b>.uasset</b> формат, для цього відкрийте його через <b>UAssetGUI</b> та натисніть <b>Save</b>, сформується <b>.uasset+.uexp</b> для імпорту в гру, впевніться, що назви файлів ідентичні з оригіналами з гри.</p>
 						<img src="ue/uassetgui-5.png" width="1100" style="display: block; margin: 0 auto;" alt="">
+				<h3 id="ue-font">Заміна шрифтів</h3>
+					<p>Коли поряд з <b>.uasset</b> немає файлу<b>.ufont</b>, а ви впевнені, що шрифт усередині <b>.uasset+.uexp</b> — знадобиться авторська програма <b><a target="_blank" href="https://github.com/hikarosato/UAsset-Font-Tool">UAsset Font Tool</a></b>.</p>
+					<p>Приклад заміненого шрифту через програму:</p>
+						<img src="ue/orig_font_web.png" width="800" style="display: block; margin: 0 auto;" alt="">
+						<img src="ue/new_font_web.png" width="800" style="display: block; margin: 0 auto;" alt="">
 				<h3 id="ue-pack">Пакування Zen-контейнерів</h3>
 					<p>Для цього нам знову потрібен <b><a target="_blank" href="https://github.com/trumank/retoc">retoc</a></b>.</p>
 					<p>Шаблон команди:</p>
