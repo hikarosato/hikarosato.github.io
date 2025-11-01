@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Main -->
+	<title>Atlas MonoBehaviour Merger</title>
+	<meta name="title" content="Array Localization Tool" />
+	<meta name="description" content="Програма для перекладу та роботи з масивами JSON-файлів для Unity." />
+	<!-- Open Graph -->
+	<meta property="og:title" content="Array Localization Tool" />
+	<meta property="og:description" content="Програма для перекладу та роботи з масивами JSON-файлів для Unity." />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://hikarosato.github.io/array" />
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Array Localization Tool" />
+	<meta name="twitter:description" content="Програма для перекладу та роботи з масивами JSON-файлів для Unity." />
+	<!-- Other -->
+	<meta name="referrer" content="no-referrer-when-downgrade" />
+<style>
+:root {
+	--width: 66rem;
+	--font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	--font-secondary: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	--font-scale: 1.2em;
+    --background-color: #fff;
+    --heading-color: #222;
+    --text-color: #444;
+    --link-color: #3273dc;
+    --visited-color:  #8b6fcb;
+    --code-background-color: #f2f2f2;
+    --code-color: #222;
+    --blockquote-color: #222;
+}
+
+body {
+	font-family: var(--font-secondary);
+	font-size: var(--font-scale);
+	margin: 50px auto;
+	padding: 20px;
+	max-width: var(--width);
+	text-align: left;
+	background-color: var(--background-color);
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	line-height: 1.5;
+	color: var(--text-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: var(--font-main);
+	color: var(--heading-color);
+}
+
+strong, b {
+	color: var(--heading-color);
+}
+
+a {
+	color: var(--link-color);
+	cursor: pointer;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline; 
+}
+
+nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,.09);
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 80px;
+	z-index: 999;
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+}
+
+nav p {
+	width: 50rem;
+	padding: 0 20px;
+	margin: 0 auto;
+}
+
+nav a {
+	margin-right: 15px;
+	font-size: 0.9em;
+}
+
+button {
+	margin: 0;
+}
+
+main {
+	line-height: 1.6;
+}
+
+table {
+	width: 100%;
+}
+
+hr {
+	border: 0;
+	border-top: 1px dashed;
+}
+
+img {
+	max-width: 100%;
+}
+
+code {
+	font-family: monospace;
+	padding: 2px;
+	background-color: var(--code-background-color);
+	color: var(--code-color);
+	border-radius: 3px;
+}
+
+blockquote {
+	border-left: 1px solid #999;
+	color: var(--code-color);
+	padding-left: 20px;
+	font-style: italic;
+}
+
+footer {
+	padding: 25px 0;
+	text-align: center;
+}
+
+button {
+	border: 0;
+	background-color: inherit;
+	text-decoration: underline;
+	color: var(--heading-color);
+}
+
+.title {
+	text-decoration: none;
+}
+
+.title h1 {
+	color: var(--link-color);
+}
+
+.inline {
+	width: auto !important;
+}
+
+.highlight,
+.code {
+	padding: 1px 15px;
+	background-color: var(--code-background-color);
+	color: var(--code-color);
+	border-radius: 3px;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	overflow-x: auto;
+}
+</style>
+</head>
+<body>
+<header><center><h1 style="color: #3273dc">Array Localization Tool</h1></center>
+<nav>
+	<p><b><a href="/">Hobby</a>
+	<a href="/teeworlds/">Teeworlds</a>
+	<a href="/about/">About</a></b></p>
+</nav>
+</header>
+<main>
+	<center><img src="preview.png"  width="1000"></center>
+	<p>Авторська програма для зручного перекладу та роботи з багатомовними масивами <b>JSON</b>-файлів для <b>Unity</b>.<br>Написана на <b>C#</b> і працює на <b>Windows 7-11</b>.</p>
+	<img src="example.png" style="float: left; margin-right: 30px; width: 330px;">
+	<p>
+		<ul>
+			<li>Підтримка <u>п’яти</u> видів масивів.</li>
+			<li>Незалежний вибір індексів мов.</li>
+			<li>Імпорт перекладу з попередньо збереженого <b>JSON</b>.</li>
+			<li>Експорт таблиці у <b>CSV</b> для подальшого перекладу на <b>Google Sheets</b> чи <b>Crowdin</b>.</li>
+			<li>Імпорт перекладу з <b>CSV</b> з оновленням лише змінених рядків.</li>
+			<li>Відновлення тексту зі стовпця оригіналу — окремо або для всіх рядків одразу.</li>
+			<li>Пошук по тексту або лише по ID з переходом між знайденими результатами.</li>
+			<li>Індикація змінених/перекладених/імпортованих рядків.</li>
+			<li>Статистика кількості рядків, слів, перекладених рядків та відсоток перекладу.</li>
+			<li>Підтримка відкриття файлу <b>JSON</b> простим перетягуванням на <b>.exe</b>.</li>
+			<li>Гарячі клавіші для швидкої роботи:
+			<br>— <code>Ctrl + O</code> — відкриття файлу,
+			<br>— <code>Ctrl + S</code> — збереження файлу,
+			<br>— <code>Ctrl + F</code> — перехід до пошуку,
+			<br>— <code>F3</code> — знайти далі,
+			<br>— <code>Shift + F3</code> — знайти попереднє.</li>
+		</ul>
+	</p>
+
+	<center><h3><a href="https://github.com/hikarosato/Array-Localization-Tool">GitHub</a></h3></center>
+<hr/>
+	Подякувати за програму: <b><a target="_blank" href="https://send.monobank.ua/jar/47CywvjmpG">monobank</a></b>
+	<br>Зворотній зв’язок через Телеграм: <b><a target="_blank" href="https://t.me/Halytskyi_Rozbyshaka">Галицький Розбишака</a></b>
+</main>
+	<footer>Made by Hikaro</footer>
+</body>
+</html>

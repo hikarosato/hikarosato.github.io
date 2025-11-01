@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Main -->
+	<title>Галицький Розбишака</title>
+	<meta name="title" content="Галицький Розбишака" />
+	<meta name="description" content="Українські локалізації та різні напрацювання від Галицького Розбишаки." />
+	<!-- Open Graph -->
+	<meta property="og:title" content="Галицький Розбишака" />
+	<meta property="og:description" content="Українські локалізації та різні напрацювання від Галицького Розбишаки." />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://hikarosato.github.io/" />
+	<meta property="og:image" content="https://hikarosato.github.io/assets/cover.png" />
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Галицький Розбишака" />
+	<meta name="twitter:description" content="Українські локалізації та різні напрацювання від Галицького Розбишаки." />
+	<meta name="twitter:image" content="https://hikarosato.github.io/assets/cover.png" />
+	<!-- Other -->
+	<meta name="referrer" content="no-referrer-when-downgrade" />
+	<meta name="google-site-verification" content="sW7CLGJX6xku8GKXOnysD-f3nqW2XnVFgnkk811QlmI"/>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root {
+	--main-bg: #121212;
+	--card-bg: #1e1e1e;
+	--accent: #4fa3ff;
+	--text-color: #ddd;
+	--heading-color: #fff;
+	--border-radius: 12px;
+	--shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+* { box-sizing: border-box; margin:0; padding:0; }
+
+body {
+	font-family: 'Inter', sans-serif;
+	background-color: var(--main-bg);
+	color: var(--text-color);
+	line-height: 1.6;
+	transition: background-color 0.3s, color 0.3s;
+	background: url("png/background2.png") no-repeat center center fixed;
+	background-size: cover;
+	position: relative;
+	z-index: 0;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+header {
+	background: var(--card-bg);
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+	padding: 15px 30px;
+	box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+header h1 { color: var(--accent); font-size: 1.8em; }
+
+nav a {
+	text-decoration: none;
+	color: var(--text-color);
+	margin-left: 20px;
+	font-weight: 600;
+	transition: color 0.2s;
+}
+
+nav a:hover { color: var(--accent); }
+
+.container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
+
+.intro { margin-bottom: 30px; font-size: 1.1em; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+
+.footer { text-align: center; padding: 30px 0; color: #aaa; font-size: 0.9em; }
+
+.footer a { text-decoration: none; color: inherit; transition: color 0.3s; }
+
+.footer a:hover { color: var(--accent); }
+
+.footer i { margin-right: 6px; font-size: 1em; vertical-align: middle; }
+
+@media (max-width: 500px) {
+	header { flex-direction: column; align-items: flex-start; }
+	nav { margin-top: 10px; }
+}
+
+.card {
+	background: var(--card-bg);
+	border-radius: var(--border-radius);
+	box-shadow: var(--shadow);
+	transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+.card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+
+.card-img-wrapper { width: 100%; overflow: hidden; }
+
+.card-img-wrapper img {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+.card h3 {
+	color: var(--heading-color);
+	margin: 15px 0 5px 0;
+	padding: 0 15px;
+}
+
+.card p { margin: 0 0 10px 0; padding: 0 15px; }
+
+.card a {
+	color: var(--accent);
+	text-decoration: none;
+	font-weight: 500;
+	display: inline-block;
+	padding: 0 15px;
+	margin: 0 0 15px 0;
+}
+
+.card a:hover { text-decoration: underline; }
+
+.links-list a { display: block; margin-bottom: 6px; text-decoration: none; color: var(--accent); }
+
+.links-list a:last-child { margin-bottom: 10px; }
+
+.links-list a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<header>
+	<h1>Галицький Розбишака</h1>
+	<nav>
+		<a href="/">Hobby</a>
+		<a href="/teeworlds/">Teeworlds</a>
+		<a href="/guide/">Guide</a>
+	</nav>
+</header>
+
+<div class="container">
+	<p class="intro">Займаюсь неофіційними українськими локалізаціями, написанням технічних інструментів для роботи з іграми та файлами під псевдонімом <b>Галицький Розбишака</b>.</p>
+
+<div class="cards">
+	<div class="card">
+		<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/233860/header.jpg" class="card-img"></div>
+		<h3>Український шрифт для Kenshi</h3>
+		<p>Автор виправленого шрифту.</p>
+		<a target="_blank" href="/files/Kenshi_fixed_font_proof.png"><i class="fa-solid fa-image"></i> Зняток</a>
+	</div>
+
+		<div class="card">
+			<div class="card-img-wrapper"><img src="png/telegram.png" class="card-img"></div>
+			<h3>Мова для Telegram</h3>
+			<p>Підтримується Android, iOS, TDesktop.</p>
+			<a target="_blank" href="https://t.me/setlanguage/sainthalychyna"><i class="fa-brands fa-telegram"></i> Halychyna</a>
+		</div>
+
+	<div class="card">
+		<div class="card-img-wrapper"><img src="png/stickers.png" class="card-img"></div>
+		<h3>Пакунки наліпок Telegram</h3>
+		<div class="links-list">
+		<a target="_blank" href="https://t.me/addstickers/pepehriuk"><i class="fa-brands fa-telegram"></i> Pepe the Frog</a>
+		<a target="_blank" href="https://t.me/addstickers/pepehriuk_anim"><i class="fa-brands fa-telegram"></i> Pepe анімаційний</a>
+		<a target="_blank" href="https://t.me/addstickers/InosukeHikaro"><i class="fa-brands fa-telegram"></i> Inosuke Hashibira</a>
+		<a target="_blank" href="https://t.me/addstickers/penguin_halychyna"><i class="fa-brands fa-telegram"></i> Penguins</a>
+		<a target="_blank" href="https://t.me/addstickers/syrskiy_ua_by_fStikBot"><i class="fa-brands fa-telegram"></i> На різні випадки</a>
+		<a target="_blank" href="https://t.me/addstickers/ua_office_ua_by_fStikBot"><i class="fa-brands fa-telegram"></i> The Office</a>
+		<a target="_blank" href="https://t.me/addstickers/Minions_Halychyna_by_fStikBot"><i class="fa-brands fa-telegram"></i> Minions</a>
+		</div>
+	</div>
+
+		<div class="card">
+			<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/294100/header.jpg" class="card-img"></div>
+			<h3>Переклад 33 модів RimWorld</h3>
+			<a target="_blank" href="https://github.com/hikarosato/Ukrainian-Mod-Localization"><i class="fa-brands fa-github"></i> GitHub</a>
+		</div>
+
+		<div class="card">
+			<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/965310/header.jpg" class="card-img"></div>
+			<h3>Локалізація The Settlers: Rise of an Empire</h3>
+			<p>71784 слова.</p>
+			<a target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3365219999"><i class="fa-brands fa-steam"></i> Посібник в Steam</a>
+		</div>
+
+		<div class="card">
+			<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/965320/header.jpg" class="card-img"></div>
+			<h3>Локалізація The Settlers 7: Paths to a Kingdom</h3>
+			<p>69033 слова.</p>
+			<a target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3371663270"><i class="fa-brands fa-steam"></i> Посібник в Steam</a>
+		</div>
+
+		<div class="card">
+			<div class="card-img-wrapper"><img src="png/finereader.png" class="card-img"></div>
+			<h3>Локалізація ABBYY Screenshot Reader 8.0</h3>
+			<a target="_blank" href="https://t.me/Halytskyi_Rozbyshaka/40"><i class="fa-brands fa-telegram"></i> Telegram</a>
+		</div>
+
+		<div class="card">
+			<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/48a2fcbda8565bb45025e98fd8ebde8a7203f6a0/header.jpg" class="card-img"></div>
+			<h3>Переклад 8 модів для Baldur's Gate 3</h3>
+				<a target="_blank" href="https://drive.google.com/drive/folders/1Uikf6Qz9fTw2pqyWQeaqtxPgtBQaUFSz"><i class="fa-solid fa-cloud-arrow-down"></i> Google Диск</a>
+		</div>
+
+		<div class="card">
+			<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/243950/header.jpg" class="card-img"></div>
+			<h3>Локалізація Divinity: Dragon Commander</h3>
+			<p>144464 слова.</p>
+			<a target="_blank" href="https://www.youtube.com/watch?v=O_BUYwSe9yo"><i class="fa-brands fa-youtube"></i> Передогляд</a>
+		</div>
+
+		<div class="card">
+			<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/35000/header.jpg" class="card-img"></div>
+			<h3>Локалізація Mini Ninjas</h3>
+			<p>8580 слів</p>
+			<a target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3392764233"><i class="fa-brands fa-steam"></i> Посібник в Steam</a>
+		</div>
+
+		<div class="card">
+			<div class="card-img-wrapper"><img src="png/utility.png" class="card-img"></div>
+			<h3>Інструмент для роботи з 25 форматами файлів.</h3>
+			<p>Платний.</p>
+			<a target="_blank" href="https://t.me/Halytskyi_Rozbyshaka/73"><i class="fa-brands fa-telegram"></i> Telegram</a>
+		</div>
+
+		<div class="card">
+			<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/990630/header.jpg" class="card-img"></div>
+			<h3>Локалізація The Last Campfire</h3>
+			<p>12243 слова.</p>
+			<a target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3428326265"><i class="fa-brands fa-steam"></i> Посібник в Steam</a>
+		</div>
+
+		<div class="card">
+			<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2420660/header.jpg" class="card-img"></div>
+			<h3>Локалізація Neva</h3>
+			<p>1063 слова.</p>
+			<a target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3430857952"><i class="fa-brands fa-steam"></i> Посібник в Steam</a>
+		</div>
+
+		<div class="card">
+			<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/683320/header.jpg" class="card-img"></div>
+			<h3>Локалізація GRIS</h3>
+			<p>212 слів.</p>
+			<a target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3445319845"><i class="fa-brands fa-steam"></i> Посібник в Steam</a>
+		</div>
+
+		<div class="card">
+			<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1462570/header.jpg" class="card-img"></div>
+			<h3>Локалізація Lost in Random</h3>
+			<p>96918 слів.</p>
+			<a target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3446294135"><i class="fa-brands fa-steam"></i> Посібник в Steam</a>
+		</div>
+
+		<div class="card">
+			<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1225580/header.jpg" class="card-img"></div>
+			<h3>Локалізація Fe</h3>
+			<p>612 слів.</p>
+			<a target="_blank" href="https://kuli.com.ua/fe"><i class="fa-solid fa-book"></i> КУЛІ</a>
+		</div>
+		
+		<div class="card">
+			<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/751060/header.jpg" class="card-img"></div>
+			<h3>Локалізація Ice Age Scrat's Nutty Adventure</h3>
+			<p>1095 слів.</p>
+			<a target="_blank" href="https://kuli.com.ua/ice-age-scrats-nutty-adventure"><i class="fa-solid fa-book"></i> КУЛІ</a>
+		</div>
+		
+		<div class="card">
+			<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2863640/header.jpg" class="card-img"></div>
+			<h3>Локалізація The Midnight Walk</h3>
+			<p>***** слів.</p>
+			<a target="_blank" href="https://hikarosato.github.io"><i class="fa-solid fa-book"></i> У процесі</a>
+		</div>
+		
+				<div class="card">
+			<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1856030/header.jpg" class="card-img"></div>
+			<h3>Локалізація Fresh Start Cleaning Simulator</h3>
+			<p>3245 слів.</p>
+			<a target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3590623258"><i class="fa-brands fa-steam"></i> Посібник в Steam</a>
+		</div>
+
+		<div class="card">
+			<h3>Помічник для роботи з текстом</h3>
+			<a target="_blank" href="https://github.com/hikarosato/hikaro_hotkeys"><i class="fa-brands fa-github"></i> GitHub</a>
+		</div>
+
+		<div class="card">
+			<h3>Програми для Unity</h3>
+			<p>4 програми, 1 платна.</p>
+		<div class="links-list">
+			<a href="https://hikarosato.github.io/atlas/"><i class="fa-brands fa-github"></i> Atlas MonoBehaviour Merger</a>
+			<a href="https://hikarosato.github.io/array/"><i class="fa-brands fa-github"></i> Array Localization Tool</a>
+			<a href="https://github.com/hikarosato/CatalogTool"><i class="fa-brands fa-github"></i> CatalogTool</a>
+		</div>
+		</div>
+
+		<div class="card">
+			<h3>Packer/unpacker .8ld для Overlord 1-2</h3>
+			<p>Не поширюється.</p>
+		</div>
+
+		<div class="card">
+			<h3>Окрема українська в UE4–5</h3>
+			<a target="_blank" href="https://medium.com/@hikaro/%D0%B4%D0%BE%D0%B4%D0%B0%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F-%D1%83%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D1%81%D1%8C%D0%BA%D0%BE%D1%97-%D1%8F%D0%BA-%D0%BE%D0%BA%D1%80%D0%B5%D0%BC%D0%BE%D1%97-%D0%BC%D0%BE%D0%B2%D0%B8-%D0%B2-%D1%96%D0%B3%D1%80%D0%B8-%D0%BD%D0%B0-unreal-engine-4-5-120d44c73d3f"><i class="fa-solid fa-book"></i> Medium</a>
+		</div>
+
+		<div class="card">
+			<h3>Packer/unpacker .umd для Open Season</h3>
+			<a target="_blank" href="https://github.com/hikarosato/Open-Season-tool"><i class="fa-brands fa-github"></i> GitHub</a>
+		</div>
+
+		<div class="card">
+			<h3>Програми для Unreal Engine</h3>
+			<div class="links-list">
+				<a target="_blank" href="https://github.com/hikarosato/UE4LocalizationsTool"><i class="fa-brands fa-github"></i> UE Localization Tool</a>
+				<a target="_blank" href="https://github.com/hikarosato/CSV-Merger-Tool"><i class="fa-brands fa-github"></i> CSV Merger Tool</a>
+				<a target="_blank" href="https://github.com/hikarosato/UAsset-Font-Tool"><i class="fa-brands fa-github"></i> UAsset Font Tool</a>
+			</div>
+		</div>
+
+		<div class="card">
+			<h3>Посібник по створенню українізатора</h3>
+			<a target="_blank" href="https://hikarosato.github.io/guide/"><i class="fa-solid fa-book"></i> Сайт</a>
+		</div>
+
+		<div class="card">
+			<h3>Програма для перекладу файлів ігор Larian</h3>
+			<p>Не поширюється.</p>
+		</div>
+
+		<div class="card">
+			<h3>Конвертер .wav у .nwa для CLANNAD</h3>
+			<p>Не поширюється.</p>
+		</div>
+	</div>
+</div>
+
+<footer class="footer">
+	<p><a target="_blank" href="https://t.me/Halytskyi_Rozbyshaka"><i class="fa-brands fa-telegram"></i>Галицький Розбишака</a></p>
+	<p><a target="_blank" href="https://send.monobank.ua/jar/47CywvjmpG"><i class="fa-solid fa-building-columns"></i>monobank jar</a></p>
+	<p>Made by Hikaro</p>
+</footer>
+
+</body>
+</html>
