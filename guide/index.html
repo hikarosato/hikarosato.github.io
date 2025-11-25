@@ -3,17 +3,21 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Main -->
 	<title>Створення українізатора 2.0</title>
 	<meta name="title" content="Створення українізатора 2.0">
 	<meta name="description" content="Авторський посібник по створенню українізатора.">
+	<!-- Open Graph -->
 	<meta property="og:title" content="Створення українізатора 2.0">
 	<meta property="og:description" content="Авторський посібник по створенню українізатора.">
 	<meta property="og:type" content="website">
 	<meta property="og:url" content="https://hikarosato.github.io/guide/">
 	<meta property="og:image" content="https://hikarosato.github.io/guide/assets/cover.png">
+	<!-- Twitter -->
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:title" content="Створення українізатора 2.0">
 	<meta name="twitter:description" content="Авторський посібник по створенню українізатора.">
+	<!-- Other -->
 	<meta name="referrer" content="no-referrer-when-downgrade">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -318,7 +322,7 @@ img, video {
 	max-width: 100%;
 	height: auto;
 	border-radius: 12px;
-	margin: 1.5rem auto;
+	margin: 0.5rem auto;
 	display: block;
 	border: 1px solid var(--border);
 	box-shadow: 0 8px 24px var(--shadow);
@@ -485,8 +489,11 @@ p:has(> b:first-child:contains("❗️")) {
 					<a href="#unity" class="menu-link">Unity</a>
 					<ul class="submenu">
 						<li><a href="#unity-text">Текст</a></li>
+						<li><a href="#unity-import">Імпорт</a></li>
 						<li><a href="#unity-catalog">.Bundle</a></li>
 						<li><a href="#unity-font">Шрифт</a></li>
+						<li><a href="#unity-textures">Текстури</a></li>
+						<li><a href="#unity-ua">Українська мова</a></li>
 					</ul>
 				</li>
 				<li class="menu-item">
@@ -503,40 +510,65 @@ p:has(> b:first-child:contains("❗️")) {
 			</ul>
 		</aside>
 		<main>
-			<h1 id="start">Створення українізатора 2.0</h1>
-				<p style="text-indent: 1em;">Цей посібник створений як розширення <b><a target="_blank" href="https://ukrainizer.netlify.app">посібника piggsy</a></b>. Він не дублює інформацію, а пропонує додаткові роз’яснення, приклади та нові інструменти. Рекомендується ознайомитися з <b>обома</b> посібниками. Усе, що описано в цьому посібнику, засноване на власному досвіді автора.
-				<br><br>Подякувати автору: <b><a target="_blank" href="https://send.monobank.ua/jar/47CywvjmpG">monobank</a></b>
+			<h1 id="start" style="font-size: 4.5rem;">Створення українізатора 2.0</h1>
+				<p style="text-indent: 1em;">Цей посібник створений як розширення <b><a target="_blank" href="https://ukrainizer.netlify.app">посібника piggsy</a></b>. Він не дублює інформацію, а пропонує додаткову інформацію, приклади та нові інструменти. Рекомендується ознайомитися з <b>обома</b> посібниками. Усе, що описано в цьому посібнику, засноване на власному досвіді автора.
+				<br><br>Останні зміни: <b>25.11.2025</b>
+				<br>Подякувати автору: <b><a target="_blank" href="https://send.monobank.ua/jar/47CywvjmpG">monobank</a></b>
 				<br>Telegram: <b><a target="_blank" href="https://t.me/Halytskyi_Rozbyshaka">Галицький Розбишака</a></b>
 				<br>Discord: <b class="copy-box" style="color:var(--primary-light);">.hikaro</b></p>
 			<h2 id="unity">Unity</h2>
-			<h3 id="unity-text">Текст</h3>
-					<p>Експортуйте і працюйте завжди з <b>JSON</b>, його простіше обслуговувати, простіше парсити, простіше знаходити зламані рядки.</p>
-				<h4>> Види JSON:</h4>
+			<h3 id="unity-text">Типи асетів Unity, що містять текст</h3>
 					<ul>
 						<li>
-							<h4>Весь текст в одному рядку</h4>
-							<p>Використовуйте онлайн-конвертер <b><a target="_blank" href="https://www.convertcsv.com/json-to-csv.htm">JSON to CSV</a></b>.</p>
-								<img src="unity/text-1.png" width="900" alt="">
-							<p style="text-indent: 1em;">Для перетворення <b>.csv</b> назад в <b>.json</b> використовуйте онлайн-конвертер <b><a target="_blank" href="https://www.convertcsv.com/csv-to-json.htm">CSV to JSON</a></b>. Приберіть зайві <b>[ ]</b>, які встановлюються за замовчуванням, вони не потрібні.</p>
-								<img src="unity/text-1-1.png" width="400" alt="">
-							<p>❗️ <b>Зверніть увагу:</b> онлайн-конвертер зберігає <b>.json</b> не з <b>\r\n</b>, як це інколи буває в оригіналі, а лише з <b>\n</b>. Через цю дрібницю у мене траплялися баги з діалогами в одній з ігор. Виправити це можна за допомогою <b>Notepad++</b>: відкрийте всі ваші конвертовані <b>.json</b> і замініть потрібні символи.</p>
-								<img src="unity/text-1-2.png" width="500" alt="">
-						</li>
-						<li>
-							<h4>Багатомовні масиви</h4>
-							<p style="text-indent: 1em;">Використовуйте авторський інструмент <b><a target="_blank" href="https://hikarosato.github.io/array/">Array Localization Tool</a></b>, який підтримує чотири види подібних масивів. Перекладайте текст прямо в програмі або експортуйте в <b>CSV</b> для перекладу деінде.</p>
+							<h4>TextAsset</h4>
+							<ul>
 								<div style="display: flex; gap: 10px; justify-content: center; align-items: flex-start; flex-wrap: wrap;">
-									<img src="unity/text-2.png" style="max-width: 300px; height: auto;" alt="">
-									<img src="unity/text-2-1.png" style="max-width: 700px; height: auto;" alt="">
+									<img src="unity/textasset/5.png" style="max-width: auto; height: 190px;" alt="">
+									<img src="unity/textasset/2.png" style="max-width: auto; height: 190px;" alt="">
+									<img src="unity/textasset/4.png" style="max-width: auto; height: 190px;" alt="">
+									
 								</div>
+								<div style="display: flex; gap: 10px; justify-content: center; align-items: flex-start; flex-wrap: wrap;">
+									<img src="unity/textasset/3.png" style="max-width: auto; height: 190px;" alt="">
+									<img src="unity/textasset/1.png" style="max-width: auto; height: 300px;" alt="">
+								</div>
+								<p>У <b>TextAsset</b> зберігаються практично будь-які текстові дані. Це можуть бути <b>власні формати</b> рядків або табличні дані у вигляді <b>CSV</b> чи <b>TSV</b>, структурований <b>JSON</b> чи формат з тегами <b>XML</b>. Такий асет можна експортувати двома варіантами:</p>
+								<ul>
+									<p><b>a) </b>Через меню <b>Plugins</b> у <b><a target="_blank" href="https://github.com/nesrak1/UABEA">UABEA</a></b> або <b><a target="_blank" href="https://github.com/nesrak1/UABEANext">UABEANext</a></b>:</p>
+										<img src="unity/textasset/export.png" width="300" alt="">
+									<p><b>b) </b>Через кнопку <b>Export/Export dump</b> у <b>UABEA</b> або <b>UABEANext</b>, зберегти файл з <b>JSON</b> форматом і скористатися онлайн-конвертером <b><a target="_blank" href="https://www.convertcsv.com/json-to-csv.htm">JSON to CSV</a></b>.</p>
+									<p>Для перетворення <b>.csv</b> назад в <b>.json</b> використовуйте онлайн-конвертер <b><a target="_blank" href="https://www.convertcsv.com/csv-to-json.htm">CSV to JSON</a></b>. Приберіть зайві <b>[ ]</b>, які встановлюються за замовчуванням, вони не потрібні.</p>
+										<img src="unity/text-1-1.png" width="400" alt="">
+									<p>❗️ <b>Зверніть увагу:</b> онлайн-конвертер зберігає <b>.json</b> не з <b>\r\n</b>, як це інколи буває в оригіналі, а лише з <b>\n</b>. Через цю дрібницю у мене траплялися баги з діалогами в одній з ігор. Виправити це можна за допомогою <b>Notepad++</b>: відкрийте всі ваші конвертовані <b>.json</b> і замініть потрібні символи.</p>
+										<img src="unity/text-1-2.png" width="500" alt="">
+								</ul>
+							</ul>
 						</li>
 						<li>
-							<h4>Файли з однієї мовою з .bundle</h4>
-							<p style="text-indent: 1em;">Підтримка таких файлів додана у <b>2.9</b> версії <b><a target="_blank" href="https://hikarosato.github.io/array/">Array Localization Tool</a></b>.</p>
-									<img src="unity/text-4.png" width="250" alt="">
-						</li>
+							<h4>MonoBehaviour</h4>
+							<ul>
+								<p>Експортуйте їх завжди у <b>JSON</b> формат через кнопку <b>Export/Export dump</b> у <b>UABEA</b> або <b>UABEANext</b>.</p>
+									<img src="unity/json.png" width="250" alt="">
+								<h4>Багатомовні масиви</h4>
+								<div style="display: flex; gap: 10px; justify-content: center; align-items: flex-start; flex-wrap: wrap;">
+									<img src="unity/monobeh2.png" style="max-width: 350px; height: auto;" alt="">
+									<img src="unity/monobeh1.png" style="max-width: 350px; height: auto;" alt="">
+									<img src="unity/monobeh3.png" style="max-width: 300px; height: auto;" alt="">
+								</div>
+								<p style="text-indent: 1em;">Використовуйте авторський інструмент <b><a target="_blank" href="https://hikarosato.github.io/array/">Unity Localization Tool</a></b>, який підтримує чотири види подібних масивів. Перекладайте текст прямо в програмі або експортуйте в <b>CSV</b> чи <b>TXT</b> для перекладу деінде.</p>
+									<img src="unity/ult.png" style="max-width: 1000px; height: auto;" alt="">
+							</ul>
+							<ul>
+								<h4>Файли з однієї мовою, у тому числі з .bundle</h4>
+								<div style="display: flex; gap: 10px; justify-content: center; align-items: flex-start; flex-wrap: wrap;">
+									<img src="unity/text-4.png" width="240" alt="">
+									<img src="unity/text-5.png" width="350" alt="">
+									<img src="unity/text-6.png" width="380" alt="">
+								</div>
+								<p style="text-indent: 1em;">Підтримка таких файлів додана у <b>4.0</b> версії <b><a target="_blank" href="https://hikarosato.github.io/array/">Unity Localization Tool</a></b>.</p>
+							</ul>
 					</ul>
-				<h4>> Імпорт</h4>
+				<h3 id="unity-import">Імпорт</h3>
 					<p>❗️ <b>Увага:</b> Якщо ви використовуєте <b><a target="_blank" href="https://github.com/nesrak1/UABEA">UABEA</a></b> для роботи з <b>.assets</b> та <b>.bundle</b>, майте на увазі: в програми є баг, через який <b>.json</b> може імпортуватися <b>некоректно</b> з першого разу. Завжди перевіряйте файл за допомогою кнопки <b>View Data</b>. Якщо з’являється повідомлення <b>Asset failed to deserialize</b> — повторіть імпорт <b>.json</b>.</p>
 						<img src="unity/text-3.png" width="600" alt="">
 					<p style="text-indent: 1em;">Новий інструмент <b><a target="_blank" href="https://github.com/nesrak1/UABEANext">UABEANext</a></b> позбавлений цієї проблеми — імпортування завжди проходить успішно. Проте програма досі в розробці.</p>
@@ -546,6 +578,17 @@ p:has(> b:first-child:contains("❗️")) {
 				<h3 id="unity-font">Шрифт</h3>
 					<p style="text-indent: 1em;">Для редагування оригінальних <b>.ttf</b> або <b>.otf</b> шрифтів можна використовувати <b>FontLab</b>, <b>FontForge</b> або <b>FontCreator</b>.</p>
 					<p style="text-indent: 1em;">Для зручного об’єднання згенерованих гліфів <b>TMP/2D</b> шрифтів з оригінальними <b>MonoBehaviour</b> використовуйте авторську програму <b><a target="_blank" href="https://hikarosato.github.io/atlas/">Atlas MonoBehaviour Merger</a></b>. Підтримується <b>.json</b> та <b>.txt</b> розширення <b>MonoBehaviour</b> файлу.</p>
+				<h3 id="unity-textures">Текстури</h3>
+					<ul>
+						<h4>Sprites</h4>
+						<p style="text-indent: 1em;">У спрайтах бувають текстури які можна перекласти, можливість експорту спрайтів як текстури з’явилася лише у новому інструменті <b><a target="_blank" href="https://github.com/nesrak1/UABEANext">UABEANext</a></b>, проте імпорту досі немає. Я дописав імпорт спрайтів (лише текстури, сітка залишається оригінальною як і решта даних), поки можна користуватись <b><a target="_blank" href="https://github.com/hikarosato/UABEANext">моїм форком</a></b>. Рішення не ідеальне, але хоча б щось, поки автор оригінальної програми не напише правильний спосіб.</p>
+						<img src="unity/sprite.png" width="1000" alt="">
+					</ul>
+				<h3 id="unity-ua">Неофіційна українська мова</h3>
+				<p>Для додавання української як окремої в <b>MonoBehaviour</b> файли з масивами було написано власний інструмент <b><a target="_blank" href="ArrayLanguageTool.exe">Array Language Tool</a></b>.</p>
+					<img src="unity/alt.png" width="350" alt="">
+				<p>Її слід використовувати в поєднанні з <b><a target="_blank" href="https://hikarosato.github.io/array/">Unity Localization Tool</a></b>:</p>
+				<video width="1100" controls><source src="unity/alt.mp4" type="video/mp4">Ваш браузер не підтримує відтворення відео.</video>
 				<hr>
 			<h2 id="ue4-5">Unreal Engine 4 & 5</h2>
 				<h3 id="ue-aes">AES захист та .sig файл</h3>
