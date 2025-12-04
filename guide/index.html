@@ -512,7 +512,7 @@ p:has(> b:first-child:contains("❗️")) {
 		<main>
 			<h1 id="start" style="font-size: 4.5rem;">Створення українізатора 2.0</h1>
 				<p style="text-indent: 1em;">Цей посібник створений як розширення <b><a target="_blank" href="https://ukrainizer.netlify.app">посібника piggsy</a></b>. Він не дублює інформацію, а пропонує додаткову інформацію, приклади та нові інструменти. Рекомендується ознайомитися з <b>обома</b> посібниками. Усе, що описано в цьому посібнику, засноване на власному досвіді автора.
-				<br><br>Останні зміни: <b>01.12.2025</b>
+				<br><br>Останні зміни: <b>04.12.2025</b>
 				<br>Подякувати автору: <b><a target="_blank" href="https://send.monobank.ua/jar/47CywvjmpG">monobank</a></b>
 				<br>Telegram: <b><a target="_blank" href="https://t.me/Halytskyi_Rozbyshaka">Галицький Розбишака</a></b>
 				<br>Discord: <b class="copy-box" style="color:var(--primary-light);">.hikaro</b></p>
@@ -572,9 +572,9 @@ p:has(> b:first-child:contains("❗️")) {
 					<p>❗️ <b>Увага:</b> Якщо ви використовуєте <b><a target="_blank" href="https://github.com/nesrak1/UABEA">UABEA</a></b> для роботи з <b>.assets</b> та <b>.bundle</b>, майте на увазі: в програми є баг, через який <b>.json</b> може імпортуватися <b>некоректно</b> з першого разу. Завжди перевіряйте файл за допомогою кнопки <b>View Data</b>. Якщо з’являється повідомлення <b>Asset failed to deserialize</b> — повторіть імпорт <b>.json</b>.</p>
 						<img src="unity/text-3.png" width="600" alt="">
 					<p style="text-indent: 1em;">Новий інструмент <b><a target="_blank" href="https://github.com/nesrak1/UABEANext">UABEANext</a></b> позбавлений цієї проблеми — імпортування завжди проходить успішно. Проте програма досі в розробці і містить безліч багів, частину з них я виправив у своєму <b><a target="_blank" href="https://github.com/hikarosato/UABEANext/releases">форку</a></b>.</p>
-				<h3 id="unity-catalog">.Bundle та catalog.json</h3>
+				<h3 id="unity-catalog">.Bundle та catalog.*</h3>
 					<p style="text-indent: 1em;">Для роботи з файлами <b>.bundle</b> краще користуйтеся <b><a target="_blank" href="https://github.com/nesrak1/UABEANext">UABEANext</a></b>, попри його тимчасові недоліки, адже <b>UABEA</b> має проблеми з новими версіями формату Unity-асетів.</p>
-					<p style="text-indent: 1em;">Для патчингу <b>catalog.json</b> використовуйте покращений мною інструмент <b><a target="_blank" href="https://github.com/hikarosato/CatalogTool">CatalogTool</a></b>, у якому виправлено роботу з бандлами, що містять символи <b>#</b> у назвах, та додано функцію <b>Drag & Drop</b> для зручного патчингу без ручного введення шляху. Це консольна утиліта, просто перетягніть <b>catalog.json</b> на <b>.exe</b> програми.</p>
+					<p style="text-indent: 1em;">Для патчингу <b>catalog.json</b> чи <b>catalog.bin</b> використовуйте покращений мною інструмент <b><a target="_blank" href="https://github.com/hikarosato/CatalogTool">CatalogTool</a></b>, у якому виправлено роботу з бандлами, що містять символи <b>#</b> у назвах, та додано функцію <b>Drag & Drop</b> для патчингу без ручного введення шляху. Це консольна утиліта, просто перетягніть <b>catalog.json/.bin</b> на <b>.exe</b> програми.</p>
 				<h3 id="unity-font">Шрифт</h3>
 					<p style="text-indent: 1em;">Для редагування оригінальних <b>.ttf</b> або <b>.otf</b> шрифтів можна використовувати <b>FontLab</b>, <b>FontForge</b> або <b>FontCreator</b>.</p>
 					<p style="text-indent: 1em;">Для зручного об’єднання згенерованих гліфів <b>TMP/2D</b> шрифтів з оригінальними <b>MonoBehaviour</b> використовуйте авторську програму <b><a target="_blank" href="https://hikarosato.github.io/atlas/">Atlas MonoBehaviour Merger</a></b>. Підтримується <b>.json</b> та <b>.txt</b> розширення <b>MonoBehaviour</b> файлу.</p>
