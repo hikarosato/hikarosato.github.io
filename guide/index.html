@@ -465,6 +465,67 @@ main > *:nth-child(3) { animation-delay: 0.3s; }
 	}
 }
 
+/* Spoilers */
+details {
+	background: var(--surface-light);
+	border: 1px solid var(--border);
+	border-radius: 12px;
+	transition: all 0.3s ease;
+	padding: 1rem;
+	margin: 0.5rem 0 0.5rem 0;
+}
+
+details:hover {
+	border-color: var(--primary);
+	box-shadow: 0 4px 12px rgba(14, 165, 233, 0.1);
+}
+
+details[open] {
+	background: var(--surface);
+	border-color: var(--primary-light);
+}
+
+details li {
+	margin: -1.5rem 0 -1.5rem 1rem;
+}
+
+summary {
+	color: var(--text);
+	font-weight: 600;
+	cursor: pointer;
+	user-select: none;
+	padding: 0.5rem;
+	border-radius: 8px;
+	transition: all 0.3s ease;
+	position: relative;
+	padding-left: 2rem;
+	list-style: none;
+	margin: -1rem;
+	margin-bottom: -1rem;
+}
+
+summary::before {
+	content: '▶';
+	position: absolute;
+	left: 0.5rem;
+	color: var(--primary-light);
+	transition: transform 0.3s ease;
+}
+
+details[open] summary::before {
+	transform: rotate(90deg);
+}
+
+summary:hover {
+	color: var(--primary-light);
+	background: rgba(14, 165, 233, 0.1);
+}
+
+details > *:not(summary) {
+	margin-top: 1.5rem;
+	animation: slideDown 0.3s ease;
+}
+
 /* Warning/Alert boxes */
 p:has(> b:first-child:contains("❗️")) {
 	background: rgba(245, 158, 11, 0.1);
@@ -650,16 +711,66 @@ p:has(> b:first-child:contains("❗️")) {
 					<p style="text-indent: 1em;">У <b><a target="_blank" href="https://medium.com/@hikaro/%D0%B4%D0%BE%D0%B4%D0%B0%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F-%D1%83%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D1%81%D1%8C%D0%BA%D0%BE%D1%97-%D1%8F%D0%BA-%D0%BE%D0%BA%D1%80%D0%B5%D0%BC%D0%BE%D1%97-%D0%BC%D0%BE%D0%B2%D0%B8-%D0%B2-%D1%96%D0%B3%D1%80%D0%B8-%D0%BD%D0%B0-unreal-engine-4-5-120d44c73d3f">даній</a></b> статті я описав метод можливого додавання української як окремої мови, зауважу, не всюди таке спрацює, якщо маєте бажання, можете спробувати на своїй грі.</p>
 			<h2 id="tips">Інструменти</h2>
 				<p>
-				<h4>Unity</h4><ul>
+				<h4>Unity</h4>
+				<ul>
 				<li><b><a target="_blank" href="/array/">Unity Localization Tool 4.2.1</a></b> — авторський інструмент для зручного перекладу і роботи з <b>MonoBehaviour</b> файлами.</li>
 				<li><b><a target="_blank" href="tools/ArrayLanguageTool.exe">Array Language Tool 1.4</a></b> — авторський інструмент для зручного додавання і видалення мов з багатомовних масивів <b>MonoBehaviour</b> файлу.</li>
 				<li><b><a target="_blank" href="tools/UABEANEXT_Nightly.zip">UABEANext 0.0.2.3b</a></b> — власний форк <b><a target="_blank" href="https://github.com/nesrak1/UABEANext">UABEANext</a></b> з виправленням помилок і новим функціоналом.</li>
-				<li><b><a target="_blank" href="tools/CatalogTool.exe">CatalogTool 1.2</a></b> — власний форк <b><a target="_blank" href="https://github.com/c0re100/CatalogTool">CatalogTool</a></b> з виправленням патчингу <b>catalog.json/.bin</b> і функцією <b>Drag & Drop</b>.</li>
+					<details>
+						<summary>Деталі</summary>
+						<p>
+							<li>Додав підтримку <b>Drag & Drop</b>.</li>
+							<li>Додав імпорт спрайтів (лише текстур).</li>
+							<li>Додав імпорт шрифту (<b>.ttf/.otf</b>).</li>
+							<li>Розширив пошук, тепер можна шукати й по <b>Path ID</b>.</li>
+							<li>Виправив скидання фільтрування і сортування після збереження.</li>
+							<li>Виправив збій при експорті файлів, які перевищують довжину назв файлів у <b>260</b> символів (проблема присутня ще з <b>UABEA</b>).</li>
+							<li>Виправив збій, що виникав після збереження асету і сортування будь-якого стовпчика.</li>
+							<li>Виправив експорт шрифту.</li>
+							<li>Виправив пакетний експорт шрифтів.</li>
+							<li>Виправив пакетний експорт <b>TextAsset</b>.</li>
+							<li>Виправив графічні артефакти при швидкому прокручуванні таблиці.</li>
+							<li>Виправив колір тексту при світлій темі у вікні <b>Asset Info</b>.</li>
+							<li>Оновив бібліотеки.</li>
+						</p>
+					</details>
+				<li><b><a target="_blank" href="tools/CatalogTool.exe">CatalogTool 1.2</a></b> — власний форк <b><a target="_blank" href="https://github.com/c0re100/CatalogTool">CatalogTool</a></b>.</li>
+					<details>
+						<summary>Деталі</summary>
+						<p>
+							<li>Додав підтримку <b>Drag & Drop</b>.</li>
+							<li>Виправив патчинг бандлів, що містять символи <b>#</b> у назвах.</li>
+						</p>
+					</details>
 				<li><b><a target="_blank" href="/atlas/">Atlas MonoBehaviour Merger 1.3</a></b> — авторський інструмент для зручного об’єднання згенерованих гліфів з оригінальним <b>MonoBehaviour</b> файлу шрифту.</li>
 				</ul>
 				<h4>Unreal Engine</h4>
 				<ul>
 				<li><b><a target="_blank" href="tools/UELocalizationTool.exe">UE Localization Tool 2.8.6</a></b> — власний форк <b><a target="_blank" href="https://github.com/amrshaheen61/UE4LocalizationsTool">UE4LocalizationsTool</a></b> зі швидшою роботою, виправленням помилок і новим функціоналом.</li>
+					<details>
+						<summary>Деталі</summary>
+						<p>
+							<li>Змінив бібліотеку <b>CSV</b> та переписано його обробку.</li>
+							<li>Оптимізував програму асинхронними методами та словниками.
+								<br>Для тестування швидкості було взято <b>.locres</b> файл на <b>107233</b> рядка з <b>мільйоном слів</b>.
+								<br><b>UE4 Localizations Tool 2.7</b>:
+								<br>Відкриття <b>.locres: 28 с 567 мс</b>; Імпорт <b>.csv: 2 с 983 мс</b>; Збереження <b>.locres: 2 хв 49 с 350 мс</b>.
+								<br><b>UE Localizations Tool 2.7.8</b>:
+								<br>Відкриття <b>.locres: 1 с 283 мс</b>; Імпорт <b>.csv: 2 с 567 мс</b>; Збереження <b>.locres: 2 с 750 мс</b>.
+								<br>Відкриття стало приблизно на <b>95,5% швидшим</b>.
+								<br>Імпорт став приблизно на <b>13,9% швидшим</b>.
+								<br>Збереження стало приблизно на <b>98,4% швидшим</b>.</li>
+							<li>Додав підтримку <b>.locres v4 (Stellar Blade)</b>.</li>
+							<li>Додав імпорт <b>TXT</b> за <b>ID</b> (за проханням <b>Aedan</b>).</li>
+							<li>Додав експорт <b>CSV/TXT</b> тільки вибраних рядків (за проханням <b>volorus</b>).</li>
+							<li>Додав підрахунок слів.</li>
+							<li>Переписав обробку <b>.locres</b>.</li>
+							<li>Покращив інтерфейс.</li>
+							<li>Переклав українською.</li>
+							<li>Виправив і додав статусні повідомлення у багатьох місцях.</li>
+							<li>Виправив виявлення тексту у <b>.uasset</b>. В одному файлі зустрічаються два різні формати структури даних. Реалізував двопрохідний алгоритм обробки файлу.</li>
+						</p>
+					</details>
 				<li><b><a target="_blank" href="tools/CSVMergerTool.exe">CSV Merger Tool 1.3</a></b> — авторський інструмент для об’єднання перекладу з новим <b>CSV</b> файлом.</li>
 				<li><b><a target="_blank" href="tools/UAssetFontTool.exe">UAsset Font Tool 1.2</a></b> — авторський інструмент для заміни <b>.ttf</b> чи <b>.swf</b> шрифту у <b>.uasset+uexp</b> файлах.</li>
 				</ul>
