@@ -534,6 +534,45 @@ p:has(> b:first-child:contains("❗️")) {
 	border-radius: 8px;
 	margin: 1.5rem 0;
 }
+
+.pros-cons {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 20px;
+	margin: 1.5rem 0;
+}
+
+.pros-cons > div {
+	background: var(--surface-light);
+	border: 1px solid var(--border);
+	border-radius: 14px;
+	padding: 1.2rem 1.4rem;
+	box-shadow: 0 6px 16px var(--shadow);
+}
+
+.pros-cons h4 {
+	margin-bottom: 0.6rem;
+}
+
+.pros h4 {
+	margin-top: -0.2em;
+	color: var(--success);
+}
+
+.cons h4 {
+	margin-top: -0.2em;
+	color: var(--warning);
+}
+
+.pros-cons ul {
+	margin-left: 1.2rem;
+}
+
+@media (max-width: 640px) {
+	.pros-cons {
+		grid-template-columns: 1fr;
+	}
+}
 </style>
 </head>
 <body>
@@ -573,11 +612,38 @@ p:has(> b:first-child:contains("❗️")) {
 		<main>
 			<h1 id="start" style="font-size: 4.5rem;">Створення українізатора 2.0</h1>
 				<p style="text-indent: 1em;">Цей посібник створений як розширення <b><a target="_blank" href="https://ukrainizer.netlify.app">посібника piggsy</a></b>. Він не повторює інформацію, а розширює її прикладами й новими інструментами. Рекомендується ознайомитися з <b>обома</b> посібниками. Усе, що описано в цьому посібнику, засноване на власному досвіді автора.
-				<br><br>Останні зміни: <b>20.12.2025</b>
+				<br><br>Останні зміни: <b>26.12.2025</b>
 				<br>Подякувати автору: <b><a target="_blank" href="https://send.monobank.ua/jar/47CywvjmpG">monobank</a></b>
 				<br>Telegram: <b><a target="_blank" href="https://t.me/Halytskyi_Rozbyshaka">Галицький Розбишака</a></b>
 				<br>Discord: <b class="copy-box" style="color:var(--primary-light);">.hikaro</b></p>
 			<h2 id="unity">Unity</h2>
+			<p style="text-indent: 1em;">Я <b>однозначно рекомендую</b> переходити з <b>UABEA</b> на <b><a href="#tools">UABEANext</a></b>. Перший фактично перебуває у замороженому стані: розробка припинена, нові версії <b>Unity</b> не підтримуються, а частина критичних багів так і не була виправлена. Натомість <b><a href="#tools">UABEANext</a></b> активно розвивається, отримує підтримку нових версій рушія та пропонує значно ширший і зручніший інструментарій для роботи з асетами.</p>
+			<div class="pros-cons">
+				<div class="pros">
+					<h4>UABEANext</h4>
+					<ul>
+						<li>Робота з безліччю <b>.asset/.bundle</b> одночасно, підтримка вкладок.</li>
+						<li>Підтримка <i>останніх*</i> версій <b>Unity</b> асетів.</li>
+						<li>Підтримка пакетного експорту/імпорту асетів.</li>
+						<li>Підтримка експорту/імпорту спрайтів як текстур <i>(імпорт лише у форку)</i>.</li>
+						<li>Підтримка <b>Drag & Drop</b> <i>(лише у форку)</i>.</li>
+						<li>Підтримка пошуку по <b>Path ID</b> <i>(лише у форку)</i>.</li>
+						<li>Активно розвивається, можливі баги.</li>
+					</ul>
+				</div>
+				<div class="cons">
+					<h4>UABEA</h4>
+					<ul>
+						<li>Робота лише з одним <b>.asset/.bundle</b> одночасно.</li>
+						<li>Не підтримуються нові версії <b>.bundle</b>.</li>
+						<li>Експорт/імпорт відбувається поштучно.</li>
+						<li>В одному <b>.assets</b> підтягуються файли з інших <b>.assets</b>, що наводить плутатину.</li>
+						<li>Баг при імпорті <b>JSON</b>.</li>
+						<li>Збій програми при експорті файлів, назва яких перевищує <b>260</b> символів.</li>
+						<li>Розробка припинена.</li>
+					</ul>
+				</div>
+			</div>
 			<h3 id="unity-text">Типи асетів Unity, що містять текст</h3>
 					<ul>
 						<li>
@@ -594,9 +660,9 @@ p:has(> b:first-child:contains("❗️")) {
 								</div>
 								<p>У <b>TextAsset</b> зберігаються практично будь-які текстові дані. Це можуть бути <b>власні формати</b> рядків або табличні дані у вигляді <b>CSV</b> чи <b>TSV</b>, структурований <b>JSON</b> чи формат з тегами <b>XML</b>. Такий асет можна експортувати двома варіантами:</p>
 								<ul>
-									<p><b>a) </b>Через меню <b>Plugins</b> у <b><a target="_blank" href="https://github.com/nesrak1/UABEA">UABEA</a></b> або <b><a target="_blank" href="https://github.com/nesrak1/UABEANext">UABEANext</a></b>:</p>
+									<p><b>a) </b>Через меню <b>Plugins</b> у <b><a href="#tools">UABEANext</a></b>:</p>
 										<img src="unity/textasset/export.png" width="300" alt="">
-									<p><b>b) </b>Через кнопку <b>Export/Export dump</b> у <b>UABEA</b> або <b>UABEANext</b>, зберегти файл з <b>JSON</b> форматом і скористатися онлайн-конвертером <b><a target="_blank" href="https://www.convertcsv.com/json-to-csv.htm">JSON to CSV</a></b>.</p>
+									<p><b>b) </b>Через кнопку <b>Export</b> у <b><a href="#tools">UABEANext</a></b>, зберегти файл з форматом <b>JSON</b> і скористатися онлайн-конвертером <b><a target="_blank" href="https://www.convertcsv.com/json-to-csv.htm">JSON to CSV</a></b>.</p>
 									<p>Для перетворення <b>.csv</b> назад в <b>.json</b> використовуйте онлайн-конвертер <b><a target="_blank" href="https://www.convertcsv.com/csv-to-json.htm">CSV to JSON</a></b>. Приберіть зайві <b>[ ]</b>, які встановлюються за замовчуванням, вони не потрібні.</p>
 										<img src="unity/text-1-1.png" width="400" alt="">
 									<p>❗️ <b>Зверніть увагу:</b> онлайн-конвертер зберігає <b>.json</b> не з <b>\r\n</b>, як це інколи буває в оригіналі, а лише з <b>\n</b>. Через цю дрібницю у мене траплялися баги з діалогами в одній з ігор. Виправити це можна за допомогою <b>Notepad++</b>: відкрийте всі ваші конвертовані <b>.json</b> і замініть потрібні символи.</p>
@@ -607,7 +673,7 @@ p:has(> b:first-child:contains("❗️")) {
 						<li>
 							<h4>MonoBehaviour</h4>
 							<ul>
-								<p>Експортуйте їх завжди у <b>JSON</b> формат через кнопку <b>Export/Export dump</b> у <b>UABEA</b> або <b>UABEANext</b>.</p>
+								<p>Експортуйте їх завжди у <b>JSON</b> формат через кнопку <b>Export/Export dump</b> у <b><a href="#tools">UABEANext</a></b>.</p>
 									<img src="unity/json.png" width="250" alt="">
 								<h4>Багатомовні масиви</h4>
 								<div style="display: flex; gap: 10px; justify-content: center; align-items: flex-start; flex-wrap: wrap;">
@@ -631,17 +697,16 @@ p:has(> b:first-child:contains("❗️")) {
 				<h3 id="unity-import">Імпорт</h3>
 					<p>❗️ <b>Увага:</b> Якщо ви використовуєте <b><a target="_blank" href="https://github.com/nesrak1/UABEA">UABEA</a></b> для роботи з <b>.assets</b> та <b>.bundle</b>, майте на увазі: в програми є баг, через який <b>.json</b> може імпортуватися <b>некоректно</b> з першого разу. Завжди перевіряйте файл за допомогою кнопки <b>View Data</b>. Якщо з’являється повідомлення <b>Asset failed to deserialize</b> — повторіть імпорт <b>.json</b>.</p>
 						<img src="unity/text-3.png" width="600" alt="">
-					<p style="text-indent: 1em;">Новий інструмент <b><a target="_blank" href="https://github.com/nesrak1/UABEANext">UABEANext</a></b> позбавлений цієї проблеми — імпортування завжди проходить успішно. Проте програма досі в розробці і містить безліч багів, частину з них я виправив у своєму <b><a target="_blank" href="tools/UABEANEXT_Nightly.zip">форку</a></b>.</p>
+					<p style="text-indent: 1em;">Новий інструмент <b><a href="#tools">UABEANext</a></b> позбавлений цієї проблеми — імпортування завжди проходить успішно.</p>
 				<h3 id="unity-catalog">.Bundle та catalog.*</h3>
-					<p style="text-indent: 1em;">Для роботи з файлами <b>.bundle</b> краще користуйтеся <b><a target="_blank" href="https://github.com/nesrak1/UABEANext">UABEANext</a></b>, попри його тимчасові недоліки, адже <b>UABEA</b> має проблеми з новими версіями формату Unity-асетів.</p>
 					<p style="text-indent: 1em;">Для патчингу <b>catalog.json</b> чи <b>catalog.bin</b> використовуйте покращений мною інструмент <b><a target="_blank" href="tools/CatalogTool.exe">CatalogTool</a></b>, у якому виправлено роботу з бандлами, що містять символи <b>#</b> у назвах, та додано функцію <b>Drag & Drop</b> для патчингу без ручного введення шляху. Це консольна утиліта, просто перетягніть <b>catalog.json/.bin</b> на <b>.exe</b> програми.</p>
 				<h3 id="unity-font">Шрифт</h3>
-					<p style="text-indent: 1em;">Для редагування оригінальних <b>.ttf</b> або <b>.otf</b> шрифтів можна використовувати <b>FontLab</b>, <b>FontForge</b> або <b>FontCreator</b>.</p>
+					<p>Для редагування оригінальних <b>.ttf</b> або <b>.otf</b> шрифтів можна використовувати <b>FontLab</b>, <b>FontForge</b> або <b>FontCreator</b>.</p>
 					<p style="text-indent: 1em;">Для зручного об’єднання згенерованих гліфів <b>TMP/2D</b> шрифтів з оригінальними <b>MonoBehaviour</b> використовуйте авторську програму <b><a target="_blank" href="https://hikarosato.github.io/atlas/">Atlas MonoBehaviour Merger</a></b>. Підтримується <b>.json</b> та <b>.txt</b> розширення <b>MonoBehaviour</b> файлу.</p>
 				<h3 id="unity-textures">Текстури</h3>
 					<ul>
 						<h4>Sprites</h4>
-						<p style="text-indent: 1em;">У спрайтах бувають текстури які можна перекласти, можливість експорту спрайтів як текстури з’явилася лише у новому інструменті <b><a target="_blank" href="https://github.com/nesrak1/UABEANext">UABEANext</a></b>, проте імпорту досі немає. Я дописав імпорт спрайтів (лише текстури, сітка залишається оригінальною як і решта даних), поки можна користуватись <b><a target="_blank" href="tools/UABEANEXT_Nightly.zip">моїм форком</a></b>. Рішення не ідеальне, але хоча б щось, поки автор оригінальної програми не напише правильний спосіб.</p>
+						<p style="text-indent: 1em;">У спрайтах бувають текстури які можна перекласти, можливість експорту спрайтів як текстури з’явилася лише у новому інструменті <b><a href="#tools">UABEANext</a></b>, проте імпорту досі немає. Я дописав імпорт спрайтів (лише текстури, сітка залишається оригінальною як і решта даних), поки можна користуватись моїм форком. Рішення не ідеальне, але хоча б щось, поки автор оригінальної програми не напише правильний спосіб.</p>
 						<img src="unity/sprite.png" width="1000" alt="">
 					</ul>
 				<h3 id="unity-ua">Неофіційна українська мова</h3>
