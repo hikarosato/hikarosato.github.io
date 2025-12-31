@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Main -->
+	<title>Unity Localization Tool</title>
+	<meta name="title" content="Unity Localization Tool" />
+	<meta name="description" content="Програма для перекладу та роботи з MonoBehaviour асетами Unity." />
+	<!-- Open Graph -->
+	<meta property="og:title" content="Unity Localization Tool" />
+	<meta property="og:description" content="Програма для перекладу та роботи з MonoBehaviour асетами Unity." />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://hikarosato.github.io/array" />
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Unity Localization Tool" />
+	<meta name="twitter:description" content="Програма для перекладу та роботи з MonoBehaviour асетами Unity." />
+	<!-- Other -->
+	<meta name="referrer" content="no-referrer-when-downgrade" />
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+	--primary: #0ea5e9;
+	--primary-light: #38bdf8;
+	--primary-dark: #0284c7;
+	--secondary: #8b5cf6;
+	--background: #0f172a;
+	--surface: #1e293b;
+	--surface-light: #334155;
+	--text: #f1f5f9;
+	--text-secondary: #C9D1DB;
+	--accent: #06b6d4;
+	--success: #10b981;
+	--warning: #f59e0b;
+	--border: #334155;
+	--shadow: rgba(0, 0, 0, 0.3);
+	--gradient-1: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 100%);
+	--gradient-2: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
+	--gradient-3: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Inter', sans-serif;
+	font-size: 16px;
+	background: var(--background);
+	color: var(--text);
+	line-height: 1.7;
+	overflow-x: hidden;
+	padding-top: 100px;
+}
+
+/* Animated background */
+body::before {
+	content: '';
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: 
+		radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+		radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+		radial-gradient(circle at 40% 20%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+	pointer-events: none;
+	z-index: 0;
+}
+
+/* Navigation */
+nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	background: rgba(15, 23, 42, 0.8);
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+	border-bottom: 1px solid var(--border);
+	z-index: 1000;
+	padding: 1rem 2rem;
+	box-shadow: 0 4px 6px var(--shadow);
+}
+
+nav p {
+	max-width: 1390px;
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	gap: 2rem;
+}
+
+nav a {
+	color: var(--text);
+	text-decoration: none;
+	font-weight: 600;
+	transition: all 0.3s ease;
+	position: relative;
+	padding: 0.5rem 1rem;
+}
+
+nav a::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 0;
+	height: 2px;
+	background: var(--gradient-3);
+	transition: width 0.3s ease;
+}
+
+nav a:hover {
+	color: var(--primary-light);
+}
+
+nav a:hover::after {
+	width: 100%;
+}
+
+/* Main Content */
+main {
+	max-width: 1450px;
+	margin: 0 auto;
+	padding: 3rem 2rem;
+	background: var(--surface);
+	border-radius: 20px;
+	border: 1px solid var(--border);
+	box-shadow: 0 10px 30px var(--shadow);
+	position: relative;
+	z-index: 1;
+}
+
+h1 {
+	font-size: 3rem;
+	font-weight: 800;
+	background: var(--gradient-3);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	text-align: center;
+	margin-bottom: 2rem;
+}
+
+h2, h3 {
+	color: var(--primary-light);
+	margin: 2rem 0 1rem;
+}
+
+h3 {
+	text-align: center;
+}
+
+p {
+	margin-bottom: 1.2rem;
+	color: var(--text-secondary);
+}
+
+a {
+	color: var(--primary-light);
+	text-decoration: none;
+	transition: all 0.3s ease;
+}
+
+a:hover {
+	color: var(--accent);
+}
+
+strong, b {
+	color: var(--text);
+	font-weight: 600;
+}
+
+/* Code blocks */
+code {
+	background: var(--surface-light);
+	color: var(--text);
+	padding: 0.3rem 0.6rem;
+	border-radius: 6px;
+	border: 1px solid var(--border);
+	font-size: 0.9em;
+}
+
+/* Images */
+img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 12px;
+	margin: 1.5rem auto;
+	display: block;
+	border: 1px solid var(--border);
+	box-shadow: 0 8px 24px var(--shadow);
+}
+
+img[style*="float: left"] {
+	margin: 0 30px 20px 0;
+	width: 330px;
+}
+
+/* Lists */
+ul {
+	margin-left: 2rem;
+	margin-bottom: 1rem;
+}
+
+li {
+	margin-bottom: 0.8rem;
+	color: var(--text-secondary);
+}
+
+/* Horizontal Rule */
+hr {
+	border: none;
+	height: 1px;
+	background: linear-gradient(90deg, transparent, var(--border), transparent);
+	margin: 3rem 0;
+}
+
+/* Center */
+center {
+	text-align: center;
+}
+
+/* Footer */
+footer {
+	text-align: center;
+	padding: 2rem;
+	color: var(--text-secondary);
+	font-size: 1rem;
+	position: relative;
+	z-index: 1;
+	margin-top: 50px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+	main {
+		padding: 2rem 1rem;
+		margin: 1rem;
+	}
+	
+	h1 {
+		font-size: 2.5rem;
+	}
+	
+	nav {
+		padding: 1rem;
+	}
+	
+	nav p {
+		flex-direction: column;
+		gap: 1rem;
+		text-align: center;
+	}
+}
+
+@media (max-width: 640px) {
+	h1 {
+		font-size: 2rem;
+	}
+	
+	img[style*="float: left"] {
+		float: none !important;
+		margin: 1rem auto !important;
+		width: 100% !important;
+	}
+}
+</style>
+</head>
+<body>
+<header>
+	<nav>
+		<p><b>
+			<a href="/">Main page</a>
+			<a href="/guide/">Guide</a>
+		</b></p>
+	</nav>
+</header>
+<main>
+	<h1>Unity Localization Tool</h1>
+	<center><img src="preview.png" width="1200"></center>
+	<p>Авторська програма для зручного перекладу та роботи з <b>MonoBehaviour</b> асетами <b>Unity</b>. Написана на <b>C#</b> і працює на <b>Windows 7-11</b>. Підтверджена робота на <b>Linux</b> шляхом додавання програми як гри у бібліотеку <b>Steam</b>.</p>
+	<img src="example.png" style="float: left; margin-right: 27px; width: 540px;">
+	<p>
+		<ul>
+			<li>Підтримка <b><u>одинадцяти</u></b> видів <b>MonoBehaviour</b> асетів.</li>
+			<li>Незалежний вибір індексів мов.</li>
+			<li>Імпорт перекладу з попередньо збереженого <b>JSON</b>.</li>
+			<li>Експорт у <b>CSV</b> або <b>TXT</b> для подальшого перекладу на <b>Google Sheets</b>, <b>Crowdin</b> чи деінде.</li>
+			<li>Імпорт з <b>CSV</b> або <b>TXT</b> з оновленням лише змінених рядків.</li>
+			<li>Відновлення тексту зі стовпця оригіналу — окремо або для всіх рядків одразу.</li>
+			<li>Пошук по <b>тексту</b> або лише по <b>ID</b> з панеллю результатів і списком попередніх пошуків.</li>
+			<li>Функції <b>Заміни</b>, <b>Скасування</b> та <b>Повтору</b> для роботи з текстом.</li>
+			<li>Індикація змінених рядків у таблиці та у заголовку вікна програми.</li>
+			<li>Статуси для рядків «Потребує вичитки» і «Затверджено». Після збереження файл зі станами статусів зберігається поряд із <b>JSON</b>.</li>
+			<li>Коректна робота з <b>\rn, \r, \n</b> і <b>\t</b> (Див. Про програму).</li>
+			<li>Точна статистика кількості рядків, слів, перекладених рядків та слів у перекладі.</li>
+			<li>Підтримка відкриття файлу <b>JSON</b> простим перетягуванням на <b>.exe</b> або у вікно програми.</li>
+			<li>Українська та англійська локалізація.</li>
+			<li>Підтримка темної і світлої теми.</li>
+			<li>Гарячі клавіші для швидкої роботи:
+			<br><code>Ctrl + O</code> — відкрити файлу
+			<br><code>Ctrl + S</code> — зберегти файлу
+			<br><code>Ctrl + H</code> — замінити текст
+			<br><code>Ctrl + Z</code> — скасувати останню дію
+			<br><code>Ctrl + Y</code> — повторити скасовану дію
+			<br><code>Ctrl + F</code> — перехід до пошуку
+			<br><code>F3</code> — знайти далі
+			<br><code>Shift + F3</code> — знайти попереднє</li>
+		</ul>
+	</p>
+	<h3><a href="UnityLocalizationTool.exe">Завантажити</a></h3>
+	<center><p>(версія 4.4.1 від 26.12.2025)</p></center>
+<hr/>
+Подякувати за програму: <b><a target="_blank" href="https://send.monobank.ua/jar/47CywvjmpG">monobank</a></b>
+<br>Зворотній зв'язок через Телеграм: <b><a target="_blank" href="https://t.me/Halytskyi_Rozbyshaka">Галицький Розбишака</a></b>
+</main>
+<footer>Made by Hikaro</footer>
+</body>
+</html>
