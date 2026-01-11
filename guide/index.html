@@ -723,13 +723,14 @@ p:has(> b:first-child:contains("❗️")) {
 					<p style="text-indent: 1em;">Якщо у вашій грі використовується <b>AES</b>-захист разом із <b>.sig</b> файлами у теці <b>Paks</b>, скористайтеся інструментом <b><a target="_blank" href="https://github.com/rm-NoobInCoding/UniversalSigBypasser">Unreal Engine Signature Check Bypasser</a></b> (один з авторів українець). Його потрібно розпаковувати у теку <b>Binaries/Win64</b> поряд з <b>.exe</b>, так, <u>обидва</u> <b>.dll</b> та <b>.asi</b>. Якщо на вашій грі це не спрацювало, створіть <b>issue</b> в репозиторії авторів щодо цього.</p>
 						<img src="ue/sig.png" width="300" alt="">
 					<p style="text-indent: 1em;">Це дозволить завантажувати сторонні <b>.pak</b> файли грою без необхідності ручного прописування <b>-fileopenlog</b> у «Параметрах запуску» властивостей гри в <b>Steam</b>.</p>
-					<p>❗️ <b>Не забудьте додати .dll та .asi файли у архів разом із перекладом для решти гравців.</b> ❗️</p>
+					<p>❗️ <b>Не забудьте додати .dll, .asi файли та файл із ліцензією (❗️ ОБОВ’ЯЗКОВО ❗️) у архів разом із перекладом для решти гравців, або ж додайте посилання на Unreal Engine Signature Check Bypasser для окремого завантаження.</b> ❗️</p>
 				<h3 id="ue-text">Текст</h3>
-					<p style="text-indent: 1em;">Для перекладу та роботи з <b>.locres</b> файлами використовуйте покращену мною версію <b><a target="_blank" href="tools/UELocalizationTool.exe">UE Localization Tool</a></b>. Для об’єднання перекладу з новим <b>.locres</b> після оновлення гри використовуйте авторську <b><a target="_blank" href="tools/CSVMergerTool.exe">CSV Merger Tool</a></b>. Також підходить для перекладу <b>.uasset</b> та <b>.umap</b> файлів (Пункт меню програми <b>Налаштування — Підтримка .uasset/.umap</b> — Відкрити бажаний <b>.uasset/.umap</b>.), при умові, що вони <b><u>не</u></b> захищені <b>.usmap</b> ключем.</p>
-					<p>❗️ <b>Не намагайтеся перекладати захищені <b>.uasset/.umap</b>, ви отримаєте неповний текст та <u>пошкодите</u> файл при збереженні.</b> ❗️<br><i>UPD: В останніх версіях <b>UE Localization Tool</b> (2.8.4) було виправлено виявлення тексту, тепер його можна безпечно використовувати для перекладу <b>.uasset</b>.</i></p>
-				<h4>Як дізнатись, чи .uasset/.umap захищені .usmap ключем:</h4>
-					<p style="text-indent: 1em;">Спробуйте відкрити <b>.uasset/.umap</b> у <b><a target="_blank" href="https://github.com/4sval/FModel">FModel</a></b> для попереднього перегляду. Якщо з’явиться повідомлення <b>...mapping file is missing</b>, вітаю, вам потрібен <b>.usmap</b>.</p>
-						<img src="ue/check-usmap.png" width="1200" alt="">
+					<p style="text-indent: 1em;">Для перекладу та роботи з <b>.locres</b> файлами використовуйте покращену мною версію <b><a target="_blank" href="tools/UELocalizationTool.exe">UE Localization Tool</a></b>. Також підходить для перекладу <b>.uasset</b> та <b>.umap</b> файлів (Пункт меню програми <b>Налаштування — Підтримка .uasset/.umap</b> — Відкрити бажаний <b>.uasset/.umap</b>.), при умові, що вони <b><u>не</u></b> потребують <b>.usmap</b> файлу для коректної обробки.</p>
+					<p>❗️ <b>Не намагайтеся перекладати такі <b>.uasset/.umap</b>, ви отримаєте неповний текст та <u>пошкодите</u> файл при збереженні.</b> ❗️<br><i>UPD: В останніх версіях <b>UE Localization Tool</b> (2.8.4) було виправлено виявлення тексту, тепер його можна безпечно використовувати для перекладу <b>.uasset</b>.</i></p>
+					<p>Для об’єднання перекладу з новим <b>.locres</b> після оновлення гри використовуйте авторську <b><a target="_blank" href="tools/CSVMergerTool.exe">CSV Merger Tool</a></b>.</p>
+				<h4>Як дізнатись, чи для .uasset/.umap необхідний .usmap файл:</h4>
+ 					<p style="text-indent: 1em;">Спробуйте відкрити <b>.uasset/.umap</b> у <b><a target="_blank" href="https://github.com/4sval/FModel">FModel</a></b> для попереднього перегляду. Якщо з’явиться повідомлення <b>...mapping file is missing</b>, вітаю, вам потрібен <b>.usmap</b>.</p>
+ 						<img src="ue/check-usmap.png" width="1200" alt="">
 				<h4>Як дістати .usmap:</h4>
 					<p>Вам потрібен <b><a target="_blank" href="https://github.com/Encryqed/Dumper-7">Dumper-7</a></b> та <b>DLL Injector</b>.</p>
 						<video width="1000" controls><source src="ue/usmap-extract.mp4" type="video/mp4">Ваш браузер не підтримує відтворення відео.</video>
@@ -744,7 +745,7 @@ p:has(> b:first-child:contains("❗️")) {
 					<p>У моєму випадку з <b>Life is Strange: Double Exposure</b> команда виглядає ось так:</p>
 					<code>retoc to-legacy --filter "/Chronos/Content/Data/Localization" "E:\Games\Life is Strange - Double Exposure\Chronos\Content\Paks" "C:\Extract"</code>
 						<img src="ue/retoc.png" width="600" alt="">
-				<h4>Правильний переклад захищених .uasset/.umap:</h4>
+				<h4>Правильний переклад .uasset/.umap:</h4>
 					<p>Раніше ми дістали <b>.usmap</b> з гри, тепер дістали <b>.uasset+.uexp</b>. Далі потрібен <b><a target="_blank" href="https://github.com/atenfyr/UAssetGUI">UAssetGUI</a></b>, відкриваємо програму та імпортуємо наш <b>.usmap</b>.</p>
 						<img src="ue/uassetgui.png" width="400" alt="">
 					<p>Після чого обираємо в правому куті програми наш <b>.usmap</b> зі списку, та версію рушія (її ми дізнались при інджекті <b>.dll</b>)</p>
