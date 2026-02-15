@@ -21,771 +21,980 @@
 	<!-- Other -->
 	<meta name="referrer" content="no-referrer-when-downgrade" />
 	<meta name="google-site-verification" content="sW7CLGJX6xku8GKXOnysD-f3nqW2XnVFgnkk811QlmI"/>
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 :root {
-	--bg-primary: #0a0a0f;
-	--bg-secondary: #12121a;
-	--accent-1: #6366f1;
+	--bg: #070709;
+	--bg-card: #0e0e14;
+	--bg-card-hover: #13131c;
+	--border: rgba(255,255,255,0.06);
+	--border-hover: rgba(255,255,255,0.14);
+	--accent: #6366f1;
 	--accent-2: #8b5cf6;
 	--accent-3: #ec4899;
-	--text-primary: #ffffff;
-	--text-secondary: #94a3b8;
-	--glow: rgba(99, 102, 241, 0.3);
+	--accent-soft: rgba(91, 110, 245, 0.12);
+	--text: #f0f0f8;
+	--text-dim: #6e6e8a;
+	--text-mid: #a8a8c0;
+	--tag-bg: rgba(255,255,255,0.04);
+	--radius: 14px;
+	--radius-sm: 8px;
 }
 
-* { 
-	box-sizing: border-box; 
-	margin: 0; 
-	padding: 0; 
+*, *::before, *::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
+
+html { scroll-behavior: smooth; }
 
 body {
 	font-family: 'Inter', sans-serif;
-	background: var(--bg-primary);
-	color: var(--text-secondary);
+	background: var(--bg);
+	color: var(--text-mid);
 	line-height: 1.6;
 	overflow-x: hidden;
+	min-height: 100vh;
 }
 
-/* Animated background */
-.bg-animation {
+/* ── Noise overlay ── */
+body::before {
+	content: '';
 	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+	inset: 0;
 	z-index: 0;
-	opacity: 0.4;
-	background: radial-gradient(ellipse at 20% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
-	            radial-gradient(ellipse at 80% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
-	animation: pulse 8s ease-in-out infinite;
+	pointer-events: none;
+	opacity: 0.03;
+	background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+	background-size: 200px 200px;
 }
 
-@keyframes pulse {
-	0%, 100% { opacity: 0.4; }
-	50% { opacity: 0.6; }
+/* ── Ambient glow ── */
+.glow-blob {
+	position: fixed;
+	border-radius: 50%;
+	filter: blur(120px);
+	pointer-events: none;
+	z-index: 0;
+	opacity: 0.18;
+}
+.glow-blob-1 {
+	width: 600px; height: 600px;
+	top: -200px; left: -100px;
+	background: radial-gradient(circle, #5b6ef5 0%, transparent 70%);
+	animation: drift1 20s ease-in-out infinite alternate;
+}
+.glow-blob-2 {
+	width: 500px; height: 500px;
+	bottom: -100px; right: -100px;
+	background: radial-gradient(circle, #9b6ef5 0%, transparent 70%);
+	animation: drift2 25s ease-in-out infinite alternate;
 }
 
-/* Header */
+@keyframes drift1 {
+	from { transform: translate(0, 0) scale(1); }
+	to   { transform: translate(60px, 80px) scale(1.15); }
+}
+@keyframes drift2 {
+	from { transform: translate(0, 0) scale(1); }
+	to   { transform: translate(-80px, -60px) scale(1.2); }
+}
+
+/* ── Header ── */
 header {
-	position: relative;
-	z-index: 100;
-	background: rgba(18, 18, 26, 0.8);
-	backdrop-filter: blur(20px);
-	border-bottom: 1px solid rgba(99, 102, 241, 0.1);
 	position: sticky;
 	top: 0;
-	padding: 20px 0;
-}
-
-.header-content {
-	max-width: 1400px;
-	margin: 0 auto;
+	z-index: 200;
 	padding: 0 40px;
+	height: 64px;
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
+	justify-content: space-between;
+	background: rgba(7, 7, 9, 0.7);
+	backdrop-filter: blur(24px) saturate(1.5);
+	-webkit-backdrop-filter: blur(24px) saturate(1.5);
+	border-bottom: 1px solid var(--border);
 }
 
-header h1 { 
-	font-size: 1.6em;
-	font-weight: 700;
-	background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3));
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	background-clip: text;
-	letter-spacing: -0.03em;
+.logo {
+	font-family: 'Inter', sans-serif;
+	font-weight: 800;
+	font-size: 1.05em;
+	letter-spacing: -0.02em;
+	color: var(--text);
+	text-decoration: none;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.logo-dot {
+	width: 8px; height: 8px;
+	border-radius: 50%;
+	background: linear-gradient(135deg, var(--accent), var(--accent-2));
+	flex-shrink: 0;
+	box-shadow: 0 0 12px rgba(91, 110, 245, 0.7);
 }
 
 nav {
 	display: flex;
-	gap: 30px;
+	align-items: center;
+	gap: 4px;
 }
 
 nav a {
 	text-decoration: none;
-	color: var(--text-secondary);
+	color: var(--text-dim);
+	font-size: 0.875em;
 	font-weight: 500;
-	font-size: 0.95em;
-	transition: all 0.3s ease;
-	position: relative;
-	padding: 8px 16px;
-	border-radius: 8px;
-}
-
-nav a::before {
-	content: '';
-	position: absolute;
-	inset: 0;
-	border-radius: 8px;
-	padding: 1px;
-	background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-	-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-	mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-	-webkit-mask-composite: xor;
-	mask-composite: exclude;
-	opacity: 0;
-	transition: opacity 0.3s ease;
+	padding: 6px 14px;
+	border-radius: 20px;
+	transition: color 0.2s, background 0.2s;
+	letter-spacing: 0.01em;
 }
 
 nav a:hover {
-	color: var(--text-primary);
+	color: var(--text);
+	background: rgba(255,255,255,0.06);
 }
 
-nav a:hover::before {
-	opacity: 1;
-}
-
-/* Container */
-.container { 
+/* ── Main layout ── */
+main {
 	position: relative;
 	z-index: 1;
-	max-width: 1600px; 
-	margin: 0 auto; 
-	padding: 10px 30px 40px;
+	max-width: 1480px;
+	margin: 0 auto;
+	padding: 0 32px 80px;
 }
 
-/* Intro section */
-.intro-section {
-	text-align: center;
-	margin-bottom: 20px;
-	padding: 20px 0;
-}
-
-.intro-title {
-	font-size: 3.5em;
-	font-weight: 800;
-	background: linear-gradient(135deg, #fff, var(--text-secondary));
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	background-clip: text;
-	margin-bottom: 20px;
-	letter-spacing: -0.04em;
-	line-height: 1.1;
-}
-
-.intro-subtitle {
-	font-size: 1.3em;
-	color: var(--text-secondary);
-	max-width: 700px;
-	margin: 0 auto 30px;
-	font-weight: 300;
-	line-height: 1.6;
-}
-
-.intro-gradient {
-	background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	background-clip: text;
-	font-weight: 600;
-}
-
-/* Stats */
-.stats {
+/* ── Hero ── */
+.hero {
+	padding: 32px 0 28px;
 	display: flex;
-	justify-content: center;
-	gap: 60px;
-	margin-top: 40px;
-}
-
-.stat-item {
+	flex-direction: column;
+	align-items: center;
 	text-align: center;
-}
-
-.stat-number {
-	font-size: 2.5em;
-	font-weight: 700;
-	background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	background-clip: text;
-	display: block;
-	line-height: 1;
-	margin-bottom: 5px;
-}
-
-.stat-label {
-	font-size: 0.9em;
-	color: var(--text-secondary);
-	text-transform: uppercase;
-	letter-spacing: 0.1em;
-	font-weight: 500;
-	line-height: 1.3;
-}
-
-/* Cards grid */
-.cards { 
-	display: grid; 
-	grid-template-columns: repeat(4, 1fr); 
-	gap: 30px;
-}
-
-.card {
-	background: rgba(18, 18, 26, 0.6);
-	backdrop-filter: blur(10px);
-	border: 1px solid rgba(99, 102, 241, 0.1);
-	border-radius: 16px;
-	overflow: hidden;
-	transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+	border-bottom: 1px solid var(--border);
+	margin-bottom: 24px;
 	position: relative;
 }
 
-.card::before {
-	content: '';
-	position: absolute;
-	inset: 0;
-	border-radius: 16px;
-	padding: 1px;
-	background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3));
-	-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-	mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-	-webkit-mask-composite: xor;
-	mask-composite: exclude;
-	opacity: 0;
-	transition: opacity 0.4s ease;
-	z-index: 2;
+/* animated gradient line at top of hero */
+.hero::before {
+	display: none;
+}
+
+.hero h1 {
+	font-family: 'Inter', sans-serif;
+	font-size: clamp(2em, 3.5vw, 3.4em);
+	font-weight: 800;
+	letter-spacing: -0.05em;
+	line-height: 1;
+	margin-bottom: 16px;
+	background: linear-gradient(120deg, var(--accent), var(--accent-2), var(--accent-3));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	background-size: 200% 200%;
+	animation: shimmer 4s ease infinite alternate;
+}
+
+.hero h1 em {
+	font-style: normal;
+}
+
+@keyframes shimmer {
+	from { background-position: 0% 50%; }
+	to   { background-position: 100% 50%; }
+}
+
+.hero-desc {
+	font-size: 1.25em;
+	color: var(--text-dim);
+	font-weight: 400;
+	line-height: 1.65;
+	margin-bottom: 20px;
+	width: 100%;
+}
+
+.hero-stats {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 48px;
+	width: 100%;
+}
+
+.stat {
+	text-align: center;
+	padding: 20px 0;
+	width: 120px;
+	flex-shrink: 0;
+}
+
+.stat:last-child {
+	border-right: none;
+}
+
+.stat-n {
+	font-family: 'Inter', sans-serif;
+	font-size: 2.4em;
+	font-weight: 750;
+	letter-spacing: -0.04em;
+	line-height: 1;
+	color: var(--text);
+}
+
+.stat-n span {
+	background: linear-gradient(10deg, var(--accent), var(--accent-2), var(--accent-3));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+.stat-l {
+	font-size: 0.88em;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--text-mid);
+	margin-top: 4px;
+	font-weight: 500;
+}
+
+.hero-left {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.section-header {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	margin-bottom: 28px;
+}
+
+.section-title {
+	font-family: 'Inter', sans-serif;
+	font-size: 0.72em;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--text-dim);
+}
+
+.section-line {
+	flex: 1;
+	height: 1px;
+	background: var(--border);
+}
+
+/* ── Cards grid ── */
+.cards {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 16px;
+}
+
+/* ── Card ── */
+.card {
+	background: var(--bg-card);
+	border: 1px solid var(--border);
+	border-radius: var(--radius);
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	transition: border-color 0.3s, background 0.3s, transform 0.3s, box-shadow 0.3s;
+	position: relative;
 }
 
 .card:hover {
-	transform: translateY(-8px);
-	box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
+	border-color: var(--border-hover);
+	background: var(--bg-card-hover);
+	transform: translateY(-4px);
+	box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(91,110,245,0.1);
 }
 
-.card:hover::before {
-	opacity: 1;
-}
-
-.card-img-wrapper { 
+/* Steam headers are 460×215 → ratio ≈ 2.14:1 */
+/* We render them at full width, locked to this ratio */
+.card-img {
 	width: 100%;
-	height: 160px;
+	aspect-ratio: 460 / 215;
 	overflow: hidden;
-	background: var(--bg-secondary);
 	position: relative;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 0;
-	z-index: 1;
+	background: #0d0d16;
+	flex-shrink: 0;
 }
 
-.card-img-wrapper::after {
-	content: '';
-	position: absolute;
-	inset: 0;
-	background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 15, 0.8) 100%);
-	opacity: 0.6;
-	transition: opacity 0.4s ease;
-}
-
-.card:hover .card-img-wrapper::after {
-	opacity: 0.3;
-}
-
-.card-img-wrapper img {
+.card-img img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	object-position: center;
+	object-position: center top;
 	display: block;
 }
 
-.card:hover .card-img-wrapper img {
-	transform: none;
+.card:hover .card-img img {
+	filter: brightness(1) saturate(1.05);
 }
 
-.card-content {
-	padding: 24px;
-	position: relative;
-	z-index: 2;
+/* dim overlay that fades on hover */
+.card-img::after {
+	display: none;
 }
 
-.card h3 {
-	color: var(--text-primary);
-	margin: 0 0 10px 0;
-	font-size: 1.2em;
-	font-weight: 700;
-	letter-spacing: -0.02em;
-	line-height: 1.3;
-}
 
-.card p { 
-	margin: 0 0 20px 0;
-	font-size: 0.95em;
-	color: var(--text-secondary);
-	line-height: 1.5;
-}
-
-.card a {
-	color: var(--text-primary);
-	text-decoration: none;
-	font-weight: 500;
-	font-size: 0.9em;
-	display: inline-flex;
-	align-items: center;
-	gap: 8px;
-	margin-right: 16px;
-	margin-bottom: 8px;
-	padding: 8px 14px;
-	border-radius: 8px;
-	background: rgba(99, 102, 241, 0.1);
-	border: 1px solid rgba(99, 102, 241, 0.2);
-	transition: all 0.3s ease;
-}
-
-.card a:hover { 
-	background: rgba(99, 102, 241, 0.2);
-	border-color: rgba(99, 102, 241, 0.4);
-	transform: translateX(3px);
-}
-
-.card a i {
-	font-size: 0.95em;
-}
-
-.links-list {
+.card-body {
+	padding: 18px 20px 20px;
 	display: flex;
 	flex-direction: column;
+	flex: 1;
+	gap: 12px;
+}
+
+.card-title {
+	font-family: 'Inter', sans-serif;
+	font-size: 0.95em;
+	font-weight: 700;
+	color: var(--text);
+	letter-spacing: -0.02em;
+	line-height: 1.35;
+}
+
+.card-meta {
+	font-size: 0.9em;
+	color: var(--text-dim);
+	font-weight: 400;
+}
+
+.card-links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	margin-top: 0;
+}
+
+.card-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 0.875em;
+	font-weight: 500;
+	color: var(--text-mid);
+	text-decoration: none;
+	padding: 6px 13px;
+	border-radius: 20px;
+	background: var(--tag-bg);
+	border: 1px solid var(--border);
+	transition: color 0.2s, background 0.2s, border-color 0.2s;
+	white-space: nowrap;
+}
+
+.card-link i {
+	font-size: 0.9em;
+	opacity: 0.75;
+}
+
+.card-link:hover {
+	color: var(--text);
+	background: var(--accent-soft);
+	border-color: rgba(91,110,245,0.3);
+}
+
+.card-link--private {
+	cursor: default;
+	pointer-events: none;
+	color: #f87171;
+	border-color: rgba(248, 113, 113, 0.2);
+	background: rgba(248, 113, 113, 0.05);
+}
+
+.card-link--paid {
+	color: #818cf8;
+	border-color: rgba(129, 140, 248, 0.35);
+	background: rgba(129, 140, 248, 0.12);
+}
+
+.card-link--paid:hover {
+	color: #a5b4fc;
+	border-color: rgba(129, 140, 248, 0.5);
+	background: rgba(129, 140, 248, 0.2);
+}
+
+/* ── Footer ── */
+footer {
+	position: relative;
+	z-index: 1;
+	border-top: 1px solid var(--border);
+	padding: 40px 32px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 20px;
+}
+
+.footer-brand {
+	font-family: 'Inter', sans-serif;
+	font-size: 0.85em;
+	font-weight: 700;
+	color: var(--text-dim);
+	letter-spacing: 0.02em;
+}
+
+.footer-links {
+	display: flex;
 	gap: 10px;
 }
 
-.links-list a {
-	margin: 0;
-	width: fit-content;
-}
-
-/* Footer */
-.footer { 
-	position: relative;
-	z-index: 1;
-	text-align: center;
-	padding: 20px 20px;
-	border-top: 1px solid rgba(99, 102, 241, 0.1);
-	background: rgba(18, 18, 26, 0.6);
-	backdrop-filter: blur(10px);
-}
-
-.footer-content {
-	max-width: 1600px;
-	margin: 0 auto;
-}
-
-.footer p {
-	margin-bottom: 5px;
-	font-size: 0.95em;
-}
-
-.footer a { 
-	text-decoration: none; 
-	color: var(--text-secondary);
-	transition: all 0.3s ease;
+.footer-link {
 	display: inline-flex;
 	align-items: center;
-	gap: 8px;
-	padding: 10px 20px;
-	border-radius: 8px;
-	background: rgba(99, 102, 241, 0.05);
-	border: 1px solid rgba(99, 102, 241, 0.1);
+	gap: 7px;
+	font-size: 0.82em;
+	font-weight: 500;
+	color: var(--text-dim);
+	text-decoration: none;
+	padding: 6px 14px;
+	border-radius: 20px;
+	border: 1px solid var(--border);
+	transition: color 0.2s, border-color 0.2s, background 0.2s;
 }
 
-.footer a:hover { 
-	color: var(--text-primary);
-	background: rgba(99, 102, 241, 0.15);
-	border-color: rgba(99, 102, 241, 0.3);
-	transform: translateY(-2px);
+.footer-link:hover {
+	color: var(--text);
+	border-color: var(--border-hover);
+	background: rgba(255,255,255,0.04);
 }
 
-.footer-made {
-	margin-top: 30px;
-	font-size: 0.85em;
-	opacity: 0.6;
+/* ── Responsive ── */
+@media (max-width: 1200px) {
+	.cards { grid-template-columns: repeat(3, 1fr); }
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-	.cards {
-		grid-template-columns: repeat(2, 1fr);
-	}
+@media (max-width: 900px) {
+	.cards { grid-template-columns: repeat(2, 1fr); gap: 12px; }
 }
 
 @media (max-width: 768px) {
-	.header-content { 
-		flex-direction: column; 
-		align-items: flex-start; 
-		gap: 20px;
-		padding: 0 25px;
+	header {
+		padding: 0 16px;
+		height: 56px;
 	}
-	
-	nav { 
-		gap: 15px;
+
+	main {
+		padding: 0 16px 60px;
 	}
-	
-	nav a {
-		padding: 6px 12px;
-		font-size: 0.9em;
+
+	.hero {
+		padding: 36px 0 32px;
+		gap: 0;
+		margin-bottom: 28px;
 	}
-	
-	.container {
-		padding: 60px 25px 80px;
+
+	.hero h1 {
+		font-size: clamp(2em, 8vw, 3em);
 	}
-	
-	.intro-section {
-		padding: 40px 0;
-		margin-bottom: 60px;
+
+	.hero-desc {
+		font-size: 0.92em;
+		margin-bottom: 28px;
 	}
-	
-	.intro-title {
-		font-size: 2.2em;
+
+	.hero-stats {
+		width: 100%;
 	}
-	
-	.intro-subtitle {
-		font-size: 1.1em;
+
+	.stat {
+		flex: 1;
+		padding: 16px 12px;
 	}
-	
-	.stats {
+
+	.stat-n { font-size: 1.8em; }
+
+	.section-header {
+		margin-bottom: 20px;
+	}
+
+	footer {
+		padding: 28px 16px;
 		flex-direction: column;
-		gap: 30px;
+		align-items: flex-start;
+		gap: 16px;
 	}
-	
+}
+
+@media (max-width: 480px) {
+	.logo { font-size: 0.92em; }
+	nav a { padding: 5px 10px; font-size: 0.82em; }
+
 	.cards {
 		grid-template-columns: 1fr;
-		gap: 20px;
+		gap: 10px;
 	}
-	
-	.card-img-wrapper {
-		height: 180px;
+
+	.card-body {
+		padding: 14px 16px 16px;
 	}
-	
-	.footer {
-		padding: 40px 25px;
-	}
+
+	.stat-n { font-size: 1.5em; }
+	.stat { padding: 14px 8px; }
 }
 
-@media (max-width: 400px) {
-	header h1 {
-		font-size: 1.3em;
-	}
-	
-	.intro-title {
-		font-size: 1.8em;
-	}
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-	width: 10px;
-}
-
-::-webkit-scrollbar-track {
-	background: var(--bg-primary);
-}
-
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb {
-	background: linear-gradient(180deg, var(--accent-1), var(--accent-2));
-	border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-	background: linear-gradient(180deg, var(--accent-2), var(--accent-3));
+	background: linear-gradient(180deg, var(--accent), var(--accent-2));
+	border-radius: 4px;
 }
 </style>
 </head>
 <body>
-<div class="bg-animation"></div>
+
+<div class="glow-blob glow-blob-1"></div>
+<div class="glow-blob glow-blob-2"></div>
+
 <header>
-	<div class="header-content">
-		<h1>Галицький Розбишака</h1>
-		<nav>
-			<a href="/">Hobby</a>
-			<a href="/teeworlds/">Teeworlds</a>
-			<a href="/guide/">Guide</a>
-		</nav>
-	</div>
+	<a class="logo" href="/">
+		<span class="logo-dot"></span>
+		Галицький Розбишака
+	</a>
+	<nav>
+		<a href="/">Hobby</a>
+		<a href="/teeworlds/">Teeworlds</a>
+		<a href="/guide/">Guide</a>
+	</nav>
 </header>
-<div class="container">
-	<div class="intro-section">
-		<h2 class="intro-title">Українізації та інструменти</h2>
-		<p class="intro-subtitle">
-			Займаюсь неофіційними українськими локалізаціями, написанням технічних інструментів для роботи з іграми.
-		</p>
-		<div class="stats">
-			<div class="stat-item">
-				<span class="stat-number">306K+</span>
-				<span class="stat-label">Слів</span>
+
+<main>
+	<section class="hero">
+		<div class="hero-left">
+			<h1>Українізації та <em>інструменти</em></h1>
+			<p class="hero-desc">
+				Займаюсь неофіційними українськими локалізаціями<br>та написанням технічних інструментів для роботи з іграми.
+			</p>
+		</div>
+		<div class="hero-stats">
+			<div class="stat">
+				<div class="stat-n"><span>306K+</span></div>
+				<div class="stat-l">Слів</div>
 			</div>
-			<div class="stat-item">
-				<span class="stat-number">11</span>
-				<span class="stat-label">Завершених<br>проєктів</span>
+			<div class="stat">
+				<div class="stat-n"><span>11</span></div>
+				<div class="stat-l">Завершених<br>проєктів</div>
 			</div>
-
-			<div class="stat-item">
-				<span class="stat-number">19</span>
-				<span class="stat-label">Інструментів</span>
-			</div>
-		</div>
-	</div>
-<div class="cards">
-	<div class="card">
-		<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/233860/header.jpg" alt="Kenshi"></div>
-		<div class="card-content">
-			<h3>Український шрифт для Kenshi</h3>
-			<p>Автор виправленого шрифту.</p>
-			<a target="_blank" href="/files/Kenshi_fixed_font_proof.png"><i class="fa-solid fa-image"></i>Зняток</a>
-		</div>
-	</div>
-
-	<div class="card">
-		<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/294100/header.jpg" alt="RimWorld"></div>
-		<div class="card-content">
-			<h3>Переклад 33 модів для RimWorld</h3>
-			<a target="_blank" href="https://github.com/hikarosato/Ukrainian-Mod-Localization"><i class="fa-brands fa-github"></i>GitHub</a>
-		</div>
-	</div>
-
-	<div class="card">
-		<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/965310/header.jpg" alt="The Settlers"></div>
-		<div class="card-content">
-			<h3>Локалізація The Settlers: Rise of an Empire</h3>
-			<p>71784 слова.</p>
-			<a target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3365219999"><i class="fa-brands fa-steam"></i>Посібник в Steam</a>
-		</div>
-	</div>
-
-	<div class="card">
-		<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/965320/header.jpg" alt="The Settlers 7"></div>
-		<div class="card-content">
-			<h3>Локалізація The Settlers 7: Paths to a Kingdom</h3>
-			<p>69033 слова.</p>
-			<a target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3371663270"><i class="fa-brands fa-steam"></i>Посібник в Steam</a>
-		</div>
-	</div>
-
-	<div class="card">
-		<div class="card-img-wrapper"><img src="png/finereader.png" alt="ABBYY"></div>
-		<div class="card-content">
-			<h3>Локалізація ABBYY Screenshot Reader 8.0</h3>
-			<a target="_blank" href="https://t.me/Halytskyi_Rozbyshaka/40"><i class="fa-brands fa-telegram"></i>Telegram</a>
-		</div>
-	</div>
-
-	<div class="card">
-		<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/48a2fcbda8565bb45025e98fd8ebde8a7203f6a0/header.jpg" alt="Baldur's Gate 3"></div>
-		<div class="card-content">
-			<h3>Переклад 8 модів для Baldur's Gate 3</h3>
-			<a target="_blank" href="https://drive.google.com/drive/folders/1Uikf6Qz9fTw2pqyWQeaqtxPgtBQaUFSz"><i class="fa-solid fa-cloud-arrow-down"></i>Google Диск</a>
-		</div>
-	</div>
-
-	<div class="card">
-		<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/243950/header.jpg" alt="Divinity"></div>
-		<div class="card-content">
-			<h3>Локалізація Divinity: Dragon Commander</h3>
-			<p>139441 слово. Наразі перекладається.</p>
-			<a target="_blank" href="https://www.youtube.com/watch?v=O_BUYwSe9yo"><i class="fa-brands fa-youtube"></i>Передогляд</a>
-		</div>
-	</div>
-
-	<div class="card">
-		<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/35000/header.jpg" alt="Mini Ninjas"></div>
-		<div class="card-content">
-			<h3>Локалізація Mini Ninjas</h3>
-			<p>8580 слів</p>
-			<a target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3392764233"><i class="fa-brands fa-steam"></i>Посібник в Steam</a>
-		</div>
-	</div>
-
-	<div class="card">
-		<div class="card-img-wrapper"><img src="png/utility.png" alt="Utility"></div>
-		<div class="card-content">
-			<h3>Інструмент для роботи з 25 форматами файлів</h3>
-			<p>Платний.</p>
-			<a target="_blank" href="https://t.me/Halytskyi_Rozbyshaka/73"><i class="fa-brands fa-telegram"></i>Telegram</a>
-		</div>
-	</div>
-
-	<div class="card">
-		<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/990630/header.jpg" alt="The Last Campfire"></div>
-		<div class="card-content">
-			<h3>Локалізація The Last Campfire</h3>
-			<p>12243 слова.</p>
-			<a target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3428326265"><i class="fa-brands fa-steam"></i>Посібник в Steam</a>
-		</div>
-	</div>
-
-	<div class="card">
-		<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2420660/header.jpg" alt="Neva"></div>
-		<div class="card-content">
-			<h3>Локалізація Neva</h3>
-			<p>1063 слова.</p>
-			<a target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3430857952"><i class="fa-brands fa-steam"></i>Посібник в Steam</a>
-		</div>
-	</div>
-
-	<div class="card">
-		<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/683320/header.jpg" alt="GRIS"></div>
-		<div class="card-content">
-			<h3>Локалізація GRIS</h3>
-			<p>212 слів.</p>
-			<a target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3445319845"><i class="fa-brands fa-steam"></i>Посібник в Steam</a>
-		</div>
-	</div>
-
-	<div class="card">
-		<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1462570/header.jpg" alt="Lost in Random"></div>
-		<div class="card-content">
-			<h3>Локалізація Lost in Random</h3>
-			<p>96918 слів.</p>
-			<a target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3446294135"><i class="fa-brands fa-steam"></i>Посібник в Steam</a>
-		</div>
-	</div>
-
-	<div class="card">
-		<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1225580/header.jpg" alt="Fe"></div>
-		<div class="card-content">
-			<h3>Локалізація Fe</h3>
-			<p>612 слів.</p>
-			<a target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3577208808"><i class="fa-brands fa-steam"></i>Посібник в Steam</a>
-		</div>
-	</div>
-
-	<div class="card">
-		<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/751060/header.jpg" alt="Ice Age"></div>
-		<div class="card-content">
-			<h3>Локалізація Ice Age Scrat's Nutty Adventure</h3>
-			<p>1095 слів.</p>
-			<a target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3577285176"><i class="fa-brands fa-steam"></i>Посібник в Steam</a>
-		</div>
-	</div>
-
-	<div class="card">
-		<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2863640/header.jpg" alt="The Midnight Walk"></div>
-		<div class="card-content">
-			<h3>Локалізація The Midnight Walk</h3>
-			<p>16469 слів.</p>
-			<a target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3584551736"><i class="fa-brands fa-steam"></i>Посібник в Steam</a>
-		</div>
-	</div>
-
-	<div class="card">
-		<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1856030/header.jpg" alt="Fresh Start"></div>
-		<div class="card-content">
-			<h3>Локалізація Fresh Start Cleaning Simulator</h3>
-			<p>3245 слів.</p>
-			<a target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3590623258"><i class="fa-brands fa-steam"></i>Посібник в Steam</a>
-		</div>
-	</div>
-
-	<div class="card">
-		<div class="card-img-wrapper"><img src="png/autohotkey.png" alt="AutoHotkey"></div>
-		<div class="card-content">
-			<h3>Гарячі клавіші на AutoHotkey</h3>
-			<a target="_blank" href="https://github.com/hikarosato/hikaro_hotkeys"><i class="fa-brands fa-github"></i>GitHub</a>
-		</div>
-	</div>
-
-	<div class="card">
-		<div class="card-img-wrapper"><img src="png/unity.png" alt="Unity"></div>
-		<div class="card-content">
-			<h3>Інструменти для Unity</h3>
-			<div class="links-list">
-				<a href="https://hikarosato.github.io/atlas/"><i class="fa-brands fa-github"></i>Atlas MonoBehaviour Merger</a>
-				<a href="https://hikarosato.github.io/array/"><i class="fa-brands fa-github"></i>Unity Localization Tool</a>
-				<a href="https://hikarosato.github.io/guide/#unity-catalog"><i class="fa-brands fa-github"></i>Покращена CatalogTool</a>
-				<a href="https://hikarosato.github.io/guide/#unity-import"><i class="fa-brands fa-github"></i>Покращена UABEANext</a>
-				<a href="https://hikarosato.github.io/guide/#unity-ua"><i class="fa-brands fa-github"></i>Array Language Tool</a>
-				<a target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd"><i class="fa-brands fa-github"></i>UnityCLI</a>
+			<div class="stat">
+				<div class="stat-n"><span>19</span></div>
+				<div class="stat-l">Інструментів</div>
 			</div>
 		</div>
-	</div>
+	</section>
 
-	<div class="card">
-		<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/12810/header.jpg" alt="Overlord"></div>
-		<div class="card-content">
-			<h3>Packer/unpacker .8ld для Overlord 1-2</h3>
-			<p>Не поширюється.</p>
-		</div>
-	</div>
+	<div class="cards">
 
-	<div class="card">
-		<div class="card-img-wrapper"><img src="png/ue_ua.png" alt="Unreal Engine 4-5"></div>
-		<div class="card-content">
-			<h3>Окрема українська в UE4–5</h3>
-			<a target="_blank" href="https://medium.com/@hikaro/%D0%B4%D0%BE%D0%B4%D0%B0%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F-%D1%83%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D1%81%D1%8C%D0%BA%D0%BE%D1%97-%D1%8F%D0%BA-%D0%BE%D0%BA%D1%80%D0%B5%D0%BC%D0%BE%D1%97-%D0%BC%D0%BE%D0%B2%D0%B8-%D0%B2-%D1%96%D0%B3%D1%80%D0%B8-%D0%BD%D0%B0-unreal-engine-4-5-120d44c73d3f"><i class="fa-solid fa-book"></i>Medium</a>
-		</div>
-	</div>
-
-	<div class="card">
-		<div class="card-img-wrapper"><img src="png/OpenSeason.png" alt="Open Season"></div>
-		<div class="card-content">
-			<h3>Packer/unpacker .umd для Open Season</h3>
-			<a target="_blank" href="https://github.com/hikarosato/Open-Season-tool"><i class="fa-brands fa-github"></i>GitHub</a>
-		</div>
-	</div>
-
-	<div class="card">
-		<div class="card-img-wrapper"><img src="png/ue.png" alt="Unreal Engine"></div>
-		<div class="card-content">
-			<h3>Інструменти для Unreal Engine</h3>
-			<div class="links-list">
-				<a target="_blank" href="https://hikarosato.github.io/guide/#ue-text"><i class="fa-brands fa-github"></i>Покращена UE Localization Tool</a>
-				<a target="_blank" href="https://hikarosato.github.io/guide/#ue-text"><i class="fa-brands fa-github"></i>CSV Merger Tool</a>
-				<a target="_blank" href="https://hikarosato.github.io/guide/#ue-font"><i class="fa-brands fa-github"></i>UAsset Font Tool</a>
-				<a target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd"><i class="fa-brands fa-github"></i>Форк FModel з пошуком тексту</a>
-				<a target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd"><i class="fa-brands fa-github"></i>UELT</a>
+		<!-- Kenshi -->
+		<div class="card">
+			<div class="card-img">
+				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/233860/header.jpg" alt="Kenshi">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Український шрифт для Kenshi</div>
+				<div class="card-meta">Автор виправленого шрифту.</div>
+				<div class="card-links">
+					<a class="card-link" target="_blank" href="/files/Kenshi_fixed_font_proof.png"><i class="fa-solid fa-image"></i>Зняток</a>
+				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="card">
-		<div class="card-img-wrapper"><img src="guide/assets/cover.png" alt="Guide"></div>
-		<div class="card-content">
-			<h3>Посібник по створенню українізатора</h3>
-			<a target="_blank" href="https://hikarosato.github.io/guide/"><i class="fa-solid fa-book"></i>Сайт</a>
+		<!-- RimWorld -->
+		<div class="card">
+			<div class="card-img">
+				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/294100/header.jpg" alt="RimWorld">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Переклад 33 модів для RimWorld</div>
+				<div class="card-links">
+					<a class="card-link" target="_blank" href="https://github.com/hikarosato/Ukrainian-Mod-Localization"><i class="fa-brands fa-github"></i>GitHub</a>
+				</div>
+			</div>
 		</div>
-	</div>
 
-	<div class="card">
-		<div class="card-img-wrapper"><img src="png/larian.png" alt="Larian"></div>
-		<div class="card-content">
-			<h3>Інструмент для перекладу файлів ігор Larian</h3>
-			<p>Не поширюється.</p>
+		<!-- The Settlers 6 -->
+		<div class="card">
+			<div class="card-img">
+				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/965310/header.jpg" alt="The Settlers">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Локалізація The Settlers: Rise of an Empire</div>
+				<div class="card-meta">71 784 слова.</div>
+				<div class="card-links">
+					<a class="card-link" target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3365219999"><i class="fa-brands fa-steam"></i>Steam</a>
+				</div>
+			</div>
 		</div>
-	</div>
 
-	<div class="card">
-		<div class="card-img-wrapper"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/324160/header.jpg" alt="CLANNAD"></div>
-		<div class="card-content">
-			<h3>Конвертер .wav у .nwa для CLANNAD</h3>
-			<p>Не поширюється.</p>
+		<!-- The Settlers 7 -->
+		<div class="card">
+			<div class="card-img">
+				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/965320/header.jpg" alt="The Settlers 7">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Локалізація The Settlers 7: Paths to a Kingdom</div>
+				<div class="card-meta">69 033 слова.</div>
+				<div class="card-links">
+					<a class="card-link" target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3371663270"><i class="fa-brands fa-steam"></i>Steam</a>
+				</div>
+			</div>
 		</div>
-	</div>
-	
-	<div class="card">
-		<div class="card-img-wrapper"><img src="png/tool.png" alt="Tool"></div>
-		<div class="card-content">
-			<h3>Універсальний інструмент для підрахунку тексту у файлах ігор</h3>
-			<p>Не поширюється.</p>
-		</div>
-	</div>
-	
-	<div class="card">
-		<div class="card-img-wrapper"><img src="png/achievement.png" alt="Tool"></div>
-		<div class="card-content">
-			<h3>Інструмент для перекладу досягнень</h3>
-			<p>Не поширюється.</p>
-		</div>
-	</div>
 
-</div>
-</div>
+		<!-- ABBYY -->
+		<div class="card">
+			<div class="card-img">
+				<img src="png/finereader.png" alt="ABBYY">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Портативна ABBYY Screenshot Reader 8.0</div>
+				<div class="card-links">
+					<a class="card-link card-link--paid" target="_blank" href="https://t.me/Halytskyi_Rozbyshaka/40"><i class="fa-brands fa-telegram"></i>Платний</a>
+				</div>
+			</div>
+		</div>
 
-<footer class="footer">
-	<p><a target="_blank" href="https://t.me/Halytskyi_Rozbyshaka"><i class="fa-brands fa-telegram"></i>Галицький Розбишака</a></p>
-	<p><a target="_blank" href="https://send.monobank.ua/jar/47CywvjmpG"><i class="fa-solid fa-building-columns"></i>monobank jar</a></p>
-	<p>Made by Hikaro</p>
+		<!-- Baldur's Gate 3 -->
+		<div class="card">
+			<div class="card-img">
+				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/48a2fcbda8565bb45025e98fd8ebde8a7203f6a0/header.jpg" alt="Baldur's Gate 3">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Переклад 8 модів для Baldur's Gate 3</div>
+				<div class="card-links">
+					<a class="card-link" target="_blank" href="https://drive.google.com/drive/folders/1Uikf6Qz9fTw2pqyWQeaqtxPgtBQaUFSz"><i class="fa-solid fa-cloud-arrow-down"></i>Google Диск</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Divinity -->
+		<div class="card">
+			<div class="card-img">
+				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/243950/header.jpg" alt="Divinity">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Локалізація Divinity: Dragon Commander</div>
+				<div class="card-meta">139 441 слово. Наразі перекладається.</div>
+				<div class="card-links">
+					<a class="card-link" target="_blank" href="https://www.youtube.com/watch?v=O_BUYwSe9yo"><i class="fa-brands fa-youtube"></i>Передогляд</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Mini Ninjas -->
+		<div class="card">
+			<div class="card-img">
+				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/35000/header.jpg" alt="Mini Ninjas">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Локалізація Mini Ninjas</div>
+				<div class="card-meta">8 580 слів.</div>
+				<div class="card-links">
+					<a class="card-link" target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3392764233"><i class="fa-brands fa-steam"></i>Steam</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Utility tool -->
+		<div class="card">
+			<div class="card-img">
+				<img src="png/utility.png" alt="Utility">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Інструмент для роботи з 25 форматами</div>
+				<div class="card-links">
+					<a class="card-link card-link--paid" target="_blank" href="https://t.me/Halytskyi_Rozbyshaka/73"><i class="fa-brands fa-telegram"></i>Платний</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- The Last Campfire -->
+		<div class="card">
+			<div class="card-img">
+				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/990630/header.jpg" alt="The Last Campfire">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Локалізація The Last Campfire</div>
+				<div class="card-meta">12 243 слова.</div>
+				<div class="card-links">
+					<a class="card-link" target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3428326265"><i class="fa-brands fa-steam"></i>Steam</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Neva -->
+		<div class="card">
+			<div class="card-img">
+				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2420660/header.jpg" alt="Neva">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Локалізація Neva</div>
+				<div class="card-meta">1 063 слова.</div>
+				<div class="card-links">
+					<a class="card-link" target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3430857952"><i class="fa-brands fa-steam"></i>Steam</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- GRIS -->
+		<div class="card">
+			<div class="card-img">
+				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/683320/header.jpg" alt="GRIS">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Локалізація GRIS</div>
+				<div class="card-meta">212 слів.</div>
+				<div class="card-links">
+					<a class="card-link" target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3445319845"><i class="fa-brands fa-steam"></i>Steam</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Lost in Random -->
+		<div class="card">
+			<div class="card-img">
+				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1462570/header.jpg" alt="Lost in Random">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Локалізація Lost in Random</div>
+				<div class="card-meta">96 918 слів.</div>
+				<div class="card-links">
+					<a class="card-link" target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3446294135"><i class="fa-brands fa-steam"></i>Steam</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Fe -->
+		<div class="card">
+			<div class="card-img">
+				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1225580/header.jpg" alt="Fe">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Локалізація Fe</div>
+				<div class="card-meta">612 слів.</div>
+				<div class="card-links">
+					<a class="card-link" target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3577208808"><i class="fa-brands fa-steam"></i>Steam</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Ice Age -->
+		<div class="card">
+			<div class="card-img">
+				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/751060/header.jpg" alt="Ice Age">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Локалізація Ice Age Scrat's Nutty Adventure</div>
+				<div class="card-meta">1 095 слів.</div>
+				<div class="card-links">
+					<a class="card-link" target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3577285176"><i class="fa-brands fa-steam"></i>Steam</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- The Midnight Walk -->
+		<div class="card">
+			<div class="card-img">
+				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2863640/header.jpg" alt="The Midnight Walk">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Локалізація The Midnight Walk</div>
+				<div class="card-meta">16 469 слів.</div>
+				<div class="card-links">
+					<a class="card-link" target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3584551736"><i class="fa-brands fa-steam"></i>Steam</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Fresh Start -->
+		<div class="card">
+			<div class="card-img">
+				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1856030/header.jpg" alt="Fresh Start">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Локалізація Fresh Start Cleaning Simulator</div>
+				<div class="card-meta">3 245 слів.</div>
+				<div class="card-links">
+					<a class="card-link" target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3590623258"><i class="fa-brands fa-steam"></i>Steam</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- AutoHotkey -->
+		<div class="card">
+			<div class="card-img">
+				<img src="png/autohotkey.png" alt="AutoHotkey">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Гарячі клавіші на AutoHotkey</div>
+				<div class="card-links">
+					<a class="card-link" target="_blank" href="https://github.com/hikarosato/hikaro_hotkeys"><i class="fa-brands fa-github"></i>GitHub</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Unity tools -->
+		<div class="card">
+			<div class="card-img">
+				<img src="png/unity.png" alt="Unity">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Інструменти для Unity</div>
+				<div class="card-links">
+					<a class="card-link" href="https://hikarosato.github.io/atlas/"><i class="fa-brands fa-github"></i>Atlas MonoBehaviour Merger</a>
+					<a class="card-link" href="https://hikarosato.github.io/array/"><i class="fa-brands fa-github"></i>Unity Localization Tool</a>
+					<a class="card-link" href="https://hikarosato.github.io/guide/#unity-catalog"><i class="fa-brands fa-github"></i>Покращена CatalogTool</a>
+					<a class="card-link" href="https://hikarosato.github.io/guide/#unity-import"><i class="fa-brands fa-github"></i>Покращена UABEANext</a>
+					<a class="card-link" href="https://hikarosato.github.io/guide/#unity-ua"><i class="fa-brands fa-github"></i>Array Language Tool</a>
+					<a class="card-link" target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd"><i class="fa-brands fa-github"></i>UnityCLI</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Overlord -->
+		<div class="card">
+			<div class="card-img">
+				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/12810/header.jpg" alt="Overlord">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Packer/unpacker .8ld для Overlord 1–2</div>
+				<div class="card-links">
+					<span class="card-link card-link--private"><i class="fa-solid fa-lock"></i>Не поширюється</span>
+				</div>
+			</div>
+		</div>
+
+		<!-- UE4-5 UA -->
+		<div class="card">
+			<div class="card-img">
+				<img src="png/ue_ua.png" alt="Unreal Engine 4-5">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Окрема українська в UE4–5</div>
+				<div class="card-links">
+					<a class="card-link" target="_blank" href="https://medium.com/@hikaro/%D0%B4%D0%BE%D0%B4%D0%B0%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F-%D1%83%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D1%81%D1%8C%D0%BA%D0%BE%D1%97-%D1%8F%D0%BA-%D0%BE%D0%BA%D1%80%D0%B5%D0%BC%D0%BE%D1%97-%D0%BC%D0%BE%D0%B2%D0%B8-%D0%B2-%D1%96%D0%B3%D1%80%D0%B8-%D0%BD%D0%B0-unreal-engine-4-5-120d44c73d3f"><i class="fa-solid fa-book"></i>Medium</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Open Season -->
+		<div class="card">
+			<div class="card-img">
+				<img src="png/OpenSeason.png" alt="Open Season">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Packer/unpacker .umd для Open Season</div>
+				<div class="card-links">
+					<a class="card-link" target="_blank" href="https://github.com/hikarosato/Open-Season-tool"><i class="fa-brands fa-github"></i>GitHub</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Unreal Engine tools -->
+		<div class="card">
+			<div class="card-img">
+				<img src="png/ue.png" alt="Unreal Engine">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Інструменти для Unreal Engine</div>
+				<div class="card-links">
+					<a class="card-link" target="_blank" href="https://hikarosato.github.io/guide/#ue-text"><i class="fa-brands fa-github"></i>UE Localization Tool</a>
+					<a class="card-link" target="_blank" href="https://hikarosato.github.io/guide/#ue-text"><i class="fa-brands fa-github"></i>CSV Merger Tool</a>
+					<a class="card-link" target="_blank" href="https://hikarosato.github.io/guide/#ue-font"><i class="fa-brands fa-github"></i>UAsset Font Tool</a>
+					<a class="card-link" target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd"><i class="fa-brands fa-github"></i>Форк FModel</a>
+					<a class="card-link" target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd"><i class="fa-brands fa-github"></i>UELT</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Guide -->
+		<div class="card">
+			<div class="card-img">
+				<img src="guide/assets/cover.png" alt="Guide">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Посібник по створенню українізатора</div>
+				<div class="card-links">
+					<a class="card-link" target="_blank" href="https://hikarosato.github.io/guide/"><i class="fa-solid fa-book"></i>Сайт</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Larian -->
+		<div class="card">
+			<div class="card-img">
+				<img src="png/larian.png" alt="Larian">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Інструмент для перекладу ігор Larian</div>
+				<div class="card-links">
+					<span class="card-link card-link--private"><i class="fa-solid fa-lock"></i>Не поширюється</span>
+				</div>
+			</div>
+		</div>
+
+		<!-- CLANNAD -->
+		<div class="card">
+			<div class="card-img">
+				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/324160/header.jpg" alt="CLANNAD">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Конвертер .wav у .nwa для CLANNAD</div>
+				<div class="card-links">
+					<span class="card-link card-link--private"><i class="fa-solid fa-lock"></i>Не поширюється</span>
+				</div>
+			</div>
+		</div>
+
+		<!-- Universal text counter -->
+		<div class="card">
+			<div class="card-img">
+				<img src="png/tool.png" alt="Tool">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Інструмент для підрахунку тексту</div>
+				<div class="card-links">
+					<span class="card-link card-link--private"><i class="fa-solid fa-lock"></i>Не поширюється</span>
+				</div>
+			</div>
+		</div>
+
+		<!-- Achievement tool -->
+		<div class="card">
+			<div class="card-img">
+				<img src="png/achievement.png" alt="Tool">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Інструмент для перекладу досягнень</div>
+				<div class="card-links">
+					<span class="card-link card-link--private"><i class="fa-solid fa-lock"></i>Не поширюється</span>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</main>
+
+<footer>
+	<span class="footer-brand">Made by Hikaro</span>
+	<div class="footer-links">
+		<a class="footer-link" target="_blank" href="https://t.me/Halytskyi_Rozbyshaka">
+			<i class="fa-brands fa-telegram"></i>Telegram
+		</a>
+		<a class="footer-link" target="_blank" href="https://send.monobank.ua/jar/47CywvjmpG">
+			<i class="fa-solid fa-building-columns"></i>monobank jar
+		</a>
+	</div>
 </footer>
 
 </body>
