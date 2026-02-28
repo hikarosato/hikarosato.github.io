@@ -138,7 +138,9 @@ nav a:hover::after {
 /* Sidebar */
 .sidebar {
 	position: sticky;
-	top: 100px;
+	top: 80px;
+	max-height: calc(100vh - 100px);
+	overflow-y: auto;
 	height: fit-content;
 	background: var(--surface);
 	border-radius: 20px;
@@ -146,26 +148,82 @@ nav a:hover::after {
 	border: 1px solid var(--border);
 	box-shadow: 0 10px 30px var(--shadow);
 	transition: all 0.3s ease;
+	scrollbar-width: thin;
+	scrollbar-color: var(--border) transparent;
+}
+
+.sidebar::-webkit-scrollbar {
+	width: 4px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+	background: var(--border);
+	border-radius: 4px;
+}
+
+/* Mobile sidebar toggle */
+.sidebar-toggle {
+	display: none;
+	width: 100%;
+	padding: 0.75rem 1rem;
+	background: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: 12px;
+	color: var(--text);
+	font-family: 'Inter', sans-serif;
+	font-size: 1rem;
+	font-weight: 600;
+	cursor: pointer;
+	text-align: left;
+	transition: all 0.3s ease;
+	margin-bottom: 0;
+}
+
+.sidebar-toggle:hover {
+	border-color: var(--primary);
+	background: rgba(14, 165, 233, 0.08);
+}
+
+.sidebar-toggle::after {
+	content: ' ▼';
+	float: right;
+	font-size: 0.8em;
+	transition: transform 0.3s ease;
+	display: inline-block;
+}
+
+.sidebar-toggle.open::after {
+	transform: rotate(180deg);
+}
+
+.sidebar-content {
+	/* always visible on desktop */
 }
 
 .sidebar ul {
 	list-style: none;
+	margin-left: 0;
+	padding-left: 0;
 }
 
 .sidebar > ul > li {
-	margin: 0 0 0 -2.6rem;
+	margin: 0;
 }
 
 .sidebar a {
 	color: var(--text-secondary);
 	text-decoration: none;
 	font-weight: 500;
+	font-size: 0.9rem;
 	transition: all 0.3s ease;
 	display: block;
-	padding: 0.5rem 0.7rem;
+	padding: 0.4rem 0.7rem;
 	border-radius: 10px;
 	position: relative;
 	overflow: hidden;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .sidebar a::before {
@@ -198,15 +256,18 @@ nav a:hover::after {
 
 .submenu {
 	display: none;
-	padding-left: -2rem;
+}
+
+.sidebar .submenu {
+	padding-left: 0.8rem;
 }
 
 .submenu li {
-	margin: 0 0 0 -1rem;
+	margin: 0;
 }
 
 .submenu a {
-	font-size: 1rem;
+	font-size: 0.85rem;
 	font-weight: 400;
 }
 
@@ -430,6 +491,30 @@ main > *:nth-child(3) { animation-delay: 0.3s; }
 	.sidebar {
 		position: relative;
 		top: 0;
+		max-height: none;
+		overflow-y: visible;
+		padding: 0;
+		background: transparent;
+		border: none;
+		box-shadow: none;
+	}
+
+	.sidebar-toggle {
+		display: block;
+	}
+
+	.sidebar-content {
+		display: none;
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: 0 0 12px 12px;
+		padding: 1rem 1.5rem;
+		box-shadow: 0 10px 30px var(--shadow);
+	}
+
+	.sidebar-content.open {
+		display: block;
+		animation: slideDown 0.3s ease;
 	}
 	
 	main {
@@ -448,6 +533,15 @@ main > *:nth-child(3) { animation-delay: 0.3s; }
 		flex-direction: column;
 		gap: 1rem;
 		text-align: center;
+	}
+
+	img, video {
+		width: 100% !important;
+		max-width: 100% !important;
+	}
+
+	div[style*="display: flex"] {
+		flex-wrap: wrap !important;
 	}
 }
 
@@ -583,6 +677,8 @@ p:has(> b:first-child:contains("❗️")) {
 	</nav>
 	<div class="page">
 		<aside class="sidebar">
+		<button class="sidebar-toggle" id="sidebarToggle">Зміст</button>
+		<div class="sidebar-content" id="sidebarContent">
 			<ul>
 				<li class="menu-item">
 					<a href="#unity" class="menu-link">Unity</a>
@@ -607,6 +703,7 @@ p:has(> b:first-child:contains("❗️")) {
 				</li>
 				<li><a href="#tools">Інструменти</a></li>
 			</ul>
+		</div>
 		</aside>
 		<main>
 			<h1 id="start" style="font-size: 4.5rem;">Створення українізатора 2.0</h1>
@@ -828,12 +925,34 @@ p:has(> b:first-child:contains("❗️")) {
 	</div>
 <footer>Made by Hikaro</footer>
 <script>
+	// Sidebar submenu toggle
 	document.querySelectorAll('.menu-link').forEach(link => {
 		link.addEventListener('click', e => {
 			const parent = e.target.parentElement;
 			parent.classList.toggle('open');
 		});
 	});
+
+	// Mobile sidebar toggle
+	const sidebarToggle = document.getElementById('sidebarToggle');
+	const sidebarContent = document.getElementById('sidebarContent');
+
+	if (sidebarToggle && sidebarContent) {
+		sidebarToggle.addEventListener('click', () => {
+			sidebarToggle.classList.toggle('open');
+			sidebarContent.classList.toggle('open');
+		});
+
+		// Close sidebar when a link inside is clicked on mobile
+		sidebarContent.querySelectorAll('a:not(.menu-link)').forEach(link => {
+			link.addEventListener('click', () => {
+				if (window.innerWidth <= 1024) {
+					sidebarToggle.classList.remove('open');
+					sidebarContent.classList.remove('open');
+				}
+			});
+		});
+	}
 </script>
 </body>
 </html>
