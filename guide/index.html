@@ -816,7 +816,7 @@ p:has(> b:first-child:contains("❗️")) {
 					<p style="text-indent: 1em;">Це дозволить завантажувати сторонні <b>.pak</b> файли грою без необхідності ручного прописування <b>-fileopenlog</b> у «Параметрах запуску» властивостей гри в <b>Steam</b>.</p>
 					<p>❗️ <b>Не забудьте додати .dll, .asi файли та файл із ліцензією (❗️ ОБОВ’ЯЗКОВО ❗️) у архів разом із перекладом для решти гравців, або ж додайте посилання на Unreal Engine Signature Check Bypasser для окремого завантаження.</b> ❗️</p>
 				<h3 id="ue-text">Текст</h3>
-					<p style="text-indent: 1em;">Для перекладу та роботи з <b>.locres</b> файлами використовуйте покращену мною версію <b><a target="_blank" href="tools/UELocalizationTool.exe">UE Localization Tool</a></b>. Також підходить для перекладу <b>.uasset</b> та <b>.umap</b> файлів (Пункт меню програми <b>Налаштування — Підтримка .uasset/.umap</b> — Відкрити бажаний <b>.uasset/.umap</b>). Майте на увазі, що парсинг <b>.uasset</b> не ідеальний, і після збереження він може не відкритись у <b>UAssetGUI</b>, як правильно перекладати <b>.uasset</b> описано <b>нижче</b>.</p>
+					<p style="text-indent: 1em;">Для перекладу та роботи з <b>.locres</b> файлами використовуйте покращену мною версію <b><a target="_blank" href="tools/UELocalizationTool.exe">UE Localization Tool</a></b>. Також підходить для перекладу <b>.uasset</b> та <b>.umap</b> файлів (Пункт меню програми <b>Налаштування — Підтримка .uasset/.umap</b> — Відкрити бажаний <b>.uasset/.umap</b>). Майте на увазі, що парсинг <b>.uasset</b> не ідеальний, наприклад деякий текст не дасть перекласти, а після збереження він може не відкритись у <b>UAssetGUI</b>, як правильно перекладати <b>.uasset</b> описано <b>нижче</b>.</p>
 					<p>Для об’єднання перекладу з новим <b>.locres</b> після оновлення гри використовуйте авторську <b><a target="_blank" href="tools/CSVMergerTool.exe">CSV Merger Tool</a></b>.</p>
 				<h4>Як дізнатись, чи для .uasset/.umap необхідний .usmap файл:</h4>
  					<p style="text-indent: 1em;">Спробуйте відкрити <b>.uasset/.umap</b> у <b><a target="_blank" href="https://github.com/4sval/FModel">FModel</a></b> для попереднього перегляду. Якщо з’явиться повідомлення <b>...mapping file is missing</b>, вітаю, вам потрібен <b>.usmap</b>.</p>
@@ -885,7 +885,7 @@ p:has(> b:first-child:contains("❗️")) {
 				</ul>
 				<h4>Unreal Engine</h4>
 				<ul>
-				<li><b><a target="_blank" href="tools/UELocalizationTool.exe">UE Localization Tool 2.8.6</a></b> — власний форк <b><a target="_blank" href="https://github.com/amrshaheen61/UE4LocalizationsTool">UE4LocalizationsTool</a></b> зі швидшою роботою, виправленням помилок і новим функціоналом. <b style="color: red;">Підтримку форку припинено.</b> Можлива <u>втрата</u> певної кількості рядків в <b>locres</b> файлі після збереження (те саме відбувається і з оригінальною програмою), подальше використання на свій страх і ризик.</li>
+				<li><b><a target="_blank" href="tools/UELocalizationTool.exe">UE Localization Tool 2.8.6</a></b> — власний форк <b><a target="_blank" href="https://github.com/amrshaheen61/UE4LocalizationsTool">UE4LocalizationsTool</a></b> зі швидшою роботою, виправленням помилок і новим функціоналом. <b style="color: red;">Підтримку форку припинено. Подальше використання на свій страх і ризик.</li>
 					<details>
 						<summary>Деталі форку</summary>
 						<p>
@@ -908,6 +908,13 @@ p:has(> b:first-child:contains("❗️")) {
 							<li>Переклав українською.</li>
 							<li>Виправив і додав статусні повідомлення у багатьох місцях.</li>
 							<li>Виправив виявлення тексту у <b>.uasset</b>. В одному файлі зустрічаються два різні формати структури даних. Реалізував двопрохідний алгоритм обробки файлу.</li>
+						</p>
+					</details>
+					<details>
+						<summary>Проблеми форку і оригінальної програми</summary>
+						<p>
+							<li>Можлива <u>втрата</u> певної кількості рядків у <b>locres</b> файлі після збереження (виправлено в <b>UELT</b>).</li>
+							<li>Неможливо перекласти деяких текст у <b>uasset/umap</b> файлах (виправлено в <b>UELT</b>).</li>
 						</p>
 					</details>
 				<li><b><a target="_blank" href="tools/CSVMergerTool.exe">CSV Merger Tool 1.3</a></b> — авторський інструмент для об’єднання перекладу з новим <b>CSV</b> файлом. <b style="color: red;">Підтримку припинено.</b></li>
