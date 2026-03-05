@@ -830,7 +830,7 @@ p:has(> b:first-child:contains("❗️")) {
 					<p style="text-indent: 1em;">У вас при <b>Export Data Raw</b> в <b>FModel</b> експортується <b>uasset/umap</b> без <b>uexp</b>? Вітаю, у вас <b><a target="_blank" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/zen-loader-in-unreal-engine">Zen-контейнери</a></b>.
 					<br>Для роботи з ними потрібен <b><a target="_blank" href="https://github.com/trumank/retoc">retoc</a></b>.</p>
 					<p>Шаблон команди для експорту потрібного файлу:</p>
-					<code>retoc --aes-key ВАШ_КЛЮЧ to-legacy --filter "/YourGame/Content/Some/Path/ФАЙЛuasset" "C:\Path\To\Game\Content\Paks" "C:\Path\To\OutputDir"</code>
+					<code>retoc --aes-key ВАШ_КЛЮЧ to-legacy --filter "/YourGame/Content/Some/Path/ФАЙЛ.uasset" "C:\Path\To\Game\Content\Paks" "C:\Path\To\OutputDir"</code>
 					<p><b>--aes-key</b> можна не використовувати, якщо ваша гра його немає.</p>
 					<p>У моєму випадку з <b>Life is Strange: Double Exposure</b> команда виглядає ось так:</p>
 					<code>retoc to-legacy --filter "/Chronos/Content/Data/Localization" "E:\Games\Life is Strange - Double Exposure\Chronos\Content\Paks" "C:\Extract"</code>
