@@ -363,6 +363,41 @@ strong, b {
 	font-weight: 600;
 }
 
+/* Warning box */
+.warning-box {
+	display: flex;
+	align-items: flex-start;
+	gap: 0.75rem;
+	background: rgba(185, 28, 28, 0.15);
+	border: 1px solid rgba(220, 38, 38, 0.5);
+	border-left: 4px solid #dc2626;
+	border-radius: 10px;
+	padding: 0.85rem 1.1rem;
+	margin: 1rem 0;
+}
+
+.warning-box .warning-dot {
+	width: 10px;
+	height: 10px;
+	min-width: 10px;
+	background: #dc2626;
+	border-radius: 50%;
+	margin-top: 5px;
+}
+
+.warning-box .warning-text {
+	font-size: 0.95rem;
+	color: var(--text-secondary);
+	line-height: 1.5;
+}
+
+.warning-box .warning-text strong {
+	display: block;
+	color: #f87171;
+	font-weight: 600;
+	margin-bottom: 0.2rem;
+}
+
 /* Code blocks */
 code {
 	background: var(--surface-light);
@@ -792,7 +827,16 @@ p:has(> b:first-child:contains("❗️")) {
 								<p style="text-indent: 1em;">Підтримка таких файлів додана у <b>4.0</b> версії <b><a target="_blank" href="https://hikarosato.github.io/array/">Unity Localization Tool</a></b>.</p>
 							</ul>
 					</ul>
-				<h3 id="unity-import">Імпорт (❗️ІНФОРМАЦІЯ ЗАСТАРІЛА❗️ Актуалізується після закриття <a target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd">»банки«</a>)</h3>
+				<h3 id="unity-import">Імпорт</h3>
+					
+					<div class="warning-box">
+						<div class="warning-dot"></div>
+						<div class="warning-text">
+							<strong>Інформація застаріла</strong>
+							Актуалізується після закриття <a target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd">банки</a>.
+						</div>
+					</div>
+				
 					<p>❗️ <b>Увага:</b> Якщо ви досі використовуєте <b>UABEA</b> для роботи з <b>.assets</b> та <b>.bundle</b>, майте на увазі: в програми є баг, через який <b>.json</b> може імпортуватися <b>некоректно</b> з першого разу. Завжди перевіряйте файл за допомогою кнопки <b>View Data</b>. Якщо з’являється повідомлення <b>Asset failed to deserialize</b> — повторіть імпорт <b>.json</b>.</p>
 						<img src="unity/text-3.png" width="600" alt="">
 					<p style="text-indent: 1em;">Новий інструмент <b><a href="https://github.com/nesrak1/UABEANext">UABEANext</a></b> позбавлений цієї проблеми — імпортування завжди проходить успішно.</p>
@@ -815,13 +859,31 @@ p:has(> b:first-child:contains("❗️")) {
 						<img src="ue/sig.png" width="300" alt="">
 					<p style="text-indent: 1em;">Це дозволить завантажувати сторонні <b>.pak</b> файли грою без необхідності ручного прописування <b>-fileopenlog</b> у «Параметрах запуску» властивостей гри в <b>Steam</b>.</p>
 					<p>❗️ <b>Не забудьте додати .dll, .asi файли та файл із ліцензією (❗️ ОБОВ’ЯЗКОВО ❗️) у архів разом із перекладом для решти гравців, або ж додайте посилання на Unreal Engine Signature Check Bypasser для окремого завантаження.</b> ❗️</p>
-				<h3 id="ue-text">Текст (❗️ІНФОРМАЦІЯ ЗАСТАРІЛА❗️ Актуалізується після закриття <a target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd">»банки«</a>)</h3>
+				<h3 id="ue-text">Текст</h3>
+						
+					<div class="warning-box">
+						<div class="warning-dot"></div>
+						<div class="warning-text">
+							<strong>Інформація застаріла</strong>
+							Актуалізується після закриття <a target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd">банки</a>.
+						</div>
+					</div>
+				
 					<p style="text-indent: 1em;">Для перекладу та роботи з <b>locres</b> файлами використовуйте покращену мною версію <b><a target="_blank" href="tools/UELocalizationTool.exe">UE Localization Tool</a></b>. Також підходить для перекладу <b>uasset</b> та <b>umap</b> файлів (Пункт меню програми <b>Налаштування — Підтримка uasset/umap</b> — Відкрити бажаний <b>uasset/umap</b>). Майте на увазі, що парсинг <b>uasset/umap</b> не ідеальний, наприклад деякий текст не дасть перекласти, а після збереження він може не відкритись у <b>UAssetGUI</b>, як правильно перекладати такі файли описано <b>нижче</b>.</p>
 					<p>Для об’єднання перекладу з новим <b>.locres</b> після оновлення гри використовуйте авторську <b><a target="_blank" href="tools/CSVMergerTool.exe">CSV Merger Tool</a></b>.</p>
 				<h4>Як дізнатись, чи для uasset/umap необхідний usmap файл:</h4>
  					<p style="text-indent: 1em;">Спробуйте відкрити <b>uasset/umap</b> у <b><a target="_blank" href="https://github.com/4sval/FModel">FModel</a></b> для попереднього перегляду. Якщо з’явиться повідомлення <b>...mapping file is missing</b>, вітаю, вам потрібен <b>usmap</b>.</p>
  						<img src="ue/check-usmap.png" width="1200" alt="">
-				<h4>Як дістати usmap: (❗️ІНФОРМАЦІЯ ЗАСТАРІЛА❗️ Актуалізується після закриття <a target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd">банки</a>)</h4>
+				<h4>Як дістати usmap:</h4>
+					
+					<div class="warning-box">
+						<div class="warning-dot"></div>
+						<div class="warning-text">
+							<strong>Інформація застаріла</strong>
+							Актуалізується після закриття <a target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd">банки</a>.
+						</div>
+					</div>
+				
 					<p>Вам потрібен <b><a target="_blank" href="https://github.com/Encryqed/Dumper-7">Dumper-7</a></b> та <b>DLL Injector</b>.</p>
 						<video width="1000" controls><source src="ue/usmap-extract.mp4" type="video/mp4">Ваш браузер не підтримує відтворення відео.</video>
 					<p style="text-indent: 1em;">Як тільки побачите текст <b>Generating SDK tools (*.*ms)</b> можете закривати Командний рядок, при цьому гра також закриється.
@@ -835,14 +897,21 @@ p:has(> b:first-child:contains("❗️")) {
 					<p>У моєму випадку з <b>Life is Strange: Double Exposure</b> команда виглядає ось так:</p>
 					<code>retoc to-legacy --filter "/Chronos/Content/Data/Localization" "E:\Games\Life is Strange - Double Exposure\Chronos\Content\Paks" "C:\Extract"</code>
 						<img src="ue/retoc.png" width="600" alt="">
-				<h4>Правильний переклад uasset/umap: (❗️ІНФОРМАЦІЯ ЗАСТАРІЛА❗️ Актуалізується після закриття <a target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd">банки</a>)</h4>
+				<h4>Правильний переклад uasset/umap:</h4>
+				<div class="warning-box">
+					<div class="warning-dot"></div>
+					<div class="warning-text">
+						<strong>Інформація застаріла</strong>
+						Актуалізується після закриття <a target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd">банки</a>.
+					</div>
+				</div>
 					<p>Раніше ми дістали <b>usmap</b> з гри, тепер дістали <b>uasset+uexp</b>. Далі потрібен <b><a target="_blank" href="https://github.com/atenfyr/UAssetGUI">UAssetGUI</a></b>, відкриваємо програму та імпортуємо наш <b>usmap</b>.</p>
 						<img src="ue/uassetgui.png" width="400" alt="">
 					<p>Після чого обираємо в правому куті програми наш <b>usmap</b> зі списку, та версію рушія (її ми дізнались при інджекті <b>dll</b>)</p>
 						<img src="ue/uassetgui-2.png" width="250" alt="">
 					<p>Після всіх дій відкриваємо наш <b>uasset</b>:</p>
 						<img src="ue/uassetgui-3.png" width="1100" alt="">
-					<p style="text-indent: 1em;">Я <b>не рекомендую</b> перекладати текст прямо в <b>UAssetGUI</b>. По-перше, в рядку англійського тексту постійно потрібно змінювати значення стовпця <b>Variant</b> з <b>us-ascii</b> на <b>utf-16</b> для підтримки кирилиці (інакше при збереженні і повторному відкритті <b>uasset</b> у вас буде <b>????????</b> замість тексту). По-друге, це неефективна та марудна робота.</p>
+					<p style="text-indent: 1em;">Я <b>не рекомендую</b> перекладати текст прямо в <b>UAssetGUI</b>. По-перше, в рядку англійського тексту постійно потрібно змінювати значення стовпця <b>Variant</b> з <b>us-ascii</b> на <b>utf-16</b> для підтримки кирилиці (інакше при збереженні і повторному відкритті <b>uasset</b> у вас будуть <b>????????</b> замість тексту). По-друге, це неефективна та марудна робота.</p>
 					<p style="text-indent: 1em;">Для зручнішого перекладу натисніть <b>File</b> — <b>Save As</b> оберіть внизу Тип файлу<b> json</b> та збережіть. У такому виді файлу не потрібно перейматись за значення стовпця <b>Variant</b> і можна перекладати спокійно рядки з текстом.</p>
 						<img src="ue/uassetgui-4.png" width="200" alt="">
 					<p style="text-indent: 1em;">Такі <b>json</b> файли також можна розпарсити та перекладати в <b>csv</b>, але це робиться індивідуально для кожної гри, немає універсального інструменту, його потрібно писати власноруч, за допомогою ШІ, просити знайомих техніків або людей на дискорд серверах.</p>
@@ -855,7 +924,14 @@ p:has(> b:first-child:contains("❗️")) {
 							<img src="ue/orig_font.png" style="max-width: 500px; height: auto;" alt="">
 							<img src="ue/new_font.png" style="max-width: 500px; height: auto;" alt="">
 						</div>
-				<h3 id="ue-pack">Пакування Zen-контейнерів (❗️ ІНФОРМАЦІЯ ЗАСТАРІЛА ❗️ Актуалізується після закриття <a target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd">»банки«</a>)</h3>
+				<h3 id="ue-pack">Пакування Zen-контейнерів</h3>
+				<div class="warning-box">
+					<div class="warning-dot"></div>
+					<div class="warning-text">
+						<strong>Інформація застаріла</strong>
+						Актуалізується після закриття <a target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd">банки</a>.
+					</div>
+				</div>
 					<p>Для цього нам знову потрібен <b><a target="_blank" href="https://github.com/trumank/retoc">retoc</a></b>.</p>
 					<p>Шаблон команди:</p>
 					<code>retoc to-zen ТЕКА ФАЙЛ.utoc --version UE*_*</code>
@@ -864,14 +940,29 @@ p:has(> b:first-child:contains("❗️")) {
 						<img src="ue/retoc-pack.png" width="800" alt="">
 					<p>Результат виконаної роботи:</p>
 						<img src="ue/game.png" width="400" alt="">
-				<h3 id="ue-ua">Неофіційна українська мова (❗️ ІНФОРМАЦІЯ ЗАСТАРІЛА ❗️ Актуалізується після закриття <a target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd">»банки«</a>)</h3>
+				<h3 id="ue-ua">Неофіційна українська мова</h3>
+				<div class="warning-box">
+					<div class="warning-dot"></div>
+					<div class="warning-text">
+						<strong>Інформація застаріла</strong>
+						Актуалізується після закриття <a target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd">банки</a>.
+					</div>
+				</div>
 					<p style="text-indent: 1em;">У <b><a target="_blank" href="https://medium.com/@hikaro/%D0%B4%D0%BE%D0%B4%D0%B0%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F-%D1%83%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D1%81%D1%8C%D0%BA%D0%BE%D1%97-%D1%8F%D0%BA-%D0%BE%D0%BA%D1%80%D0%B5%D0%BC%D0%BE%D1%97-%D0%BC%D0%BE%D0%B2%D0%B8-%D0%B2-%D1%96%D0%B3%D1%80%D0%B8-%D0%BD%D0%B0-unreal-engine-4-5-120d44c73d3f">даній</a></b> статті я описав метод можливого додавання української як окремої мови, зауважу, не всюди таке спрацює, якщо маєте бажання, можете спробувати на своїй грі.</p>
 			<h2 id="tools">Інструменти</h2>
 				<p>
 				<h4>Unity</h4>
 				<ul>
 				<li><b><a target="_blank" href="/atlas/">Atlas MonoBehaviour Merger 1.4</a></b> — авторський інструмент для зручного об’єднання згенерованих гліфів з оригінальним <b>MonoBehaviour</b> файлом шрифту.</li>
-				<li><b><a target="_blank" href="/array/">Unity Localization Tool 4.4.1</a></b> — авторський інструмент для зручного перекладу і роботи з <b>MonoBehaviour</b> файлами. <b style="color: red;">Остання публічна версія.</b></li>
+				<li><b><a target="_blank" href="/array/">Unity Localization Tool 4.4.1</a></b> — авторський інструмент для зручного перекладу і роботи з <b>MonoBehaviour</b> файлами.
+					<div class="warning-box">
+						<div class="warning-dot"></div>
+						<div class="warning-text">
+							<strong>Остання публічна версія</strong>
+						</div>
+					</div><br>
+				</li>
+				
 				<li><b><a target="_blank" href="tools/CatalogTool.exe">CatalogTool 1.2</a></b> — власний форк <b><a target="_blank" href="https://github.com/c0re100/CatalogTool">CatalogTool</a></b>.</li>
 					<details>
 						<summary>Деталі форку</summary>
@@ -880,13 +971,40 @@ p:has(> b:first-child:contains("❗️")) {
 							<li>Виправив патчинг бандлів, що містять символи <b>#</b> у назвах.</li>
 						</p>
 					</details>
-				<li><b><a target="_blank" href="tools/ArrayLanguageTool.exe">Array Language Tool 1.4</a></b> — авторський інструмент для зручного додавання і видалення мов з багатомовних масивів <b>MonoBehaviour</b> файлу. <b style="color: red;">Підтримку припинено.</b></li>
-				<li><b>UnityCLI</b> — авторський консольний інструмент для пакетного експорт/імпорту будь-яких типів асетів, потрібних для локалізації, в тому числі аудіо та відео. Публічний реліз після закриття <b><a target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd">банки</a></b>.</li>
-				<li><b>ULT</b> — закритий авторський інструмент для зручного перекладу і роботи з <b>MonoBehaviour</b> файлами. Підтримується робота у вкладках, розширено і виправлено попередній функціонал, робота з <b>14-ма</b> видами <b>MonoBehaviour</b> файлів, присутні автоматичні оновлення. Після закриття <b><a target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd">банки</a></b> доступ надаватиметься лише перекладачам, які <b>не займаються</b> машинним перекладом. Підтримуватись буде <b>Windows</b> (мінімум <b>Windows 10 1607)</b> і <b>Linux</b> (через <b>Proton</b>, і без автоматичних оновлень).</li>
+				<li><b><a target="_blank" href="tools/ArrayLanguageTool.exe">Array Language Tool 1.4</a></b> — авторський інструмент для зручного додавання і видалення мов з багатомовних масивів <b>MonoBehaviour</b> файлу.
+					<div class="warning-box">
+						<div class="warning-dot"></div>
+						<div class="warning-text">
+							<strong>Підтримку припинено</strong>
+							Напрацювання об’єднано з новим інструментом <b>ULT</b>.
+						</div>
+					</div><br>
+				</li>
+				
+				<li><b>UnityCLI</b> — авторський консольний інструмент для пакетного експорт/імпорту будь-яких типів асетів, <b>потрібних для локалізації</b>, у тому числі аудіо та відео.
+					<div class="warning-box">
+						<div class="warning-dot"></div>
+						<div class="warning-text">
+							<strong>Доступ обмежено</strong>
+							Після закриття <b><a target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd">банки</a></b> доступ надаватиметься лише перекладачам, які <b>не займаються</b> машинним перекладом.
+						</div>
+					</div><br>
+				</li>
+				
+				<li><b>ULT</b> — закритий авторський інструмент для зручного перекладу і роботи з <b>MonoBehaviour</b> файлами. Підтримується робота у вкладках, розширено і виправлено попередній функціонал, робота з <b>14-ма</b> видами <b>MonoBehaviour</b> файлів, присутні автоматичні оновлення. Після закриття <b><a target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd">банки</a></b> доступ надаватиметься лише перекладачам, які <b>не займаються</b> машинним перекладом. Підтримуватись буде <b>Windows</b> (мінімум <b>Windows 10 1607)</b> і <b>Linux</b> (через <b>Proton</b>, і без автоматичних оновлень).
+					<div class="warning-box">
+						<div class="warning-dot"></div>
+						<div class="warning-text">
+							<strong>Доступ обмежено</strong>
+							Після закриття <b><a target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd">банки</a></b> доступ надаватиметься лише перекладачам, які <b>не займаються</b> машинним перекладом.
+						</div>
+					</div><br>
+				</li>
+				
 				</ul>
 				<h4>Unreal Engine</h4>
 				<ul>
-				<li><b><a target="_blank" href="tools/UELocalizationTool.exe">UE Localization Tool 2.8.6</a></b> — власний форк <b><a target="_blank" href="https://github.com/amrshaheen61/UE4LocalizationsTool">UE4LocalizationsTool</a></b> зі швидшою роботою, виправленням помилок і новим функціоналом. <b style="color: red;">Підтримку форку припинено. Подальше використання на свій страх і ризик.</li>
+				<li><b><a target="_blank" href="tools/UELocalizationTool.exe">UE Localization Tool 2.8.6</a></b> — власний форк <b><a target="_blank" href="https://github.com/amrshaheen61/UE4LocalizationsTool">UE4LocalizationsTool</a></b> зі швидшою роботою, виправленням помилок і новим функціоналом.</li>
 					<details>
 						<summary>Деталі форку</summary>
 						<p>
@@ -918,10 +1036,45 @@ p:has(> b:first-child:contains("❗️")) {
 							<li>Неможливо перекласти деякий текст у <b>uasset/umap</b> файлах (виправлено в <b>UELT</b>).</li>
 						</p>
 					</details>
-				<li><b><a target="_blank" href="tools/CSVMergerTool.exe">CSV Merger Tool 1.3</a></b> — авторський інструмент для об’єднання перекладу з новим <b>CSV</b> файлом. <b style="color: red;">Підтримку припинено.</b></li>
+					<div class="warning-box">
+						<div class="warning-dot"></div>
+						<div class="warning-text">
+							<strong>Підтримку форку припинено</strong>
+							Подальше використання на свій страх і ризик.
+						</div>
+					</div><br>
+					
+				<li><b><a target="_blank" href="tools/CSVMergerTool.exe">CSV Merger Tool 1.3</a></b> — авторський інструмент для об’єднання перекладу з новим <b>CSV</b> файлом.
+					<div class="warning-box">
+						<div class="warning-dot"></div>
+						<div class="warning-text">
+							<strong>Підтримку припинено</strong>
+							Напрацювання об’єднано з новим інструментом <b>UELT</b>.
+						</div>
+					</div><br>
+				</li>
 				<li><b><a target="_blank" href="tools/UAssetFontTool.exe">UAsset Font Tool 1.2</a></b> — авторський інструмент для заміни <b>ttf/otf</b> чи <b>swf</b> шрифту у <b>uasset+uexp</b> файлах.</li>
-				<li><b>FModel Text Searcher</b> — власний форк <b><a target="_blank" href="https://github.com/4sval/FModel">FModel</a></b> з функцією пошуку тексту по всіх файлах. Після закриття <b><a target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd">банки</a></b> надаватиметься лише перекладачам, які <b>не займаються</b> машинним перекладом.</li>
-				<li><b>UELT</b> — закритий авторський інструмент, глибоко переосмислений <b>UE Localization Tool</b>, інтерфейс створено з нуля, логіку роботи суттєво перероблено й розширено, позбавлений проблем попередників, використовує модифіковані сторонні бібліотеки, присутні автоматичні оновлення. Після закриття <b><a target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd">банки</a></b> доступ надаватиметься лише перекладачам, які <b>не займаються</b> машинним перекладом. Підтримуватись буде <b>Windows</b> (мінімум <b>Windows 10 1607)</b> і <b>Linux</b> (через <b>Proton</b>, і без автоматичних оновлень).</li>
+				<li><b>FModel Text Searcher</b> — власний форк <b><a target="_blank" href="https://github.com/4sval/FModel">FModel</a></b> з функцією пошуку тексту по всіх файлах. Після закриття <b><a target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd">банки</a></b> надаватиметься лише перекладачам, які <b>не займаються</b> машинним перекладом.
+					<div class="warning-box">
+						<div class="warning-dot"></div>
+						<div class="warning-text">
+							<strong>Доступ обмежено</strong>
+							Після закриття <b><a target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd">банки</a></b> доступ надаватиметься лише перекладачам, які <b>не займаються</b> машинним перекладом.
+						</div>
+					</div><br>
+				</li>
+				
+				<li><b>UELT</b> — закритий авторський інструмент, глибоко переосмислений <b>UE Localization Tool</b>, інтерфейс створено з нуля, логіку роботи суттєво перероблено й розширено, позбавлений проблем попередників, використовує модифіковані сторонні бібліотеки, присутні автоматичні оновлення.  Підтримуватись буде <b>Windows</b> (мінімум <b>Windows 10 1607)</b> і <b>Linux</b> (через <b>Proton</b>, і без автоматичних оновлень).
+							
+					<div class="warning-box">
+						<div class="warning-dot"></div>
+						<div class="warning-text">
+							<strong>Доступ обмежено</strong>
+							Після закриття <b><a target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd">банки</a></b> доступ надаватиметься лише перекладачам, які <b>не займаються</b> машинним перекладом.
+						</div>
+					</div>
+				</li>
+				
 				</ul>
 				</p>
 			<h2>Поради</h2>
