@@ -47,6 +47,19 @@
 	box-sizing: border-box;
 }
 
+img {
+	height: auto;
+	max-width: 100%;
+	display: block;
+}
+
+video {
+	height: auto;
+	max-width: 100%;
+	display: block;
+	aspect-ratio: 16 / 9;
+}
+
 body {
 	font-family: 'Inter', sans-serif;
 	font-size: 16px;
@@ -1090,6 +1103,20 @@ p:has(> b:first-child:contains("❗️")) {
 	</div>
 <footer>Made by Hikaro</footer>
 <script>
+	// Anchor scroll fix — scroll to hash after all images/videos load
+	if (window.location.hash) {
+		const hash = window.location.hash;
+		window.scrollTo(0, 0); // reset scroll first
+		window.addEventListener('load', () => {
+			const target = document.querySelector(hash);
+			if (target) {
+				setTimeout(() => {
+					target.scrollIntoView({ behavior: 'instant' });
+				}, 50);
+			}
+		});
+	}
+
 	// Sidebar submenu toggle
 	document.querySelectorAll('.menu-link').forEach(link => {
 		link.addEventListener('click', e => {
