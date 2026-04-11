@@ -3,22 +3,18 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- Main -->
 	<title>Галицький Розбишака</title>
 	<meta name="title" content="Галицький Розбишака" />
 	<meta name="description" content="Українські локалізації та різні напрацювання від Галицького Розбишаки." />
-	<!-- Open Graph -->
 	<meta property="og:title" content="Галицький Розбишака" />
 	<meta property="og:description" content="Українські локалізації та різні напрацювання від Галицького Розбишаки." />
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="https://hikarosato.github.io/" />
 	<meta property="og:image" content="https://hikarosato.github.io/assets/cover.png" />
-	<!-- Twitter -->
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content="Галицький Розбишака" />
 	<meta name="twitter:description" content="Українські локалізації та різні напрацювання від Галицького Розбишаки." />
 	<meta name="twitter:image" content="https://hikarosato.github.io/assets/cover.png" />
-	<!-- Other -->
 	<meta name="referrer" content="no-referrer-when-downgrade" />
 	<meta name="google-site-verification" content="sW7CLGJX6xku8GKXOnysD-f3nqW2XnVFgnkk811QlmI"/>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,6 +39,8 @@
 	--tag-bg: rgba(255,255,255,0.04);
 	--radius: 14px;
 	--radius-sm: 8px;
+	--progress-bg: rgba(255,255,255,0.08);
+	--progress-fill: linear-gradient(90deg, var(--accent), var(--accent-2));
 }
 
 *, *::before, *::after {
@@ -62,7 +60,6 @@ body {
 	min-height: 100vh;
 }
 
-/* ── Noise overlay ── */
 body::before {
 	content: '';
 	position: fixed;
@@ -74,7 +71,6 @@ body::before {
 	background-size: 200px 200px;
 }
 
-/* ── Ambient glow ── */
 .glow-blob {
 	position: fixed;
 	border-radius: 50%;
@@ -105,7 +101,6 @@ body::before {
 	to   { transform: translate(-80px, -60px) scale(1.2); }
 }
 
-/* ── Header ── */
 header {
 	position: sticky;
 	top: 0;
@@ -163,7 +158,6 @@ nav a:hover {
 	background: rgba(255,255,255,0.06);
 }
 
-/* ── Main layout ── */
 main {
 	position: relative;
 	z-index: 1;
@@ -172,7 +166,6 @@ main {
 	padding: 0 32px 80px;
 }
 
-/* ── Hero ── */
 .hikaro {
 	padding: 10px 0 0;
 	display: flex;
@@ -182,11 +175,6 @@ main {
 	border-bottom: 1px solid var(--border);
 	margin-bottom: 24px;
 	position: relative;
-}
-
-/* animated gradient line at top of hikaro */
-.hikaro::before {
-	display: none;
 }
 
 .hikaro h1 {
@@ -202,10 +190,6 @@ main {
 	background-clip: text;
 	background-size: 200% 200%;
 	animation: shimmer 4s ease infinite alternate;
-}
-
-.hikaro h1 em {
-	font-style: normal;
 }
 
 @keyframes shimmer {
@@ -294,14 +278,12 @@ main {
 	background: var(--border);
 }
 
-/* ── Cards grid ── */
 .cards {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	gap: 16px;
+	gap: 20px;
 }
 
-/* ── Card ── */
 .card {
 	background: var(--bg-card);
 	border: 1px solid var(--border);
@@ -320,8 +302,6 @@ main {
 	box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(91,110,245,0.1);
 }
 
-/* Steam headers are 460×215 → ratio ≈ 2.14:1 */
-/* We render them at full width, locked to this ratio */
 .card-img {
 	width: 100%;
 	aspect-ratio: 460 / 215;
@@ -337,17 +317,13 @@ main {
 	object-fit: cover;
 	object-position: center top;
 	display: block;
+	transition: transform 0.4s ease, filter 0.3s ease;
 }
 
 .card:hover .card-img img {
-	filter: brightness(1) saturate(1.05);
+	transform: scale(1.02);
+	filter: brightness(1.02) saturate(1.05);
 }
-
-/* dim overlay that fades on hover */
-.card-img::after {
-	display: none;
-}
-
 
 .card-body {
 	padding: 18px 20px 20px;
@@ -367,36 +343,97 @@ main {
 }
 
 .card-meta {
-	font-size: 0.9em;
-	color: var(--text-dim);
+	font-size: 0.85em;
+	color: var(--text-mid);
 	font-weight: 400;
 }
 
+/* Progress Bar Styles */
+.progress-section {
+	margin: 8px 0 4px;
+}
+
+.progress-bar {
+	height: 4px;
+	background: var(--progress-bg);
+	border-radius: 4px;
+	overflow: hidden;
+	margin-bottom: 8px;
+}
+
+.progress-fill {
+	height: 100%;
+	background: var(--progress-fill);
+	border-radius: 4px;
+	width: 0%;
+	transition: width 0.6s ease;
+	position: relative;
+	overflow: hidden;
+}
+
+.progress-fill::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+	animation: shimmer-progress 1.5s infinite;
+}
+
+@keyframes shimmer-progress {
+	0% { transform: translateX(-100%); }
+	100% { transform: translateX(100%); }
+}
+
+.progress-stats {
+	display: flex;
+	justify-content: space-between;
+	font-size: 0.7em;
+	color: var(--text-mid);
+}
+
+.progress-percent {
+	color: var(--accent);
+	font-weight: 600;
+}
+
+/* Improved card links - mobile friendly */
 .card-links {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 6px;
-	margin-top: 0;
+	gap: 8px;
+	margin-top: 4px;
 }
 
 .card-link {
 	display: inline-flex;
 	align-items: center;
 	gap: 6px;
-	font-size: 0.875em;
+	font-size: 0.75em;
 	font-weight: 500;
 	color: var(--text-mid);
 	text-decoration: none;
-	padding: 6px 13px;
+	padding: 5px 10px;
 	border-radius: 20px;
 	background: var(--tag-bg);
 	border: 1px solid var(--border);
-	transition: color 0.2s, background 0.2s, border-color 0.2s;
+	transition: all 0.2s ease;
 	white-space: nowrap;
 }
 
+/* For cards with many links on mobile */
+@media (max-width: 768px) {
+	.card-link {
+		white-space: normal;
+		font-size: 0.7em;
+		padding: 4px 8px;
+	}
+}
+
 .card-link i {
-	font-size: 0.9em;
+	font-size: 0.85em;
 	opacity: 0.75;
 }
 
@@ -404,14 +441,20 @@ main {
 	color: var(--text);
 	background: var(--accent-soft);
 	border-color: rgba(91,110,245,0.3);
+	transform: translateY(-1px);
 }
 
 .card-link--private {
-	cursor: default;
-	pointer-events: none;
+	cursor: not-allowed;
+	opacity: 0.7;
 	color: #f87171;
 	border-color: rgba(248, 113, 113, 0.2);
 	background: rgba(248, 113, 113, 0.05);
+}
+
+.card-link--private:hover {
+	transform: none;
+	background: rgba(248, 113, 113, 0.08);
 }
 
 .card-link--paid {
@@ -426,7 +469,84 @@ main {
 	background: rgba(129, 140, 248, 0.2);
 }
 
-/* ── Footer ── */
+/* Status badges */
+.card-badge {
+	position: absolute;
+	top: 12px;
+	right: 12px;
+	z-index: 2;
+	font-size: 0.7em;
+	font-weight: 600;
+	padding: 4px 10px;
+	border-radius: 20px;
+	background: rgba(0,0,0,0.7);
+	backdrop-filter: blur(8px);
+	color: var(--text);
+	border: 1px solid var(--border);
+}
+
+/* Заплановано / Planned (фіолетово-синій градієнт) */
+.card-badge--planned {
+	background: linear-gradient(135deg, rgba(99, 102, 241, 0.85), rgba(139, 92, 246, 0.85));
+	border-color: rgba(139, 92, 246, 0.5);
+	backdrop-filter: blur(4px);
+}
+
+/* В роботі / In Progress (золотисто-помаранчевий градієнт) */
+.card-badge--progress {
+	background: linear-gradient(135deg, rgba(245, 158, 11, 0.85), rgba(249, 115, 22, 0.85));
+	border-color: rgba(245, 158, 11, 0.5);
+	backdrop-filter: blur(4px);
+}
+
+/* Завершено / Completed (смарагдово-зелений градієнт) */
+.card-badge--completed {
+	background: linear-gradient(135deg, rgba(16, 185, 129, 0.85), rgba(5, 150, 105, 0.85));
+	border-color: rgba(16, 185, 129, 0.5);
+	backdrop-filter: blur(4px);
+}
+
+/* На паузі / Paused (рожево-малиновий градієнт) */
+.card-badge--paused {
+	background: linear-gradient(135deg, rgba(236, 72, 153, 0.85), rgba(219, 39, 119, 0.85));
+	border-color: rgba(236, 72, 153, 0.5);
+	backdrop-filter: blur(4px);
+}
+
+/* Потребує перевірки / Review (блакитно-ціановий градієнт) */
+.card-badge--review {
+	background: linear-gradient(135deg, rgba(6, 182, 212, 0.85), rgba(8, 145, 178, 0.85));
+	border-color: rgba(6, 182, 212, 0.5);
+	backdrop-filter: blur(4px);
+}
+
+/* Ексклюзив / Private (темно-фіолетовий градієнт) */
+.card-badge--private {
+	background: linear-gradient(135deg, rgba(107, 33, 168, 0.85), rgba(88, 28, 135, 0.85));
+	border-color: rgba(107, 33, 168, 0.5);
+	backdrop-filter: blur(4px);
+}
+
+/* Бета / Beta (пурпурово-рожевий градієнт) */
+.card-badge--beta {
+	background: linear-gradient(135deg, rgba(168, 85, 247, 0.85), rgba(236, 72, 153, 0.85));
+	border-color: rgba(168, 85, 247, 0.5);
+	backdrop-filter: blur(4px);
+}
+
+/* Гаряче / Hot (червоно-оранжевий градієнт) */
+.card-badge--hot {
+	background: linear-gradient(135deg, rgba(239, 68, 68, 0.85), rgba(249, 115, 22, 0.85));
+	border-color: rgba(239, 68, 68, 0.5);
+	backdrop-filter: blur(4px);
+	animation: pulse 1.5s ease infinite;
+}
+
+@keyframes pulse {
+	0%, 100% { opacity: 0.9; }
+	50% { opacity: 1; box-shadow: 0 0 8px rgba(239, 68, 68, 0.5); }
+}
+
 footer {
 	position: relative;
 	z-index: 1;
@@ -450,6 +570,7 @@ footer {
 .footer-links {
 	display: flex;
 	gap: 10px;
+	flex-wrap: wrap;
 }
 
 .footer-link {
@@ -463,22 +584,23 @@ footer {
 	padding: 6px 14px;
 	border-radius: 20px;
 	border: 1px solid var(--border);
-	transition: color 0.2s, border-color 0.2s, background 0.2s;
+	transition: all 0.2s ease;
 }
 
 .footer-link:hover {
 	color: var(--text);
 	border-color: var(--border-hover);
 	background: rgba(255,255,255,0.04);
+	transform: translateY(-2px);
 }
 
-/* ── Responsive ── */
+/* Responsive */
 @media (max-width: 1200px) {
-	.cards { grid-template-columns: repeat(3, 1fr); }
+	.cards { grid-template-columns: repeat(3, 1fr); gap: 16px; }
 }
 
 @media (max-width: 900px) {
-	.cards { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+	.cards { grid-template-columns: repeat(2, 1fr); gap: 14px; }
 }
 
 @media (max-width: 768px) {
@@ -521,6 +643,14 @@ footer {
 		margin-bottom: 20px;
 	}
 
+	.card-body {
+		padding: 14px 16px 16px;
+	}
+	
+	.card-links {
+		gap: 6px;
+	}
+
 	footer {
 		padding: 28px 16px;
 		flex-direction: column;
@@ -530,23 +660,24 @@ footer {
 }
 
 @media (max-width: 480px) {
-	.logo { font-size: 0.92em; }
-	nav a { padding: 5px 10px; font-size: 0.82em; }
+	.logo { font-size: 0.9em; }
+	.logo-dot { width: 6px; height: 6px; }
+	
+	nav a { padding: 4px 10px; font-size: 0.8em; }
 
 	.cards {
 		grid-template-columns: 1fr;
-		gap: 10px;
-	}
-
-	.card-body {
-		padding: 14px 16px 16px;
+		gap: 12px;
 	}
 
 	.stat-n { font-size: 1.5em; }
 	.stat { padding: 14px 8px; }
+	.stat-l { font-size: 0.75em; }
+	
+	.card-title { font-size: 0.9em; }
+	.card-meta { font-size: 0.75em; }
 }
 
-/* ── Scrollbar ── */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb {
@@ -590,49 +721,30 @@ footer {
 				<div class="stat-l">Завершених<br>проєктів</div>
 			</div>
 			<div class="stat">
-				<div class="stat-n"><span>18</span></div>
+				<div class="stat-n"><span>15</span></div>
+				<div class="stat-l">Технічних<br>участей</div>
+			</div>
+			<div class="stat">
+				<div class="stat-n"><span>19</span></div>
 				<div class="stat-l">Інструментів</div>
 			</div>
 		</div>
 	</section>
 
-	<div class="cards">
-
-		<!-- Kenshi -->
-		<div class="card">
-			<div class="card-img">
-				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/233860/header.jpg" alt="Kenshi">
-			</div>
-			<div class="card-body">
-				<div class="card-title">Український шрифт для Kenshi</div>
-				<div class="card-meta">Автор виправленого шрифту.</div>
-				<div class="card-links">
-					<a class="card-link" target="_blank" href="/files/Kenshi_fixed_font_proof.png"><i class="fa-solid fa-image"></i>Зняток</a>
-				</div>
-			</div>
-		</div>
-
-		<!-- RimWorld -->
-		<div class="card">
-			<div class="card-img">
-				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/294100/header.jpg" alt="RimWorld">
-			</div>
-			<div class="card-body">
-				<div class="card-title">Переклад 33 модів для RimWorld</div>
-				<div class="card-links">
-					<a class="card-link" target="_blank" href="https://github.com/hikarosato/Ukrainian-Mod-Localization"><i class="fa-brands fa-github"></i>GitHub</a>
-				</div>
-			</div>
-		</div>
+	<div class="section-header">
+		<span class="section-title">Локалізації ігор</span>
+		<div class="section-line"></div>
+	</div>
+	<div class="cards" style="margin-bottom: 48px;">
 
 		<!-- The Settlers 6 -->
 		<div class="card">
 			<div class="card-img">
-				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/965310/header.jpg" alt="The Settlers">
+				<img src="png/settlers6.png" alt="The Settlers: Rise of an Empire">
 			</div>
 			<div class="card-body">
-				<div class="card-title">Локалізація The Settlers: Rise of an Empire</div>
-				<div class="card-meta">71 784 слова.</div>
+				<div class="card-title">The Settlers: Rise of an Empire</div>
+				<div class="card-meta">71 784 слова</div>
 				<div class="card-links">
 					<a class="card-link" target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3365219999"><i class="fa-brands fa-steam"></i>Steam</a>
 				</div>
@@ -642,51 +754,35 @@ footer {
 		<!-- The Settlers 7 -->
 		<div class="card">
 			<div class="card-img">
-				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/965320/header.jpg" alt="The Settlers 7">
+				<img src="png/settlers7.png" alt="The Settlers 7">
 			</div>
 			<div class="card-body">
-				<div class="card-title">Локалізація The Settlers 7: Paths to a Kingdom</div>
-				<div class="card-meta">69 033 слова.</div>
+				<div class="card-title">The Settlers 7: Paths to a Kingdom</div>
+				<div class="card-meta">69 033 слова</div>
 				<div class="card-links">
 					<a class="card-link" target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3371663270"><i class="fa-brands fa-steam"></i>Steam</a>
 				</div>
 			</div>
 		</div>
 
-		<!-- ABBYY -->
-		<div class="card">
-			<div class="card-img">
-				<img src="png/finereader.png" alt="ABBYY">
-			</div>
-			<div class="card-body">
-				<div class="card-title">Портативна ABBYY Screenshot Reader 8.0</div>
-				<div class="card-links">
-					<span class="card-link card-link--private"><i class="fa-solid fa-lock"></i>Не поширюється</span>
-				</div>
-			</div>
-		</div>
-
-		<!-- Baldur's Gate 3 -->
-		<div class="card">
-			<div class="card-img">
-				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/48a2fcbda8565bb45025e98fd8ebde8a7203f6a0/header.jpg" alt="Baldur's Gate 3">
-			</div>
-			<div class="card-body">
-				<div class="card-title">Переклад 8 модів для Baldur's Gate 3</div>
-				<div class="card-links">
-					<a class="card-link" target="_blank" href="https://drive.google.com/drive/folders/1Uikf6Qz9fTw2pqyWQeaqtxPgtBQaUFSz"><i class="fa-solid fa-cloud-arrow-down"></i>Google Диск</a>
-				</div>
-			</div>
-		</div>
-
 		<!-- Divinity -->
 		<div class="card">
+			<div class="card-badge card-badge--progress"><i class="fa-solid fa-spinner fa-pulse"></i> В роботі</div>
 			<div class="card-img">
-				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/243950/header.jpg" alt="Divinity">
+				<img src="png/divinity.png" alt="Divinity">
 			</div>
 			<div class="card-body">
-				<div class="card-title">Локалізація Divinity: Dragon Commander</div>
-				<div class="card-meta">139 441 слово. Наразі перекладається.</div>
+				<div class="card-title">Divinity: Dragon Commander</div>
+				<div class="card-meta">139 441 слово</div>
+				<div class="progress-section">
+					<div class="progress-bar">
+						<div class="progress-fill" style="width: 40.82%"></div>
+					</div>
+					<div class="progress-stats">
+						<span>Поступ перекладу</span>
+						<span class="progress-percent">40,82%</span>
+					</div>
+				</div>
 				<div class="card-links">
 					<a class="card-link" target="_blank" href="https://www.youtube.com/watch?v=O_BUYwSe9yo"><i class="fa-brands fa-youtube"></i>Передогляд</a>
 				</div>
@@ -696,26 +792,13 @@ footer {
 		<!-- Mini Ninjas -->
 		<div class="card">
 			<div class="card-img">
-				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/35000/header.jpg" alt="Mini Ninjas">
+				<img src="png/mini-ninjas.png" alt="Mini Ninjas">
 			</div>
 			<div class="card-body">
-				<div class="card-title">Локалізація Mini Ninjas</div>
-				<div class="card-meta">8 580 слів.</div>
+				<div class="card-title">Mini Ninjas</div>
+				<div class="card-meta">8 580 слів</div>
 				<div class="card-links">
 					<a class="card-link" target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3392764233"><i class="fa-brands fa-steam"></i>Steam</a>
-				</div>
-			</div>
-		</div>
-
-		<!-- Utility tool -->
-		<div class="card">
-			<div class="card-img">
-				<img src="png/utility.png" alt="Utility">
-			</div>
-			<div class="card-body">
-				<div class="card-title">Інструмент для роботи з 25 форматами</div>
-				<div class="card-links">
-					<a class="card-link card-link--paid" target="_blank" href="https://t.me/Halytskyi_Rozbyshaka/73"><i class="fa-brands fa-telegram"></i>Платний</a>
 				</div>
 			</div>
 		</div>
@@ -723,11 +806,11 @@ footer {
 		<!-- The Last Campfire -->
 		<div class="card">
 			<div class="card-img">
-				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/990630/header.jpg" alt="The Last Campfire">
+				<img src="png/last-campfire.png" alt="The Last Campfire">
 			</div>
 			<div class="card-body">
-				<div class="card-title">Локалізація The Last Campfire</div>
-				<div class="card-meta">12 243 слова.</div>
+				<div class="card-title">The Last Campfire</div>
+				<div class="card-meta">12 243 слова</div>
 				<div class="card-links">
 					<a class="card-link" target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3428326265"><i class="fa-brands fa-steam"></i>Steam</a>
 				</div>
@@ -737,11 +820,11 @@ footer {
 		<!-- Neva -->
 		<div class="card">
 			<div class="card-img">
-				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2420660/header.jpg" alt="Neva">
+				<img src="png/neva.png" alt="Neva">
 			</div>
 			<div class="card-body">
-				<div class="card-title">Локалізація Neva</div>
-				<div class="card-meta">1 063 слова.</div>
+				<div class="card-title">Neva</div>
+				<div class="card-meta">1 063 слова</div>
 				<div class="card-links">
 					<a class="card-link" target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3430857952"><i class="fa-brands fa-steam"></i>Steam</a>
 				</div>
@@ -751,11 +834,11 @@ footer {
 		<!-- GRIS -->
 		<div class="card">
 			<div class="card-img">
-				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/683320/header.jpg" alt="GRIS">
+				<img src="png/gris.png" alt="GRIS">
 			</div>
 			<div class="card-body">
-				<div class="card-title">Локалізація GRIS</div>
-				<div class="card-meta">212 слів.</div>
+				<div class="card-title">GRIS</div>
+				<div class="card-meta">212 слів</div>
 				<div class="card-links">
 					<a class="card-link" target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3445319845"><i class="fa-brands fa-steam"></i>Steam</a>
 				</div>
@@ -765,11 +848,11 @@ footer {
 		<!-- Lost in Random -->
 		<div class="card">
 			<div class="card-img">
-				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1462570/header.jpg" alt="Lost in Random">
+				<img src="png/lost-in-random.png" alt="Lost in Random">
 			</div>
 			<div class="card-body">
-				<div class="card-title">Локалізація Lost in Random</div>
-				<div class="card-meta">96 918 слів.</div>
+				<div class="card-title">Lost in Random</div>
+				<div class="card-meta">96 918 слів</div>
 				<div class="card-links">
 					<a class="card-link" target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3446294135"><i class="fa-brands fa-steam"></i>Steam</a>
 				</div>
@@ -779,11 +862,11 @@ footer {
 		<!-- Fe -->
 		<div class="card">
 			<div class="card-img">
-				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1225580/header.jpg" alt="Fe">
+				<img src="png/fe.png" alt="Fe">
 			</div>
 			<div class="card-body">
-				<div class="card-title">Локалізація Fe</div>
-				<div class="card-meta">612 слів.</div>
+				<div class="card-title">Fe</div>
+				<div class="card-meta">612 слів</div>
 				<div class="card-links">
 					<a class="card-link" target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3577208808"><i class="fa-brands fa-steam"></i>Steam</a>
 				</div>
@@ -793,11 +876,11 @@ footer {
 		<!-- Ice Age -->
 		<div class="card">
 			<div class="card-img">
-				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/751060/header.jpg" alt="Ice Age">
+				<img src="png/ice-age.png" alt="Ice Age">
 			</div>
 			<div class="card-body">
-				<div class="card-title">Локалізація Ice Age Scrat's Nutty Adventure</div>
-				<div class="card-meta">1 095 слів.</div>
+				<div class="card-title">Ice Age Scrat's Nutty Adventure</div>
+				<div class="card-meta">1 095 слів</div>
 				<div class="card-links">
 					<a class="card-link" target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3577285176"><i class="fa-brands fa-steam"></i>Steam</a>
 				</div>
@@ -807,11 +890,11 @@ footer {
 		<!-- The Midnight Walk -->
 		<div class="card">
 			<div class="card-img">
-				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2863640/header.jpg" alt="The Midnight Walk">
+				<img src="png/midnight-walk.png" alt="The Midnight Walk">
 			</div>
 			<div class="card-body">
-				<div class="card-title">Локалізація The Midnight Walk</div>
-				<div class="card-meta">16 469 слів.</div>
+				<div class="card-title">The Midnight Walk</div>
+				<div class="card-meta">16 469 слів</div>
 				<div class="card-links">
 					<a class="card-link" target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3584551736"><i class="fa-brands fa-steam"></i>Steam</a>
 				</div>
@@ -821,13 +904,85 @@ footer {
 		<!-- Fresh Start -->
 		<div class="card">
 			<div class="card-img">
-				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1856030/header.jpg" alt="Fresh Start">
+				<img src="png/fresh-start.png" alt="Fresh Start">
 			</div>
 			<div class="card-body">
-				<div class="card-title">Локалізація Fresh Start Cleaning Simulator</div>
-				<div class="card-meta">3 245 слів.</div>
+				<div class="card-title">Fresh Start Cleaning Simulator</div>
+				<div class="card-meta">3 245 слів</div>
 				<div class="card-links">
 					<a class="card-link" target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3590623258"><i class="fa-brands fa-steam"></i>Steam</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Secret -->
+		<div class="card">
+			<div class="card-badge card-badge--planned"><i class="fa-solid fa-calendar"></i></i> Заплановано</div>
+			<div class="card-img">
+				<img src="png/secret.png" alt="Майбутня локалізація" onerror="this.src='https://placehold.co/460x215/1a1a2e/6366f1?text=???&font=montserrat'">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Майбутній проєкт</div>
+				<div class="card-meta">101 915 слів · Інструменти написані · Шрифти готові</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="section-header">
+		<span class="section-title">Інструменти та інше</span>
+		<div class="section-line"></div>
+	</div>
+	<div class="cards" style="margin-bottom: 48px;">
+
+		<!-- RimWorld -->
+		<div class="card">
+			<div class="card-img">
+				<img src="png/rimworld.png" alt="RimWorld">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Переклад 33 модів для RimWorld</div>
+				<div class="card-links">
+					<a class="card-link" target="_blank" href="https://github.com/hikarosato/Ukrainian-Mod-Localization"><i class="fa-brands fa-github"></i>GitHub</a>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Baldur's Gate 3 -->
+		<div class="card">
+			<div class="card-img">
+				<img src="png/baldurs-gate3.png" alt="Baldur's Gate 3">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Переклад 8 модів для Baldur's Gate 3</div>
+				<div class="card-links">
+					<a class="card-link" target="_blank" href="https://drive.google.com/drive/folders/1Uikf6Qz9fTw2pqyWQeaqtxPgtBQaUFSz"><i class="fa-solid fa-cloud-arrow-down"></i>Google Диск</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- ABBYY -->
+		<div class="card">
+			<div class="card-img">
+				<img src="png/finereader.png" alt="ABBYY Screenshot Reader" onerror="this.src='https://placehold.co/460x215/1a1a2e/8b5cf6?text=ABBYY&font=montserrat'">
+			</div>
+			<div class="card-body">
+				<div class="card-title">ABBYY Screenshot Reader 8 Portable</div>
+				<div class="card-links">
+					<span class="card-link card-link--private"><i class="fa-solid fa-lock"></i>Не поширюється</span>
+				</div>
+			</div>
+		</div>
+
+		<!-- Utility tool -->
+		<div class="card">
+			<div class="card-img">
+				<img src="png/utility.png" alt="Utility Tool" onerror="this.src='https://placehold.co/460x215/1a1a2e/ec4899?text=Tool&font=montserrat'">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Інструмент для роботи з 25 форматами</div>
+				<div class="card-links">
+					<a class="card-link card-link--paid" target="_blank" href="https://t.me/Halytskyi_Rozbyshaka/73"><i class="fa-brands fa-telegram"></i>Детальніше</a>
 				</div>
 			</div>
 		</div>
@@ -835,7 +990,7 @@ footer {
 		<!-- AutoHotkey -->
 		<div class="card">
 			<div class="card-img">
-				<img src="png/autohotkey.png" alt="AutoHotkey">
+				<img src="png/autohotkey.png" alt="AutoHotkey" onerror="this.src='https://placehold.co/460x215/1a1a2e/6366f1?text=AHK&font=montserrat'">
 			</div>
 			<div class="card-body">
 				<div class="card-title">Гарячі клавіші на AutoHotkey</div>
@@ -848,16 +1003,17 @@ footer {
 		<!-- Unity tools -->
 		<div class="card">
 			<div class="card-img">
-				<img src="png/unity.png" alt="Unity">
+				<img src="png/unity.png" alt="Unity Tools" onerror="this.src='https://placehold.co/460x215/1a1a2e/6366f1?text=Unity&font=montserrat'">
 			</div>
 			<div class="card-body">
 				<div class="card-title">Інструменти для Unity</div>
 				<div class="card-links">
-					<a class="card-link" href="https://hikarosato.github.io/atlas/"><i class="fa-brands fa-github"></i>Atlas MonoBehaviour Merger</a>
-					<a class="card-link" href="https://hikarosato.github.io/array/"><i class="fa-brands fa-github"></i>Unity Localization Tool</a>
-					<a class="card-link" href="https://hikarosato.github.io/guide/#unity-catalog"><i class="fa-brands fa-github"></i>Форк CatalogTool</a>
-					<a class="card-link" href="https://hikarosato.github.io/guide/#unity-ua"><i class="fa-brands fa-github"></i>Array Language Tool</a>
+					<a class="card-link" target="_blank" href="https://hikarosato.github.io/atlas/"><i class="fa-brands fa-github"></i>Atlas Merger</a>
+					<a class="card-link" target="_blank" href="https://hikarosato.github.io/array/"><i class="fa-brands fa-github"></i>Localization Tool</a>
+					<a class="card-link" target="_blank" href="https://hikarosato.github.io/guide/#unity-catalog"><i class="fa-brands fa-github"></i>CatalogTool</a>
+					<a class="card-link" target="_blank" href="https://hikarosato.github.io/guide/#unity-ua"><i class="fa-brands fa-github"></i>Array Tool</a>
 					<a class="card-link" target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd"><i class="fa-brands fa-github"></i>UnityCLI</a>
+					<a class="card-link" target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd"><i class="fa-brands fa-github"></i>ULT</a>
 				</div>
 			</div>
 		</div>
@@ -865,7 +1021,7 @@ footer {
 		<!-- Overlord -->
 		<div class="card">
 			<div class="card-img">
-				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/12810/header.jpg" alt="Overlord">
+				<img src="png/overlord2.png" alt="Overlord">
 			</div>
 			<div class="card-body">
 				<div class="card-title">Packer/unpacker .8ld для Overlord 1–2</div>
@@ -878,7 +1034,7 @@ footer {
 		<!-- UE4-5 UA -->
 		<div class="card">
 			<div class="card-img">
-				<img src="png/ue_ua.png" alt="Unreal Engine 4-5">
+				<img src="png/ue_ua.png" alt="Unreal Engine" onerror="this.src='https://placehold.co/460x215/1a1a2e/8b5cf6?text=UE&font=montserrat'">
 			</div>
 			<div class="card-body">
 				<div class="card-title">Окрема українська в UE4–5</div>
@@ -891,7 +1047,7 @@ footer {
 		<!-- Open Season -->
 		<div class="card">
 			<div class="card-img">
-				<img src="png/OpenSeason.png" alt="Open Season">
+				<img src="png/open_season.png" alt="Open Season" onerror="this.src='https://placehold.co/460x215/1a1a2e/6366f1?text=Open+Season&font=montserrat'">
 			</div>
 			<div class="card-body">
 				<div class="card-title">Packer/unpacker .umd для Open Season</div>
@@ -904,13 +1060,13 @@ footer {
 		<!-- Unreal Engine tools -->
 		<div class="card">
 			<div class="card-img">
-				<img src="png/ue.png" alt="Unreal Engine">
+				<img src="png/ue.png" alt="Unreal Engine Tools" onerror="this.src='https://placehold.co/460x215/1a1a2e/8b5cf6?text=UE+Tools&font=montserrat'">
 			</div>
 			<div class="card-body">
 				<div class="card-title">Інструменти для Unreal Engine</div>
 				<div class="card-links">
-					<a class="card-link" target="_blank" href="https://hikarosato.github.io/guide/#ue-text"><i class="fa-brands fa-github"></i>Форк UE Localization Tool</a>
-					<a class="card-link" target="_blank" href="https://hikarosato.github.io/guide/#ue-text"><i class="fa-brands fa-github"></i>CSV Merger Tool</a>
+					<a class="card-link" target="_blank" href="https://hikarosato.github.io/guide/#ue-text"><i class="fa-brands fa-github"></i>UE Localization Tool</a>
+					<a class="card-link" target="_blank" href="https://hikarosato.github.io/guide/#ue-text"><i class="fa-brands fa-github"></i>CSV Merger</a>
 					<a class="card-link" target="_blank" href="https://hikarosato.github.io/guide/#ue-font"><i class="fa-brands fa-github"></i>UAsset Font Tool</a>
 					<a class="card-link" target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd"><i class="fa-brands fa-github"></i>Форк FModel</a>
 					<a class="card-link" target="_blank" href="https://send.monobank.ua/jar/373QKaB5dd"><i class="fa-brands fa-github"></i>UELT</a>
@@ -921,7 +1077,7 @@ footer {
 		<!-- Guide -->
 		<div class="card">
 			<div class="card-img">
-				<img src="guide/assets/cover.png" alt="Guide">
+				<img src="guide/assets/cover.png" alt="Guide" onerror="this.src='https://placehold.co/460x215/1a1a2e/6366f1?text=Guide&font=montserrat'">
 			</div>
 			<div class="card-body">
 				<div class="card-title">Посібник по створенню українізатора</div>
@@ -934,7 +1090,7 @@ footer {
 		<!-- Larian -->
 		<div class="card">
 			<div class="card-img">
-				<img src="png/larian.png" alt="Larian">
+				<img src="png/larian.png" alt="Larian Tools" onerror="this.src='https://placehold.co/460x215/1a1a2e/ec4899?text=Larian&font=montserrat'">
 			</div>
 			<div class="card-body">
 				<div class="card-title">Інструмент для перекладу ігор Larian</div>
@@ -947,7 +1103,7 @@ footer {
 		<!-- CLANNAD -->
 		<div class="card">
 			<div class="card-img">
-				<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/324160/header.jpg" alt="CLANNAD">
+				<img src="png/clannad.png" alt="CLANNAD">
 			</div>
 			<div class="card-body">
 				<div class="card-title">Конвертер .wav у .nwa для CLANNAD</div>
@@ -960,7 +1116,7 @@ footer {
 		<!-- Universal text counter -->
 		<div class="card">
 			<div class="card-img">
-				<img src="png/tool.png" alt="Tool">
+				<img src="png/tool.png" alt="Text Counter" onerror="this.src='https://placehold.co/460x215/1a1a2e/6366f1?text=Counter&font=montserrat'">
 			</div>
 			<div class="card-body">
 				<div class="card-title">Інструмент для підрахунку тексту</div>
@@ -973,7 +1129,7 @@ footer {
 		<!-- Achievement tool -->
 		<div class="card">
 			<div class="card-img">
-				<img src="png/achievement.png" alt="Tool">
+				<img src="png/achievement.png" alt="Achievement Tool" onerror="this.src='https://placehold.co/460x215/1a1a2e/8b5cf6?text=Achievements&font=montserrat'">
 			</div>
 			<div class="card-body">
 				<div class="card-title">Інструмент для перекладу досягнень</div>
@@ -984,10 +1140,224 @@ footer {
 		</div>
 
 	</div>
+	
+	<div class="section-header">
+		<span class="section-title">Участь у локалізації в хронологічному порядку</span>
+		<div class="section-line"></div>
+	</div>
+	<div class="cards">
+	
+		<div class="card">
+			<div class="card-img">
+				<img src="png/kenshi.png" alt="Kenshi">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Kenshi</div>
+				<div class="card-meta">Належить Grynko<br>Виправлено шрифт</div>
+				<div class="card-links">
+					<a class="card-link" target="_blank" href="/files/Kenshi_fixed_font_proof.png"><i class="fa-solid fa-image"></i>Зняток</a>
+					<a class="card-link" target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=2534507485"><i class="fa-brands fa-steam"></i>Steam</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="card-badge card-badge--progress"><i class="fa-solid fa-spinner fa-pulse"></i> В роботі</div>
+			<div class="card-img">
+				<img src="png/have_a_nice_death.png" alt="Have a Nice Death" onerror="this.src='https://placehold.co/460x215/1a1a2e/8b5cf6?text=???&font=montserrat'">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Have a Nice Death</div>
+				<div class="card-meta">Належить спілці Блакитна Рута<br>Технічна частина · Окрема українська</div>
+			</div>
+		</div>
+		
+		<div class="card">
+			<div class="card-img">
+				<img src="png/borderlands.png" alt="Borderlands GOTY Enhanced" onerror="this.src='https://placehold.co/460x215/1a1a2e/8b5cf6?text=???&font=montserrat'">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Borderlands GOTY Enhanced</div>
+				<div class="card-meta">Належить Anfauglir<br>Згенеровано шрифти</div>
+				<div class="card-links">
+					<a class="card-link" target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3543556645"><i class="fa-brands fa-steam"></i>Steam</a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="card">
+			<div class="card-badge card-badge--progress"><i class="fa-solid fa-spinner fa-pulse"></i> В роботі</div>
+			<div class="card-img">
+				<img src="png/borderlands2.png" alt="Borderlands 2" onerror="this.src='https://placehold.co/460x215/1a1a2e/8b5cf6?text=???&font=montserrat'">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Borderlands 2</div>
+				<div class="card-meta">Належить Anfauglir<br>Згенеровано шрифти</div>
+			</div>
+		</div>
+		
+		<div class="card">
+			<div class="card-badge card-badge--planned"><i class="fa-solid fa-calendar"></i></i> Заплановано</div>
+			<div class="card-img">
+				<img src="png/borderlands-pre.png" alt="Borderlands: The Pre-Sequel" onerror="this.src='https://placehold.co/460x215/1a1a2e/8b5cf6?text=???&font=montserrat'">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Borderlands: The Pre-Sequel</div>
+				<div class="card-meta">Згенеровано шрифти</div>
+			</div>
+		</div>
+		
+		<div class="card">
+			<div class="card-img">
+				<img src="png/donut-county.png" alt="Donut County" onerror="this.src='https://placehold.co/460x215/1a1a2e/8b5cf6?text=???&font=montserrat'">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Donut County</div>
+				<div class="card-meta">Належить Cactus<br>Технічна частина</div>
+				<div class="card-links">
+					<a class="card-link" target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3540554934"><i class="fa-brands fa-steam"></i>Steam</a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="card">
+			<div class="card-img">
+				<img src="png/overlord.png" alt="Overlord" onerror="this.src='https://placehold.co/460x215/1a1a2e/8b5cf6?text=???&font=montserrat'">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Перепаковка Overlord + DLC</div>
+				<div class="card-meta">Належить Fabulist<br>Перезібрано файли власним інструментом</div>
+				<div class="card-links">
+					<a class="card-link" target="_blank" href="https://drive.google.com/drive/folders/1XTwXQsiEny2gqSUgwAFsrk3ndsX7Qvwo"><i class="fa-solid fa-cloud-arrow-down"></i>Google Диск</a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="card">
+			<div class="card-img">
+				<img src="png/civ5.png" alt="Sid Meier's Civilization V" onerror="this.src='https://placehold.co/460x215/1a1a2e/8b5cf6?text=???&font=montserrat'">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Sid Meier's Civilization V</div>
+				<div class="card-meta">Належить Cactus<br>Зроблено шрифт</div>
+				<div class="card-links">
+					<a class="card-link" target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3581740140"><i class="fa-brands fa-steam"></i>Steam</a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="card">
+			<div class="card-img">
+				<img src="png/life_is_strange2.png" alt="Life is Strange 2" onerror="this.src='https://placehold.co/460x215/1a1a2e/8b5cf6?text=???&font=montserrat'">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Life is Strange 2</div>
+				<div class="card-meta">Належить команді Галушки<br>Зроблено шрифти · Окрема українська</div>
+				<div class="card-links">
+					<a class="card-link" target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3680553493"><i class="fa-brands fa-steam"></i>Steam</a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="card">
+			<div class="card-img">
+				<img src="png/spec_ops.png" alt="Spec Ops: The Line" onerror="this.src='https://placehold.co/460x215/1a1a2e/8b5cf6?text=???&font=montserrat'">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Spec Ops: The Line</div>
+				<div class="card-meta">Належить Bloody Punisher<br>Згенеровано шрифти</div>
+				<div class="card-links">
+					<a class="card-link" target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3648288473"><i class="fa-brands fa-steam"></i>Steam</a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="card">
+			<div class="card-img">
+				<img src="png/call_of_juarez.png" alt="Call of Juarez" onerror="this.src='https://placehold.co/460x215/1a1a2e/8b5cf6?text=???&font=montserrat'">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Call of Juarez</div>
+				<div class="card-meta">Належить Cowboy(UA)<br>Намальовано шрифти</div>
+				<div class="card-links">
+					<a class="card-link" target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3677409015"><i class="fa-brands fa-steam"></i>Steam</a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="card">
+			<div class="card-badge card-badge--progress"><i class="fa-solid fa-spinner fa-pulse"></i> В роботі</div>
+			<div class="card-img">
+				<img src="png/call_of_juarez2.png" alt="Call of Juarez: Bound in Blood" onerror="this.src='https://placehold.co/460x215/1a1a2e/8b5cf6?text=???&font=montserrat'">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Call of Juarez: Bound in Blood</div>
+				<div class="card-meta">Технічна частина</div>
+			</div>
+		</div>
+		
+		<div class="card">
+			<div class="card-badge card-badge--progress"><i class="fa-solid fa-spinner fa-pulse"></i> В роботі</div>
+			<div class="card-img">
+				<img src="png/stronghold.png" alt="Stronghold Legends: Steam Edition" onerror="this.src='https://placehold.co/460x215/1a1a2e/8b5cf6?text=???&font=montserrat'">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Stronghold Legends: Steam Edition</div>
+				<div class="card-meta">Належить Lacki23<br>Домальовано шрифт</div>
+			</div>
+		</div>
+		
+		<div class="card">
+			<div class="card-badge card-badge--progress"><i class="fa-solid fa-spinner fa-pulse"></i> В роботі</div>
+			<div class="card-img">
+				<img src="png/thronebreaker.png" alt="Thronebreaker: The Witcher Tales" onerror="this.src='https://placehold.co/460x215/1a1a2e/8b5cf6?text=???&font=montserrat'">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Thronebreaker: The Witcher Tales</div>
+				<div class="card-meta">Технічна частина</div>
+			</div>
+		</div>
+		
+		<div class="card">
+			<div class="card-img">
+				<img src="png/banner_saga.png" alt="The Banner Saga" onerror="this.src='https://placehold.co/460x215/1a1a2e/8b5cf6?text=???&font=montserrat'">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Перепаковка The Banner Saga</div>
+				<div class="card-meta">Належить спілці Шлякбитраф<br>Окрема українська</div>
+				<div class="card-links">
+					<a class="card-link" target="_blank" href="https://drive.google.com/drive/folders/1kWtvxHob5qWgDD6Gk-9UZC-58QfGP_YS"><i class="fa-solid fa-cloud-arrow-down"></i>Google Диск</a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="card">
+			<div class="card-badge card-badge--progress"><i class="fa-solid fa-spinner fa-pulse"></i> В роботі</div>
+			<div class="card-img">
+				<img src="png/banishers.png" alt="Banishers: Ghosts of New Eden" onerror="this.src='https://placehold.co/460x215/1a1a2e/8b5cf6?text=???&font=montserrat'">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Banishers: Ghosts of New Eden</div>
+				<div class="card-meta">Належить Lacki23<br>Технічна частина · Окрема українська</div>
+			</div>
+		</div>
+		
+		<div class="card">
+			<div class="card-badge card-badge--progress"><i class="fa-solid fa-spinner fa-pulse"></i> В роботі</div>
+			<div class="card-img">
+				<img src="png/avalon.png" alt="Tainted Grail: The Fall of Avalon" onerror="this.src='https://placehold.co/460x215/1a1a2e/8b5cf6?text=???&font=montserrat'">
+			</div>
+			<div class="card-body">
+				<div class="card-title">Tainted Grail: The Fall of Avalon</div>
+				<div class="card-meta">Належить Kachekomoto<br>Технічна частина</div>
+			</div>
+		</div>
+
+	</div>
 </main>
 
 <footer>
-	<span class="footer-brand">Made by Hikaro</span>
+	<span class="footer-brand">Галицький Розбишака</span>
 	<div class="footer-links">
 		<a class="footer-link" target="_blank" href="https://t.me/Halytskyi_Rozbyshaka">
 			<i class="fa-brands fa-telegram"></i>Telegram
@@ -996,7 +1366,7 @@ footer {
 			<i class="fa-brands fa-discord"></i>Discord
 		</a>
 		<a class="footer-link" target="_blank" href="https://send.monobank.ua/jar/47CywvjmpG">
-			<i class="fa-solid fa-building-columns"></i>monobank jar
+			<i class="fa-solid fa-heart"></i>Підтримати
 		</a>
 	</div>
 </footer>
