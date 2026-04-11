@@ -724,7 +724,6 @@ footer {
 }
 
 .pros h4::before {
-	content: '✓ ';
 	font-weight: bold;
 }
 
@@ -734,7 +733,6 @@ footer {
 }
 
 .cons h4::before {
-	content: '✗ ';
 	font-weight: bold;
 }
 
@@ -947,7 +945,7 @@ details > *:not(summary) {
 						<ul class="submenu">
 							<li><a href="#unity-text">Текст</a></li>
 							<li><a href="#unity-import">Імпорт (застаріле)</a></li>
-							<li><a href="#unity-catalog">.Bundle</a></li>
+							<li><a href="#unity-catalog">Bundle</a></li>
 							<li><a href="#unity-font">Шрифт</a></li>
 							<li><a href="#unity-ua">Українська мова</a></li>
 						</ul>
@@ -982,23 +980,22 @@ details > *:not(summary) {
 				<div class="pros">
 					<h4>UABEANext</h4>
 					<ul>
-						<li>Робота з безліччю <b>.asset/.bundle</b> одночасно, підтримка вкладок.</li>
+						<li>Робота з безліччю <b>assets/bundle</b> одночасно, підтримка вкладок.</li>
 						<li>Підтримка <i>останніх*</i> версій <b>Unity</b> асетів.</li>
 						<li>Підтримка пакетного експорту/імпорту асетів.</li>
 						<li>Підтримка експорту спрайтів як текстур.</li>
 						<li>Підтримка <b>Drag & Drop</b>.</li>
 						<li>Підтримка пошуку по <b>Path ID</b>.</li>
 						<li>Підтримка пошуку тексту.</li>
-						<li>Активно розвивається, можливі баги.</li>
 					</ul>
 				</div>
 				<div class="cons">
 					<h4>UABEA</h4>
 					<ul>
-						<li>Робота лише з одним <b>.asset/.bundle</b> за раз.</li>
-						<li>Не підтримуються нові версії <b>.bundle</b>.</li>
+						<li>Робота лише з одним <b>assets/bundle</b> за раз.</li>
+						<li>Не підтримуються нові версії <b>bundle</b>.</li>
 						<li>Експорт/імпорт відбувається поштучно.</li>
-						<li>В одному <b>.assets</b> підтягуються файли з інших <b>.assets</b>, що наводить плутатину.</li>
+						<li>В одному <b>assets</b> підтягуються файли з інших <b>assets</b>, що наводить плутатину.</li>
 						<li>Баг при імпорті <b>JSON</b>.</li>
 						<li>Збій програми при експорті файлів, назва яких перевищує <b>260</b> символів.</li>
 						<li>Розробка припинена.</li>
@@ -1024,9 +1021,9 @@ details > *:not(summary) {
 									<p><b>a) </b>Через меню <b>Plugins</b> у <b><a href="https://github.com/nesrak1/UABEANext">UABEANext</a></b>:</p>
 										<img src="unity/textasset/export.png" width="300" alt="">
 									<p><b>b) </b>Через кнопку <b>Export</b> у <b><a href="https://github.com/nesrak1/UABEANext">UABEANext</a></b>, зберегти файл з форматом <b>JSON</b> і скористатися онлайн-конвертером <b><a target="_blank" href="https://www.convertcsv.com/json-to-csv.htm">JSON to CSV</a></b>.</p>
-									<p>Для перетворення <b>csv</b> назад в <b>.json</b> використовуйте онлайн-конвертер <b><a target="_blank" href="https://www.convertcsv.com/csv-to-json.htm">CSV to JSON</a></b>. Приберіть зайві <b>[ ]</b>, які встановлюються за замовчуванням, вони не потрібні.</p>
+									<p>Для перетворення <b>csv</b> назад в <b>json</b> використовуйте онлайн-конвертер <b><a target="_blank" href="https://www.convertcsv.com/csv-to-json.htm">CSV to JSON</a></b>. Приберіть зайві <b>[ ]</b>, які встановлюються за замовчуванням, вони не потрібні.</p>
 										<img src="unity/text-1-1.png" width="400" alt="">
-									<p>❗️ <b>Зверніть увагу:</b> онлайн-конвертер зберігає <b>.json</b> не з <b>\r\n</b>, як це інколи буває в оригіналі, а лише з <b>\n</b>. Через цю дрібницю у мене траплялися баги з діалогами в одній з ігор. Виправити це можна за допомогою <b>Notepad++</b>: відкрийте всі ваші конвертовані <b>.json</b> і замініть потрібні символи.</p>
+									<p>❗️ <b>Зверніть увагу:</b> онлайн-конвертер зберігає <b>json</b> не з <b>\r\n</b>, як це інколи буває в оригіналі, а лише з <b>\n</b>. Через цю дрібницю у мене траплялися баги з діалогами в одній з ігор. Виправити це можна за допомогою <b>Notepad++</b>: відкрийте всі ваші конвертовані <b>json</b> і замініть потрібні символи.</p>
 										<img src="unity/text-1-2.png" width="500" alt="">
 								</ul>
 							</ul>
@@ -1045,7 +1042,7 @@ details > *:not(summary) {
 									<img src="unity/ult.png" style="max-width: 1000px; height: auto;" alt="">
 							</ul>
 							<ul>
-								<h4>Файли з однією мовою, у тому числі з .bundle</h4>
+								<h4>Файли з однією мовою, у тому числі з bundle</h4>
 								<div style="display: flex; gap: 10px; justify-content: center; align-items: flex-start; flex-wrap: wrap;">
 									<img src="unity/text-4.png" width="240" alt="">
 									<img src="unity/text-5.png" width="350" alt="">
@@ -1064,10 +1061,10 @@ details > *:not(summary) {
 						</div>
 					</div>
 				
-					<p>❗️ <b>Увага:</b> Якщо ви досі використовуєте <b>UABEA</b> для роботи з <b>.assets</b> та <b>.bundle</b>, майте на увазі: в програми є баг, через який <b>.json</b> може імпортуватися <b>некоректно</b> з першого разу. Завжди перевіряйте файл за допомогою кнопки <b>View Data</b>. Якщо з’являється повідомлення <b>Asset failed to deserialize</b> — повторіть імпорт <b>.json</b>.</p>
+					<p>❗️ <b>Увага:</b> Якщо ви досі використовуєте <b>UABEA</b> для роботи з <b>assets</b> та <b>bundle</b>, майте на увазі: в програми є баг, через який <b>json</b> може імпортуватися <b>некоректно</b> з першого разу. Завжди перевіряйте файл за допомогою кнопки <b>View Data</b>. Якщо з’являється повідомлення <b>Asset failed to deserialize</b> — повторіть імпорт <b>json</b>.</p>
 						<img src="unity/text-3.png" width="600" alt="">
 					<p style="text-indent: 1em;">Новий інструмент <b><a href="https://github.com/nesrak1/UABEANext">UABEANext</a></b> позбавлений цієї проблеми — імпортування завжди проходить успішно.</p>
-				<h3 id="unity-catalog">.Bundle та catalog.*</h3>
+				<h3 id="unity-catalog">Bundle та catalog.*</h3>
 					<p style="text-indent: 1em;">Для патчингу <b>catalog.json</b> чи <b>catalog.bin</b> використовуйте покращений мною інструмент <b><a target="_blank" href="tools/CatalogTool.exe">CatalogTool</a></b>, у якому виправлено роботу з бандлами, що містять символи <b>#</b> у назвах, та додано функцію <b>Drag & Drop</b> для патчингу без ручного введення шляху. Це консольна утиліта, просто перетягніть <b>catalog.json/.bin</b> на <b>.exe</b> програми.</p>
 				<h3 id="unity-font">Шрифт</h3>
 					<p style="text-indent: 1em;">Для швидкої і зручної генерації атласу шрифту використовуйте інструмент <b><a target="_blank" href="https://drive.google.com/drive/folders/1FhuSYwFf9mrm73NUi80rXBovuQNhWDis">TMP Unity</a></b> від <b>MrIkso</b>.</p>
@@ -1084,7 +1081,7 @@ details > *:not(summary) {
 						<img src="ue/aes.png" width="600" alt="">
 					<p style="text-indent: 1em;">Якщо у вашій грі використовується <b>AES</b>-захист разом із <b>.sig</b> файлами у теці <b>Paks</b>, скористайтеся інструментом <b><a target="_blank" href="https://github.com/rm-NoobInCoding/UniversalSigBypasser">Unreal Engine Signature Check Bypasser</a></b> (один з авторів українець). Його потрібно розпаковувати у теку <b>Binaries/Win64</b> поряд з <b>.exe</b>, так, <u>обидва</u> <b>.dll</b> та <b>.asi</b>. Якщо на вашій грі це не спрацювало, створіть <b>issue</b> в репозиторії авторів щодо цього.</p>
 						<img src="ue/sig.png" width="300" alt="">
-					<p style="text-indent: 1em;">Це дозволить завантажувати сторонні <b>.pak</b> файли грою без необхідності ручного прописування <b>-fileopenlog</b> у «Параметрах запуску» властивостей гри в <b>Steam</b>.</p>
+					<p style="text-indent: 1em;">Це дозволить завантажувати сторонні <b>pak</b> файли грою без необхідності ручного прописування <b>-fileopenlog</b> у «Параметрах запуску» властивостей гри в <b>Steam</b>.</p>
 					<p>❗️ <b>Не забудьте додати .dll, .asi файли та файл із ліцензією (❗️ ОБОВ’ЯЗКОВО ❗️) у архів разом із перекладом для решти гравців, або ж додайте посилання на Unreal Engine Signature Check Bypasser для окремого завантаження.</b> ❗️</p>
 				<h3 id="ue-text">Текст</h3>
 						
