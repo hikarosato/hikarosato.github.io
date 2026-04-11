@@ -250,6 +250,31 @@ main {
 	font-weight: 500;
 }
 
+/* Мобільна версія — сітка 2x2 */
+@media (max-width: 640px) {
+	.hikaro-stats {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 16px 24px;
+		max-width: 280px;
+		margin: 0 auto;
+	}
+	
+	.stat {
+		width: auto;
+		padding: 12px 0;
+	}
+	
+	.stat-n {
+		font-size: 1.8em;
+	}
+	
+	.stat-l {
+		font-size: 0.7em;
+		letter-spacing: 0.04em;
+	}
+}
+
 .hikaro-left {
 	width: 100%;
 	display: flex;
