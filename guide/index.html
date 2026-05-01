@@ -921,6 +921,40 @@ details > *:not(summary) {
 	margin-top: 1.5rem;
 	animation: slideDown 0.3s ease;
 }
+
+/* Fix */
+@media (max-width: 768px) {
+    body {
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+    }
+    
+    h1#start {
+        font-size: 2.5rem !important;
+    }
+    
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+    
+    video {
+        width: 100% !important;
+        height: auto !important;
+    }
+    
+    code {
+        font-size: 0.85rem;
+        white-space: pre-wrap;
+        word-break: break-all;
+    }
+}
 </style>
 </head>
 <body>
