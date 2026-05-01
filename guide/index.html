@@ -924,35 +924,33 @@ details > *:not(summary) {
 
 /* Fix */
 @media (max-width: 768px) {
+    html {
+        -webkit-text-size-adjust: none;
+        text-size-adjust: none;
+    }
+    
     body {
-        -webkit-text-size-adjust: 100%;
-        text-size-adjust: 100%;
+        overflow-x: hidden;
+        width: 100%;
+    }
+    
+    .page {
+        overflow-x: hidden;
+        width: 100%;
     }
     
     h1#start {
-        font-size: 2.5rem !important;
+        font-size: 2.2rem !important;
+        word-break: break-word;
     }
     
-    table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-    }
-    
-    img {
+    img, video {
         max-width: 100% !important;
         height: auto !important;
     }
     
-    video {
-        width: 100% !important;
-        height: auto !important;
-    }
-    
-    code {
-        font-size: 0.85rem;
-        white-space: pre-wrap;
-        word-break: break-all;
+    .pros-cons {
+        grid-template-columns: 1fr !important;
     }
 }
 </style>
@@ -998,7 +996,7 @@ details > *:not(summary) {
 			</div>
 		</aside>
 		<main>
-			<h1 id="start" style="font-size: 4.5rem;">Створення українізатора 2.0</h1>
+			<h1 id="start">Створення українізатора 2.0</h1>
 				<p style="text-indent: 1em;">Цей посібник створений як розширення <b><a target="_blank" href="https://ukrainizer.netlify.app">посібника piggsy</a></b>. Він не повторює інформацію, а розширює її прикладами й новими інструментами. Рекомендується ознайомитися з <b>обома</b> посібниками. Усе, що описано в цьому посібнику, засноване на власному досвіді автора.
 				<br><br>Останні зміни: <b>30.04.2026</b>
 				<br>Telegram: <b><a target="_blank" href="https://t.me/Halytskyi_Rozbyshaka">Канал</a></b>
