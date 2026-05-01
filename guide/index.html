@@ -1457,6 +1457,15 @@ details > *:not(summary) {
 		};
 		wrapper.insertBefore(button, block);
 	});
+	
+	(function() {
+    if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        var viewport = document.querySelector('meta[name=viewport]');
+        if (viewport) {
+            viewport.setAttribute('content', 'width=device-width, initial-scale=0.7, maximum-scale=5.0, user-scalable=yes');
+        }
+    }
+})();
 </script>
 </body>
 </html>
