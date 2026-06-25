@@ -1135,6 +1135,7 @@ details > *:not(summary) {
 				
 					<p style="text-indent: 1em;">Для перекладу та роботи з <b>locres, uasset</b> і <b>umap</b> файлами використовуйте авторський інструмент <b><a href="#tools">UELT</a></b> або мій старий форк <b><a target="_blank" href="#tools">UE Localization Tool 2.8.6</a></b> (не рекомендую, з перелічених у спойлерах причин).</p>
 					<p style="text-indent: 1em;">Також текст з певних структур <b>uasset</b> та <b>umap</b> файлів, можна перенести в <b>locres</b> для зручності і збереження сумісності перекладу з оновленнями гри, що було й зроблено з перекладом <b><a target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3743109444">Fatekeeper від Sent_Dez</a></b>. Детальніше розписано в документації <b>UELT</b>.</p>
+					
 					<img src="ue/uelt.png" width="1100" alt="">
 					
 				<h3>Як дізнатись, чи потрібен usmap/jmap/jmap.gz для uasset/umap файлів:</h3>
@@ -1142,7 +1143,7 @@ details > *:not(summary) {
 					<p style="text-indent: 1em;"><b style="color: red;">Що це таке:</b> Цей файл містить усі структури гри для правильного відкриття та редагування <b>uasset/umap</b>, <b>usmap</b> є старою бінарною версією, коли <b>jmap</b> є новою альтернативою у вигляді <b>JSON</b> файлу, <b>jmap.gz</b> є його стисненим варіантом в архіві. Практично обов’язковий у <b>Unreal Engine 5</b>, іноді потрібен у <b>4-х</b> версіях, тому й важливо перевіряти шляхом передогляду випадкового <b>uasset</b> у <b>FModel'і</b>.</p>
  						<img src="ue/check-usmap.png" width="1200" alt="">
 						
-				<h4>Варіанти отримання usmap/jmap/jmap.gz:</h4>
+				<h4>Варіанти отримання usmap/jmap/jmap.gz</h4>
 				
 				<ul>
 					<li>
@@ -1159,15 +1160,20 @@ details > *:not(summary) {
 					<p style="text-indent: 1em;">У вас при <b>Export Data Raw</b> в <b>FModel</b> експортується <b>uasset/umap</b> без <b>uexp</b>? Вітаю, у вас <b><a target="_blank" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/zen-loader-in-unreal-engine">Zen-контейнери</a></b>. Для роботи з ними потрібен <b><a target="_blank" href="https://github.com/trumank/retoc">retoc</a></b>. Користуйтеся або консольним варіантом, або <b><a target="_blank" href="tools/RetocGUI_NooB.zip">GUI-обгорткою від NooB</a></b>.</p>
 					<p>Шаблон консольної команди для експорту потрібного файлу:</p>
 					<div class="code-block-wrapper">
-						<code>retoc --aes-key ВАШ_КЛЮЧ to-legacy --filter "/YourGame/Content/Some/Path/ФАЙЛ.uasset" "C:\Path\To\Game\Content\Paks" "C:\Path\To\OutputDir"</code>
+						<code>retoc --aes-key ВАШ_КЛЮЧ to-legacy --filter "/YourGame/Content/Some/Path/ФАЙЛ.uasset" "C:\Path\To\Game\Content\Paks" "C:\Path\To\OutputDir" --version UE*_*</code>
 					</div>
 					<p><b>--aes-key</b> можна не використовувати, якщо ваша гра його немає.</p>
-					<p>У моєму випадку з <b>Life is Strange: Double Exposure</b> команда виглядає ось так:</p>
+					<p><b>--version</b> версію рушія гри можете дізнатись із заголовку вікна <b>FModel</b>, з Властивостей виконуваного файлу гри, чи переглянувши перші рядки згенерованого <b>jmap</b>.</p>
+					<p>У моєму випадку з <b>Samson</b> команда виглядає ось так:</p>
 					<div class="code-block-wrapper">
-						<code>retoc to-legacy --filter "/Chronos/Content/Data/Localization" "E:\Games\Life is Strange - Double Exposure\Chronos\Content\Paks" "C:\Extract"</code>
+						<code>retoc to-legacy --filter "/CJ/Content/CJ/Core/Systems/Dialogue/DT_SayLines.uasset" "E:\Games\Samson\CJ\Content\Paks" "E:\Exports" --version UE5_7</code>
 					</div>
-						<img src="ue/retoc.png" width="600" alt="">
-				<h4>Правильний переклад uasset/umap:</h4>
+					
+						<img src="ue/retoc.png" width="974" alt=""><br>
+					
+					<p style="text-indent: 1em;"><b style="color: red;">Увага:</b> Для ігор на <b>5.7</b> версії <b>Unreal Engine</b> потрібно розпаковувати з <b><u>обов’язковим</u></b> аргументом <b>--version UE5_7</b>, інакше асети конвертуватимуться як з <b>5.6</b> версії і не відкриватимуться <b>коректно</b>.</p>
+					
+				<h4>Правильний переклад uasset/umap</h4>
 					<p>Раніше ми отримати <b>usmap/jmap/jmap.gz</b>, тепер маємо <b>uasset/umap+uexp</b>. Далі використовуємо <b><a href="#tools">UELT</a></b>, відкриваємо <b>uasset/umap</b> та підтягуємо <b>usmap/jmap/jmap.gz</b>:</p>
 						<img src="ue/uelt_uasset.png" width="400" alt="">
 						
@@ -1406,7 +1412,7 @@ details > *:not(summary) {
 							<li>Дістає мусорні рядки з <b>uasset/umap</b> файлів, які не відносяться до фактичного тексту гри (виправлено в <b>UELT</b>).</li>
 							<li>Спотворює структуру <b>uasset/umap</b> файлів після збереження (виправлено в <b>UELT</b>).</li>
 							<li>Не підтримує рідкісні та складні структури <b>uasset</b> файлів (підтримується в <b>UELT</b>).</li>
-							<li>Не підтримує <b>uasset/umap</b> файли з <b>Unreal Engine 5.7+</b> (підтримується в <b>UELT</b>).</li>
+							<li>Не підтримує <b>uasset/umap</b> файли з <b>Unreal Engine 5.6+</b> (підтримується в <b>UELT</b>).</li>
 						</p>
 					</details>
 					
