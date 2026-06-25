@@ -1006,13 +1006,13 @@ details > *:not(summary) {
 		<main>
 			<h1 id="start">Створення українізатора 2.0</h1>
 				<p style="text-indent: 1em;">Цей посібник створений як розширення <b><a target="_blank" href="https://ukrainizer.netlify.app">посібника piggsy</a></b>. Він не повторює інформацію, а розширює її прикладами й новими інструментами. Рекомендується ознайомитися з <b>обома</b> посібниками. Усе, що описано в цьому посібнику, засноване на власному досвіді автора.
-				<br><br>Останні зміни: <b>24.06.2026</b>
+				<br><br>Останні зміни: <b>25.06.2026</b>
 				<br>Telegram: <b><a target="_blank" href="https://t.me/Halytskyi_Rozbyshaka">Канал</a></b>
 				<br>Discord: <b><a target="_blank" href="https://discord.gg/6SuKFpRaq9">Сервер</a></b></p>
 				
 			<h2 id="unity">Unity</h2>
 			
-			<p style="text-indent: 1em;">Я <b>однозначно рекомендую</b> переходити з <b>UABEA</b> на <b><a href="https://github.com/nesrak1/UABEANext">UABEANext</a></b>. Перший фактично перебуває у замороженому стані: розробка припинена, нові версії <b>Unity</b> не підтримуються, а частина критичних багів так і не була виправлена. Натомість <b><a href="https://github.com/nesrak1/UABEANext">UABEANext</a></b> активно розвивається, отримує підтримку нових версій рушія та пропонує значно ширший і зручніший інструментарій для роботи з асетами.</p>
+			<p style="text-indent: 1em;">Я <b>однозначно рекомендую</b> переходити з <b>UABEA</b> на <b><a href="https://github.com/nesrak1/UABEANext">UABEANext</a></b>. Перший фактично перебуває у замороженому стані: розробка припинена, нові версії <b>Unity</b> не підтримуються, а частина критичних багів так і не була виправлена. Натомість <b><a href="https://github.com/nesrak1/UABEANext">UABEANext</a></b> активно* розвивається, отримує підтримку нових версій рушія та пропонує значно ширший і зручніший інструментарій для роботи з асетами.</p>
 			<div class="pros-cons">
 				<div class="pros">
 					<h4>UABEANext</h4>
@@ -1118,7 +1118,7 @@ details > *:not(summary) {
 					<img src="unity/alt.png" width="350" alt="">
 				<p>Її слід використовувати в поєднанні з <b><a target="_blank" href="https://hikarosato.github.io/array/">Unity Localization Tool</a></b>:</p>
 				<video width="1100" controls style="background: #0a0a0a; filter: none; opacity: 1;"><source src="unity/alt.mp4" type="video/mp4">Ваш браузер не підтримує відтворення відео.</video>
-				<p>Додатково може знадобитися додавання нового рядка з назвою нашої мови у багатомовний <b>MonoBehaviour</b> і/або редагування <b>.dll</b> в залежності від гри.</p>
+				<p>Додатково може знадобитися додавання нового рядка з <b>ID</b> з назвою нашої мови у багатомовний <b>MonoBehaviour</b> і/або редагування <b>.dll</b> в залежності від гри.</p>
 				
 			<h2 id="ue4-5">Unreal Engine 4 & 5</h2>
 			
@@ -1133,23 +1133,25 @@ details > *:not(summary) {
 					
 				<h3 id="ue-text">Текст</h3>
 				
-					<p style="text-indent: 1em;">Для перекладу та роботи з <b>locres, uasset</b> і <b>umap</b> файлами використовуйте авторський інструмент <b><a href="#tools">UELT</a></b>.</p>
-					<p style="text-indent: 1em;">Також текст з певних структур <b>uasset</b> та <b>umap</b> файлів, можна перенести в <b>locres</b> для зручності і збереження сумісності перекладу з оновленнями гри, що було й зроблено з <b><a target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3743109444">перекладом Fatekeeper від Sent_Dez</a></b>. Детальніше розписано в документації <b>UELT</b>.</p>
+					<p style="text-indent: 1em;">Для перекладу та роботи з <b>locres, uasset</b> і <b>umap</b> файлами використовуйте авторський інструмент <b><a href="#tools">UELT</a></b> або мій старий форк <b><a target="_blank" href="#tools">UE Localization Tool 2.8.6</a></b> (не рекомендую, з перелічених у спойлерах причин).</p>
+					<p style="text-indent: 1em;">Також текст з певних структур <b>uasset</b> та <b>umap</b> файлів, можна перенести в <b>locres</b> для зручності і збереження сумісності перекладу з оновленнями гри, що було й зроблено з перекладом <b><a target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3743109444">Fatekeeper від Sent_Dez</a></b>. Детальніше розписано в документації <b>UELT</b>.</p>
 					<img src="ue/uelt.png" width="1100" alt="">
 					
 				<h3>Як дізнатись, чи потрібен usmap/jmap/jmap.gz для uasset/umap файлів:</h3>
- 					<p style="text-indent: 1em;">Спробуйте переглянути <b>uasset/umap</b> у <b><a target="_blank" href="https://github.com/4sval/FModel">FModel</a></b>. Якщо з’явиться повідомлення <b>...mapping file is missing</b>, вітаю, переходьте до наступного пункту.</p>
-					<p style="text-indent: 1em;"><b style="color: red;">Що це таке:</b> Цей файл містить усі структури гри для правильного відкриття та редагування <b>uasset/umap</b>. Практично обов’язковий у <b>Unreal Engine 5</b>, іноді потрібен у <b>4-х</b> версіях, тому й важливо перевіряти шляхом передогляду випадкового <b>uasset</b> у <b>FModel'і</b>.</p>
+ 					<p style="text-indent: 1em;">Спробуйте переглянути <b>uasset/umap</b> у <b><a target="_blank" href="https://github.com/4sval/FModel">FModel</a></b>. Якщо з’явиться повідомлення <b>...but mapping file is missing...</b>, вітаю, переходьте до наступного пункту.</p>
+					<p style="text-indent: 1em;"><b style="color: red;">Що це таке:</b> Цей файл містить усі структури гри для правильного відкриття та редагування <b>uasset/umap</b>, <b>usmap</b> є старою бінарною версією, коли <b>jmap</b> є новою альтернативою у вигляді <b>JSON</b> файлу, <b>jmap.gz</b> є його стисненим варіантом в архіві. Практично обов’язковий у <b>Unreal Engine 5</b>, іноді потрібен у <b>4-х</b> версіях, тому й важливо перевіряти шляхом передогляду випадкового <b>uasset</b> у <b>FModel'і</b>.</p>
  						<img src="ue/check-usmap.png" width="1200" alt="">
 						
 				<h4>Варіанти отримання usmap/jmap/jmap.gz:</h4>
 				
 				<ul>
 					<li>
-					<p><b><a target="_blank" href="https://github.com/Encryqed/Dumper-7">Dumper-7</a></b> та <b>DLL Injector</b>, знайдіть будь-який на просторах інтернету.</p>
+					<p><b><a target="_blank" href="https://github.com/Encryqed/Dumper-7">Dumper-7</a></b> та <b>DLL Injector</b>, знайдіть будь-який на просторах інтернету, або скористайтеся <b><a target="_blank" href="tools/reinjector.zip">reinjector</a></b>, звісно ваш антивірус буде на нього реагувати — він інтегрує сторонню <b>dll</b> під час роботи гри, що буде вважатись загрозою.</p>
 						<video width="1100" controls style="background: #0a0a0a; filter: none; opacity: 1;"><source src="ue/usmap-extract.mp4" type="video/mp4">Ваш браузер не підтримує відтворення відео.</video>
-					<p style="text-indent: 1em;">Як тільки побачите текст <b>Generating SDK tools (*.*ms)</b> можете закривати Командний рядок, при цьому гра також закриється. Згенерований <b>usmap</b> знайдете на системному диску у теці <b>Dumper-7</b>.</p></li>
+					<p style="text-indent: 1em;">Як тільки побачите текст <b>Generating SDK tools (*.*ms)</b> можете закривати Командний рядок, при цьому гра також закриється. Згенерований <b>usmap</b> знайдете на системному диску у теці <b>Dumper-7/Mappings</b>.</p></li>
 					<li><p><b><a target="_blank" href="https://github.com/trumank/jmap">jmap</a></b> — консольний варіант генерування <b>usmap/jmap/jmap.gz</b>.</p></li>
+					<li><p><b><a target="_blank" href="https://fmodel.app/discord">FModel Discord</a></b> — знайти готовий <b>usmap/jmap/jmap.gz</b>, перейшовши в розділ <b>game-compatibility</b>.</p></li>
+					<li><p><b><a target="_blank" href="https://www.nexusmods.com/">Nexus Mods</a></b> — іноді туди завантажують <b>usmap</b> файли, хоча здебільшого там дурня.</p></li>
 				</ul>
 					
 				<h3 id="ue-unpack">Правильне розпакування uasset/umap разом з uexp і подальший переклад</h3>
@@ -1166,7 +1168,7 @@ details > *:not(summary) {
 					</div>
 						<img src="ue/retoc.png" width="600" alt="">
 				<h4>Правильний переклад uasset/umap:</h4>
-					<p>Раніше ми дістали <b>usmap/jmap/jmap.gz</b> з гри, тепер маємо <b>uasset/umap+uexp</b>. Далі використовуємо <b><a href="#tools">UELT</a></b>, відкриваємо <b>uasset/umap</b> та підтягуємо <b>usmap/jmap/jmap.gz</b>:</p>
+					<p>Раніше ми отримати <b>usmap/jmap/jmap.gz</b>, тепер маємо <b>uasset/umap+uexp</b>. Далі використовуємо <b><a href="#tools">UELT</a></b>, відкриваємо <b>uasset/umap</b> та підтягуємо <b>usmap/jmap/jmap.gz</b>:</p>
 						<img src="ue/uelt_uasset.png" width="400" alt="">
 						
 				<h3 id="ue-plural-gender">Застосування плюралізації та родів</h3>
@@ -1274,14 +1276,15 @@ details > *:not(summary) {
 							<img src="ue/new_font.png" style="max-width: 500px; height: auto;" alt="">
 						</div>
 					<h4>ufont (UE 5.6+)</h4>
-					<p>Починаючи з <b>Unreal Engine 5.6</b> було додано розмір шрифту у заголовок <b>ufont</b> файлів як метадані для швидшого зчитування рушієм. Для видалення розміру і подальшого його правильного обрахування для пакування було написано інструмент <b><a target="_blank" href="tools/uFontTool.exe">uFontTool</a></b>. Підтримується перетягування <b>ufont/ttf</b> файлів та тек з підтеками.</p>
+					<p>Починаючи з <b>Unreal Engine 5.6</b> було додано розмір шрифту у заголовок <b>ufont</b> файлів як метадані для швидшого зчитування рушієм. Для видалення розміру і подальшого його правильного обрахування для пакування було написано інструмент <b><a target="_blank" href="tools/uFontTool.exe">uFontTool</a></b>. Підтримується перетягування <b>ufont/ttf/otf</b> файлів та тек з підтеками.</p>
 					<img src="ue/ufonttool.png" width="500" alt="">
 					
 				<h3 id="ue-pack">Пакування</h3>
 				
 					<h4>pak контейнери</h4>
 					<p>Замість старого <b>unrealpak</b> варто використовувати новий інструмент <b><a target="_blank" href="https://github.com/trumank/repak">repak</a></b>, який дозволяє пакувати різними версіями контейнерів під потрібну версію <b>Unreal Engine</b>, а також є швидшим.</p>
-					<p><b style="color: red;">Важливо:</b> Починаючи з <b>Unreal Engine 5.6</b> з’явилася вимога обов’язкових <b>utoc/ucas</b> контейнерів для <b>pak</b> файлів, інакше гра просто не завантажить запакований переклад у контейнері <b>pak</b>. Так як у нових <b>pak</b> зберігаються лише <b>locres, ufont, ini</b> та інші звичайні формати, <b>uasset</b> та <b>umap</b> із <b>Zen-контейнерів</b> потрібно запаковувати в <b>utoc</b>.<br><b style="color: red;">Увага:</b> У випадках, коли не потрібно запаковувати <b>uasset</b> чи <b>umap</b>, і при цьому <b>utoc/ucas</b> обов’язкові — можна взяти <b>global.utoc</b> і <b>global.ucas</b> з гри і використовувати їх як заглушки, перейменувавши під назву <b>pak</b> файлу.</p>
+					<p><b style="color: red;">Важливо:</b> Починаючи з <b>Unreal Engine 5.6</b> з’явилася вимога обов’язкових <b>utoc/ucas</b> контейнерів для <b>pak</b> файлів, інакше гра просто не завантажить запакований переклад у контейнері <b>pak</b>. Так як у <u>нових</u> <b>pak</b> зберігаються лише <b>locres, ufont, ini</b> та інші звичайні формати — <b>uasset</b> та <b>umap</b> із <b>Zen-контейнерів</b> потрібно запаковувати в <b>utoc</b>.<br><b style="color: red;">Увага:</b> У випадках, коли немає потреби у перекладі <b>uasset</b> чи <b>umap</b>, і при цьому <b>utoc/ucas</b> обов’язкові — можна взяти <b>global.utoc</b> і <b>global.ucas</b> з гри і використовувати їх як заглушки, перейменувавши під назву <b>pak</b> файлу.</p>
+					<img src="ue/ucasutoc.png" width="400" alt="">
 				
 				<h4>Zen-контейнери utoc/ucas</h4>
 					<p>Для цього нам знову потрібен <b><a target="_blank" href="https://github.com/trumank/retoc">retoc</a></b>. Користуйтеся або консольним варіантом, або <b><a target="_blank" href="tools/RetocGUI_NooB.zip">GUI-обгорткою від NooB</a></b>.</p>
@@ -1441,9 +1444,9 @@ details > *:not(summary) {
 					</div>
 				</li>
 				
-				<li><b><a target="_blank" href="tools/uFontTool.exe">uFontTool</a></b> — авторський інструмент для роботи з <b>ufont</b> файлами починаючи з <b>Unreal Engine 5.6</b>.</li>
+				<li><b><a target="_blank" href="tools/uFontTool.exe">uFontTool 1.1</a></b> — авторський інструмент для роботи з <b>ufont</b> файлами починаючи з <b>Unreal Engine 5.6</b>.</li>
 				
-				<li><b><a target="_blank" href="tools/LocMetaTool.exe">LocMetaTool</a></b> — авторський інструмент для роботи з <b>locmeta</b> файлами. Підтримується перетягування <b>locmeta/json</b>, конвертація між <b>0, 1</b> і <b>2</b> версіями.</li>
+				<li><b><a target="_blank" href="tools/LocMetaTool.exe">LocMetaTool 1.1</a></b> — авторський інструмент для роботи з <b>locmeta</b> файлами. Підтримується перетягування <b>locmeta/json</b>, конвертація між <b>0, 1</b> і <b>2</b> версіями.</li>
 				
 				</ul>
 			<h2>Поради</h2>
