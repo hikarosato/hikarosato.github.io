@@ -985,6 +985,7 @@ details > *:not(summary) {
 						<ul class="submenu">
 							<li><a href="#ue-aes">AES та sig</a></li>
 							<li><a href="#ue-text">Текст</a></li>
+							<li><a href="#ue-map">Usmap/Jmap</a></li>
 							<li><a href="#ue-unpack">Розпакування</a></li>
 							<li><a href="#ue-plural-gender">Плюралізація і роди</a></li>
 							<li><a href="#ue-special">Особливості</a></li>
@@ -1138,7 +1139,7 @@ details > *:not(summary) {
 					
 					<img src="ue/uelt.png" width="1100" alt="">
 					
-				<h3>Як дізнатись, чи потрібен usmap/jmap/jmap.gz для uasset/umap файлів:</h3>
+				<h3 id="ue-map">Як дізнатись, чи потрібен usmap/jmap/jmap.gz для uasset/umap файлів:</h3>
  					<p style="text-indent: 1em;">Спробуйте переглянути <b>uasset/umap</b> у <b><a target="_blank" href="https://github.com/4sval/FModel">FModel</a></b>. Якщо з’явиться повідомлення <b>...but mapping file is missing...</b>, вітаю, переходьте до наступного пункту.</p>
 					<p style="text-indent: 1em;"><b style="color: red;">Що це таке:</b> Цей файл містить усі структури гри для правильного відкриття та редагування <b>uasset/umap</b>, <b>usmap</b> є старою бінарною версією, коли <b>jmap</b> є новою альтернативою у вигляді <b>JSON</b> файлу, <b>jmap.gz</b> є його стисненим варіантом в архіві. Практично обов’язковий у <b>Unreal Engine 5</b>, іноді потрібен у <b>4-х</b> версіях, тому й важливо перевіряти шляхом передогляду випадкового <b>uasset</b> у <b>FModel'і</b>.</p>
  						<img src="ue/check-usmap.png" width="1200" alt="">
@@ -1175,9 +1176,11 @@ details > *:not(summary) {
 					
 				<h4>Правильний переклад uasset/umap</h4>
 					<p>Раніше ми отримати <b>usmap/jmap/jmap.gz</b>, тепер маємо <b>uasset/umap+uexp</b>. Далі використовуємо <b><a href="#tools">UELT</a></b>, відкриваємо <b>uasset/umap</b> та підтягуємо <b>usmap/jmap/jmap.gz</b>:</p>
+					
 						<img src="ue/uelt_uasset.png" width="400" alt="">
 						
 				<h3 id="ue-plural-gender">Застосування плюралізації та родів</h3>
+				
 				<h4>Плюралізація</h4>
 				<p style="text-indent: 1em;"><b>Unreal Engine</b> підтримує плюралізацію (множину чогось/когось) через конструкцію <b>{x}|plural(...)</b>. <b style="color: red;">Важливо:</b> замінюючи англійську локалізацію плюралізація обмежуватиметься лише <b>one=</b> і <b>other=</b> опціями, для повноцінної плюралізації з <b>чотирма опціями</b> потрібно створювати локалізацію <b><a href="#ue-ua">окремою українською</a></b> (дякую <b>veydzh3r'у</b> за ідею перевірити це):</p>
 				<div class="code-block-wrapper">
@@ -1225,12 +1228,12 @@ details > *:not(summary) {
 				
 				<h4>Роди</h4>
 				<p>Для перекладу слів залежно від роду персонажа <i>(знайшов/знайшла/знайшло)</i> використовується конструкція <b>{x}|gender(...)</b>.</p>
-
 				<p  style="text-indent: 1em;">Назва всередині дужок <b>{ }</b> це аргумент, який задають розробники. Він може бути будь-яким: <b>{NpcGender}</b>, <b>{NPC_A.Gender}</b>, <b>{Player.Gender}</b> тощо. Знайти його можна двома способами:</p>
 				<ul>
 					<li>У файлах <b>locres</b> або <b>uasset</b> — якщо пощастить, і текст з <b>|gender</b> потрапив у локалізацію.</li>
 					<li>У <b>Blueprints</b>, доведеться шукати в нодах <b>Format Text</b> або в текстових полях структур <b>EventTemplate</b>, <b>QuestTemplate</b>, <b>DialogueTemplate</b> чи <b>DataAsset</b>.</li>
 				</ul>
+				
 				<img src="ue/plural.png" width="900" alt="">
 
 				<p style="text-indent: 1em;">Пишете три форми через кому: <b>Masculine → Feminine → Neuter</b> (чоловічий, жіночий, середній рід). Порядок не можна змінювати. Якщо в оригіналі дві форми, додаєте третю за потребою.</p>
@@ -1259,6 +1262,7 @@ details > *:not(summary) {
 				</div>
 				
 				<h3 id="ue-special">Особливості перекладу</h3>
+				
 					<p style="text-indent: 1em;">Коли ви заміняєте англійську локалізацію, у деяких іграх може залишатись неперекладеними список мов і час та дата збережень, наприклад:</p>
 						<div style="display: flex; gap: 10px; flex-wrap: wrap;">
 							<img src="ue/bob.png" style="max-width: auto; height: 120px;" alt="">
