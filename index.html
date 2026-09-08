@@ -546,47 +546,11 @@ main {
 	backdrop-filter: blur(4px);
 }
 
-/* Завершено / Completed (смарагдово-зелений градієнт) */
-.card-badge--completed {
-	background: linear-gradient(135deg, rgba(16, 185, 129, 0.85), rgba(5, 150, 105, 0.85));
-	border-color: rgba(16, 185, 129, 0.5);
-	backdrop-filter: blur(4px);
-}
-
 /* На павзі / Paused (рожево-малиновий градієнт) */
 .card-badge--paused {
 	background: linear-gradient(135deg, rgba(236, 72, 153, 0.85), rgba(219, 39, 119, 0.85));
 	border-color: rgba(236, 72, 153, 0.5);
 	backdrop-filter: blur(4px);
-}
-
-/* Потребує перевірки / Review (блакитно-ціановий градієнт) */
-.card-badge--review {
-	background: linear-gradient(135deg, rgba(6, 182, 212, 0.85), rgba(8, 145, 178, 0.85));
-	border-color: rgba(6, 182, 212, 0.5);
-	backdrop-filter: blur(4px);
-}
-
-/* Ексклюзив / Private (темно-фіолетовий градієнт) */
-.card-badge--private {
-	background: linear-gradient(135deg, rgba(107, 33, 168, 0.85), rgba(88, 28, 135, 0.85));
-	border-color: rgba(107, 33, 168, 0.5);
-	backdrop-filter: blur(4px);
-}
-
-/* Бета / Beta (пурпурово-рожевий градієнт) */
-.card-badge--beta {
-	background: linear-gradient(135deg, rgba(168, 85, 247, 0.85), rgba(236, 72, 153, 0.85));
-	border-color: rgba(168, 85, 247, 0.5);
-	backdrop-filter: blur(4px);
-}
-
-/* Гаряче / Hot (червоно-оранжевий градієнт) */
-.card-badge--hot {
-	background: linear-gradient(135deg, rgba(239, 68, 68, 0.85), rgba(249, 115, 22, 0.85));
-	border-color: rgba(239, 68, 68, 0.5);
-	backdrop-filter: blur(4px);
-	animation: pulse 1.5s ease infinite;
 }
 
 @keyframes pulse {
@@ -961,7 +925,7 @@ footer {
 
 		<!-- Secret -->
 		<div class="card">
-			<div class="card-badge card-badge--progress">У роботі</div>
+			<div class="card-badge card-badge--paused">На павзі</div>
 			<div class="card-img">
 				<img src="png/secret.png" alt="Secret" onerror="this.src='https://placehold.co/460x215/1a1a2e/6366f1?text=???&font=montserrat'">
 			</div>
