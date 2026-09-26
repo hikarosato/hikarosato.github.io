@@ -1055,15 +1055,8 @@ details > *:not(summary) {
 									<img src="unity/textasset/3.png" style="max-width: auto; height: 190px;" alt="">
 									<img src="unity/textasset/1.png" style="max-width: auto; height: 300px;" alt="">
 								</div>
-								<p>У <b>TextAsset</b> зберігаються практично будь-які текстові дані. Це можуть бути <b>власні формати</b> рядків або табличні дані у вигляді <b>CSV</b> чи <b>TSV</b>, структурований <b>JSON</b> чи формат з тегами <b>XML</b>. Такий асет можна експортувати двома варіантами:</p>
-								<ul>
-									<p><b>a) </b>Через меню <b>Plugins</b> у <b><a href="https://github.com/nesrak1/UABEANext">UABEANext</a></b>:</p>
+								<p>У <b>TextAsset</b> зберігаються практично будь-які текстові дані. Це можуть бути <b>власні формати</b> рядків або табличні дані у вигляді <b>CSV</b> чи <b>TSV</b>, структурований <b>JSON</b> чи формат із тегами <b>XML</b>. Такий асет експортується через меню <b>Plugins</b> у <b><a href="https://github.com/nesrak1/UABEANext">UABEANext</a></b>:</p>
 										<img src="unity/textasset/export.png" width="300" alt="">
-									<p><b>b) </b>Через кнопку <b>Export</b> у <b><a href="https://github.com/nesrak1/UABEANext">UABEANext</a></b>, зберегти файл з форматом <b>JSON</b> і скористатися онлайн-конвертером <b><a target="_blank" href="https://www.convertcsv.com/json-to-csv.htm">JSON to CSV</a></b>.</p>
-									<p>Для перетворення <b>csv</b> назад в <b>json</b> використовуйте онлайн-конвертер <b><a target="_blank" href="https://www.convertcsv.com/csv-to-json.htm">CSV to JSON</a></b>. Приберіть зайві <b>[ ]</b>, які встановлюються за замовчуванням, вони не потрібні.</p>
-										<img src="unity/text-1-1.png" width="400" alt="">
-									<p>❗️ <b>Зверніть увагу:</b> онлайн-конвертер зберігає <b>json</b> не з <b>\r\n</b>, як це інколи буває в оригіналі, а лише з <b>\n</b>. Через цю дрібницю у мене траплялися баги з діалогами в одній з ігор. Виправити це можна за допомогою <b>Notepad++</b>: відкрийте всі ваші конвертовані <b>json</b> і замініть потрібні символи.</p>
-										<img src="unity/text-1-2.png" width="500" alt="">
 								</ul>
 							</ul>
 						</li>
@@ -1077,8 +1070,6 @@ details > *:not(summary) {
 									<img src="unity/monobeh1.png" style="max-width: 350px; height: auto;" alt="">
 									<img src="unity/monobeh3.png" style="max-width: 300px; height: auto;" alt="">
 								</div>
-								<p style="text-indent: 1em;">Використовуйте авторський інструмент <b><a target="_blank" href="https://hikarosato.github.io/array/">Unity Localization Tool</a></b>, який підтримує сім видів подібних масивів. Перекладайте текст прямо в програмі або експортуйте з неї в <b>CSV</b> чи <b>TXT</b> для перекладу деінде.</p>
-									<img src="unity/ult.png" style="max-width: 1000px; height: auto;" alt="">
 							</ul>
 							<ul>
 								<h4>Файли з однією мовою, у тому числі з bundle</h4>
@@ -1087,7 +1078,9 @@ details > *:not(summary) {
 									<img src="unity/text-5.png" width="350" alt="">
 									<img src="unity/text-6.png" width="380" alt="">
 								</div>
-								<p style="text-indent: 1em;">Підтримка таких файлів додана у <b>4.0</b> версії <b><a target="_blank" href="https://hikarosato.github.io/array/">Unity Localization Tool</a></b>.</p>
+								
+								<br><p style="text-indent: 1em;">Використовуйте авторський інструмент <b><a target="_blank" href="https://github.com/hikarosato/ULT">ULT</a></b>, який підтримує шістнадцять структур JSON MonoBehaviour. Перекладайте текст прямо в програмі або експортуйте з неї в <b>CSV</b> чи <b>TXT</b> для перекладу деінде:</p>
+								<img src="unity/ult.png" style="max-width: 1000px; height: auto;" alt="">
 							</ul>
 					</ul>
 				<h3 id="unity-import">Імпорт</h3>
@@ -1373,15 +1366,7 @@ details > *:not(summary) {
 					</div>
 				</li>
 				
-				<li><b>ULT</b> — закритий авторський інструмент, наступник <b>Unity Localization Tool</b>. Підтримується робота у вкладках, розширено і виправлено попередній функціонал, робота з <b>15-ма</b> видами <b>MonoBehaviour</b> файлів, присутні автоматичні оновлення. Підтримуватись буде <b>Windows</b> (мінімум <b>Windows 10 1607</b>) і <b>Linux</b> (Обмежена підтримка через <b>Proton</b>, без автоматичних оновлень).
-				
-					<div class="warning-box allowed">
-						<div class="warning-dot"></div>
-						<div class="warning-text">
-							<strong>Доступ обмежено</strong>
-							Надається персонально через <b><a href="#start">Discord сервер чи Telegram канал</a></b> перекладачам, які <b>не займаються</b> машинним перекладом, і мають хоча б щось <b>перекладене вручну</b> за плечами.<br>Also, dear non-Ukrainian translators, I will not provide my tools or forks to you — they are designed for <b>Ukrainians</b>.
-						</div>
-					</div>
+				<li><b><a target="_blank" href="https://github.com/hikarosato/ULT">ULT</a></b> — авторський інструмент, наступник <b>Unity Localization Tool</b>. Підтримується робота у вкладках, розширено і виправлено попередній функціонал, робота з <b>16-ма</b> видами <b>MonoBehaviour</b> файлів. Підтримуватись буде <b>Windows</b> (мінімум <b>Windows 10 1607</b>) і <b>Linux</b> (Обмежена підтримка через <b>Proton</b>).
 				</li>
 				
 				</ul>
@@ -1456,7 +1441,7 @@ details > *:not(summary) {
 					</div>
 				</li>
 				
-				<li><b><a target="_blank" href="https://github.com/hikarosato/UELT">UELT</a></b> — закритий авторський інструмент, глибоко переосмислений <b>UE Localization Tool</b>, інтерфейс створено з нуля, логіку роботи суттєво перероблено й розширено, позбавлений проблем попередників, використовує модифіковані сторонні бібліотеки. Підтримуватись буде <b>Windows</b> (мінімум <b>Windows 10 1607</b>) і <b>Linux</b> (Обмежена підтримка через <b>Proton</b>.
+				<li><b><a target="_blank" href="https://github.com/hikarosato/UELT">UELT</a></b> — авторський інструмент, глибоко переосмислений <b>UE Localization Tool</b>, інтерфейс створено з нуля, логіку роботи суттєво перероблено й розширено, позбавлений проблем попередників, використовує модифіковані сторонні бібліотеки. Підтримуватись буде <b>Windows</b> (мінімум <b>Windows 10 1607</b>) і <b>Linux</b> (Обмежена підтримка через <b>Proton</b>.
 				</li>
 				
 				<li><b><a target="_blank" href="tools/uFontTool.exe">uFontTool 1.1</a></b> — авторський інструмент для роботи з <b>ufont</b> файлами починаючи з <b>Unreal Engine 5.6</b>.</li>
