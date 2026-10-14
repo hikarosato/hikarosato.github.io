@@ -382,6 +382,20 @@ main {
 	font-weight: 400;
 }
 
+/* Поточні проєкти */
+.featured {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 48px;
+}
+
+.card--featured {
+	width: 100%;
+	max-width: 380px;
+	border-color: rgba(99, 102, 241, 0.35);
+	box-shadow: 0 0 40px rgba(99, 102, 241, 0.12);
+}
+
 /* Progress Bar Styles */
 .progress-section {
 	margin: 8px 0 4px;
@@ -740,7 +754,34 @@ footer {
 	</section>
 
 	<div class="section-header">
-		<span class="section-title">Локалізації ігор у хронологічному порядку</span>
+		<span class="section-title">Поточні проєкти</span>
+		<div class="section-line"></div>
+	</div>
+	<div class="featured">
+		<div class="card card--featured">
+			<div class="card-badge card-badge--progress">У роботі</div>
+			<div class="card-img">
+				<img src="png/secret.png" alt="?" onerror="this.src='https://placehold.co/460x215/1a1a2e/6366f1?text=?&font=montserrat'">
+			</div>
+			<div class="card-body">
+				<div class="card-meta">170 924 слова<br>Інструменти написані · Шрифти готові</div>
+			
+				<div class="progress-section">
+					<div class="progress-bar">
+						<div class="progress-fill" style="width: 9.83%"></div>
+					</div>
+					<div class="progress-stats">
+						<span>Поступ перекладу</span>
+						<span class="progress-percent">9,83%</span>
+					</div>
+				</div>
+			
+			</div>
+		</div>
+	</div>
+
+	<div class="section-header">
+		<span class="section-title">Готові локалізації ігор у хронологічному порядку</span>
 		<div class="section-line"></div>
 	</div>
 	<div class="cards" style="margin-bottom: 48px;">
@@ -910,29 +951,6 @@ footer {
 				<div class="card-links">
 					<a class="card-link" target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3590623258">Steam</a>
 				</div>
-			</div>
-		</div>
-
-		<!-- Secret -->
-		<div class="card">
-			<div class="card-badge card-badge--progress">У роботі</div>
-			<div class="card-img">
-				<img src="png/secret.png" alt="Secret" onerror="this.src='https://placehold.co/460x215/1a1a2e/6366f1?text=???&font=montserrat'">
-			</div>
-			<div class="card-body">
-				<div class="card-title">Поточний проєкт</div>
-				<div class="card-meta">170 924 слова<br>Інструменти написані · Шрифти готові</div>
-				
-				<div class="progress-section">
-					<div class="progress-bar">
-						<div class="progress-fill" style="width: 9.83%"></div>
-					</div>
-					<div class="progress-stats">
-						<span>Поступ перекладу</span>
-						<span class="progress-percent">9,83%</span>
-					</div>
-				</div>
-				
 			</div>
 		</div>
 
