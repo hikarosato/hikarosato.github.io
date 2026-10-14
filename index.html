@@ -385,11 +385,14 @@ main {
 /* Поточні проєкти */
 .featured {
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: center;
+	gap: 20px;
 	margin-bottom: 48px;
 }
 
 .card--featured {
+	flex: 0 1 380px;
 	width: 100%;
 	max-width: 380px;
 	border-color: rgba(99, 102, 241, 0.35);
@@ -757,6 +760,7 @@ footer {
 		<span class="section-title">Поточні проєкти</span>
 		<div class="section-line"></div>
 	</div>
+	
 	<div class="featured">
 		<div class="card card--featured">
 			<div class="card-badge card-badge--progress">У роботі</div>
@@ -775,9 +779,29 @@ footer {
 						<span class="progress-percent">9,83%</span>
 					</div>
 				</div>
-			
 			</div>
 		</div>
+		
+		<div class="card card--featured">
+			<div class="card-badge card-badge--paused">Призупинено</div>
+			<div class="card-img">
+				<img src="png/secret.png" alt="?" onerror="this.src='https://placehold.co/460x215/1a1a2e/6366f1?text=?&font=montserrat'">
+			</div>
+			<div class="card-body">
+				<div class="card-meta">32 772 слова<br>Інструмент написано</div>
+			
+				<div class="progress-section">
+					<div class="progress-bar">
+						<div class="progress-fill" style="width: 13.28%"></div>
+					</div>
+					<div class="progress-stats">
+						<span>Поступ перекладу</span>
+						<span class="progress-percent">13,28%</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</div>
 
 	<div class="section-header">
